@@ -13,15 +13,44 @@
 \begin{document}
 
 \maketitle{}
-At first, we will apply the cooperative theory on the machine schedule problem, and put it as a simple example to show our result.
 
-\section{Assumption}
+
+\section*{Introduction}
+At first, we will introduce some preliminary knowledge about cooperative game theory as follows.
+A pair $(V,c)$ is usually used to represent a cooperative game with transferable utilities, among which $V=\{1,2,\dots,v\}$ denotes a set of $v$ players and $c:2^{V}\to \mathbb{R}$ indicates the characteristic function of the game. A coalition is defined as a non-empty subset of players; while $V$ is refered to as a coalition, $S=2^{V} \setminus\{\emptyset\}$ denotes the set of all feasible coalitions. The characteristic function of the game, $c(s)$, represents the minimum coalitional cost the players in $s$ have to pay in order to cooperate together.
+A cost allocation vector $\alpha=[\alpha_{1},\alpha_{2},\dots,\alpha_{v}] \in \mathbb{R}^{v}$ is required by the game to maintain cooperation in the grand coalition, and $\alpha_{k}$ is the cost assigned to players $k \in V$ to assure no individual or group of players has the incentive to deviate. For the convenience of abbreviation, we use $\alpha(s)=\sum_{k\in{s}}\alpha_{k}$ to denote the total cost assigned to the players in coalition $s$.
+One of the most important concepts in cooperative game theory is core, which is a cost allocation satisfying two kinds of contraints, one is the budget balance contraint {$\alpha(V)=c(V)$} and the other is the coalitional stability constrains {$\alpha(s) \leq c(s)$}. In other words, core can be expressed as
+
+\[
+Core(V,c)= \left\{\alpha:\alpha(V)=c(V), \alpha(s)\leq c(s)\ \text{对所有}\ s \in S \setminus\{V\}, \alpha \in \mathbb{R}^{v} \right\}.
+\]
+
+When the cost allocation exists, core is called non-empty. And if and only if the core is non-empty, the grand coalition of the associating cooperative game $(V,c)$ will be stable or balanced.
+
+However, cooperative games can be unbalanced in many cases owing to the joint restrictions of the above-mentioned two kinds of constraints. To stabilize the grand coalitions in unbalanced cooperative games, researchers have already developed several effective instrument, such as subsidization, penalization and simultaneous subsidization and penalization. The
+similarities of these instruments is that there exists an outside party who will take measures to stabilize the grand coalition. But the penalization will always arouse the discontent of players in coalitions, it's promising to find a new instrment to replace the penalization, we call it taxation.
+The significant idea of this instrument is that we can erase the role of the third party by collecting taxation as subsidy of the corresponding coalitions.
+That being said, the players of the games can stabilize themselves without the third party.
+
+
+To make the project concrete, we will apply the cooperative theory on the machine schedule problem to show our ideas.
+
+
+Then we will illustrate the taxation instrument with a simple example of an IPU (identical parallel machine scheduling of unweighted jobs) game as follows.
+
+
 Let $N={1,2,\ldots,n}$ be a set of n players. The number of machines is $m$ and the setup cost is $t_0$.
 For convenience of expression, we set the processing times $t_i, i\in N$ satisfy $t_1<t_2<\cdots<t_n$.
 
 \section{Example}
-In this example, the grand coalition contains four players, whose processing times on the identical parallel machine are $t_1=2,t_2=3,t_3=4,t_4=5$ respectively. And the machine setup cost is $t_0=9.5$.
-So we can conclude that the optimum solution is the grand coalition needs two machines, and additive $0.75$ subsidy. When we increase the setup cost from 9.5 to 13, the number of machine will decrease from 2 to 1.
+
+There is a IPU game which contains four players, whose processing times on the identical parallel machine are $t_1=2,t_2=3,t_3=4,t_4=5$ respectively. Each machine setup cost is $t_0=9.5$, and $c(s)$ is the minimum total completion time of jobs in coalition $s$ plus the machine setup cost.
+
+In this example, the grand coalition has a minimum cost of 38, and the optimum number of machine is 2.
+It's easy to check that this example is unbalanced and calculate the subsidy which equals $ c(V) - \alpha(V) = 0.75$.
+
+When the setup cost increases from 9.5 to 13, that is, the taxation increases from 0 to 3.5,
+the number of machine will decrease from 2 to 1.
 
 \section{Conclusion}
 Now we extend the number of players to a more complex case, that is we will set the number of players to $n$.
