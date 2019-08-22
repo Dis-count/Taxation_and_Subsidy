@@ -3,6 +3,9 @@
 \usepackage{graphicx}
 \usepackage{setspace}
 % \usepackage{ctex}
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+
 \usepackage{amsmath}
 \usepackage{geometry}
 \geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=1cm}
@@ -22,13 +25,13 @@ A cost allocation vector $\alpha=[\alpha_{1},\alpha_{2},\dots,\alpha_{v}] \in \m
 One of the most important concepts in cooperative game theory is core, which is a cost allocation satisfying two kinds of contraints, one is the budget balance contraint {$\alpha(V)=c(V)$} and the other is the coalitional stability constrains {$\alpha(s) \leq c(s)$}. In other words, core can be expressed as
 
 \[
-Core(V,c)= \left\{\alpha:\alpha(V)=c(V), \alpha(s)\leq c(s)\ \text{对所有}\ s \in S \setminus\{V\}, \alpha \in \mathbb{R}^{v} \right\}.
+Core(V,c)= \left\{\alpha:\alpha(V)=c(V), \alpha(s)\leq c(s)\ \text{for all}\ s \in S \setminus\{V\}, \alpha \in \mathbb{R}^{v} \right\}.
 \]
 
 When the cost allocation exists, core is called non-empty. And if and only if the core is non-empty, the grand coalition of the associating cooperative game $(V,c)$ will be stable or balanced.
 
-However, cooperative games can be unbalanced in many cases owing to the joint restrictions of the above-mentioned two kinds of constraints. To stabilize the grand coalitions in unbalanced cooperative games, researchers have already developed several effective instrument, such as subsidization, penalization and simultaneous subsidization and penalization. The
-similarities of these instruments is that there exists an outside party who will take measures to stabilize the grand coalition. But the penalization will always arouse the discontent of players in coalitions, it's promising to find a new instrment to replace the penalization, we call it taxation.
+However, cooperative games can be unbalanced in many cases owing to the joint restrictions of the above-mentioned two kinds of constraints. To stabilize the grand coalitions in unbalanced cooperative games, researchers have already developed several effective instruments, such as subsidization, penalization and simultaneous subsidization and penalization. The
+similarity of these instruments is that there exists an outside party who will take measures to stabilize the grand coalition. But the penalization will always arouse the discontent of players in coalitions, it's promising to find a new instrment to replace the penalization, we call it taxation.
 The significant idea of this instrument is that we can erase the role of the third party by collecting taxation as subsidy of the corresponding coalitions.
 That being said, the players of the games can stabilize themselves without the third party.
 
@@ -36,13 +39,9 @@ That being said, the players of the games can stabilize themselves without the t
 To make the project concrete, we will apply the cooperative theory on the machine schedule problem to show our ideas.
 
 
-Then we will illustrate the taxation instrument with a simple example of an IPU (identical parallel machine scheduling of unweighted jobs) game as follows.
+Then we will illustrate the taxation instrument with a simple example of an IPU (Identical Parallel machine scheduling of Unweighted jobs) game as follows.
 
-
-Let $N={1,2,\ldots,n}$ be a set of n players. The number of machines is $m$ and the setup cost is $t_0$.
-For convenience of expression, we set the processing times $t_i, i\in N$ satisfy $t_1<t_2<\cdots<t_n$.
-
-\section{Example}
+\section*{Example}
 
 There is a IPU game which contains four players, whose processing times on the identical parallel machine are $t_1=2,t_2=3,t_3=4,t_4=5$ respectively. Each machine setup cost is $t_0=9.5$, and $c(s)$ is the minimum total completion time of jobs in coalition $s$ plus the machine setup cost.
 
@@ -50,44 +49,71 @@ In this example, the grand coalition has a minimum cost of 38, and the optimum n
 It's easy to check that this example is unbalanced and calculate the subsidy which equals $ c(V) - \alpha(V) = 0.75$.
 
 When the setup cost increases from 9.5 to 13, that is, the taxation increases from 0 to 3.5,
-the number of machine will decrease from 2 to 1.
+the number of machine will decrease from 2 to 1, accordingly.
 
-\section{Conclusion}
-Now we extend the number of players to a more complex case, that is we will set the number of players to $n$.
-In this situation, the interval size of setup cost can be calculated when $t_i$ is known. And we can obtain that under what circumstances the machine number will change. We set the different intervals where the number of machines remain unchanged as $I_i$ respectively. The extreme points of these intervals are recorded as $S_i$ respectively. Specially, $S_1$ denotes the extreme point of the whole interval, which means the value of setup cost when subsidy equals zero.
+Although this case is easily understood, it demonstrate the concept of taxation we have strong interests in. Then we will define the corresponding model to further elaborate on this concept.
+
+\section*{Definition 1.}
+A cooperative TU game $(V,c)$ is called an IPU game if it satisfies the following formulations.
+
+\[
+\begin{aligned}
+c(s,m(s,P)) = & {\min} \sum_{k\in V}\sum_{j\in O} {c_{kj} x_{kj}} + { Pm} \\
+{s.t.}\quad & \sum_{j \in O} x_{kj}-y_k^s=0, \forall k \in V, \\
+& \sum_{k\in V} x_{kj} \leq m(s),\forall j \in O,  \\
+& \sum_{k\in s} x_{k1}=m(s), \\
+& x_{kj} \in \{0,1\} , \forall k \in V, \forall j \in O,\\
+& y_k^s=1, k \in s, y_k^s=0, k \notin s.
+\end{aligned}
+\]
+
+Among these formulations, $P$ and $m$ denote the price and the number of using machines, respectively.
+Now we've already extended the number of players to a more complex case, that is, the number of players is set to $n$.
+Let $N=\{1,2,\ldots,n\}$ be a set of n players. The number of machines is $m$ and the setup cost is $t_0$.
+For convenience of expression, we set the processing times $t_i, i\in N$ satisfy $t_1<t_2<\cdots<t_n$.
+
+Then we need to define a function, that is, subsidy-price function denoted by $\omega(P)$:
+\[
+  {\omega(P)}=\mathop{\min}_{\alpha}\{c(V,m(V,P))-\alpha(V): \alpha(s)\leq c(s,m(s,P))
+ \forall s \in S, \alpha\in\mathbb{R}^{v}\}.
+\]
+
+By obtaining its dual:
+\[
+ {\omega^*(P)}=\mathop{\max}_{\rho} \{c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]:
+ \sum_{s\in S\setminus\{V\}:k\in s}\rho_s=1,\forall k \in V,\rho_s\geq 0,\forall s \in S \setminus{V}\}
+\]
+we can establish Theorem 1 below, showing the property of the function.
+
+\section*{Theorem 1.}
+$\omega(P)$ is piecewise linear, and convex in price P when $m(V)$ is a fixed integer.
 
 
-We will demonstrate the three parts of the graph.
+In this situation, the interval size of setup cost can be calculated when $t_i$ is known. And we can obtain that under what circumstances the machine number will change. We set the different intervals where the number of machines remain unchanged as $I_i$ respectively. The extreme points of these intervals are recorded as $P_i$ respectively, which represents the price when the number of using machine changes from $i$ to $i-1$. Specially, $P_1$ denotes the extreme point of the whole interval, which is the value of price or setup cost when using one machine and subsidy equals zero.
 
+Note that the costs of all the exponential coalitions can be easily calculated by the SPT rules, we have Lemma 1.
 
-
-
-Because the costs of all the exponential coalitions can be easily got by the SPT rules, we have Lemma1
-
-\section{Lemma1}
+\section*{Lemma 1.}
 The value at the extreme points of the sub-intervals $I_i$ can be calculated with processing times $t_i$ by comparing the costs of the grand coalitions where all the players use two adjacent numbers of machines.
 
-According to the above lemma1, we can obtain all the extreme points of the sub-intervals, i.e., the number of using machines decreases by one when the setup cost equals $S_i$.
-
-\section{Lemma2}
-The characteristic function must be supermodular, then we can get the positive setupcost when the machine number changes.
+According to the above lemma1, we can obtain all the extreme points of the sub-intervals, i.e., the number of using machines decreases by one when the price or setup cost equals $P_i$.
 
 
 
-\section{Corollary1}
+\section*{Theorem 2.}
 According to the foregoing description, we have the equation $S_{1}=S_{2}+\cdots+S_{n}=\sum_{i=2}^n S_i$.
 
-With corollary1, we obtain all the breakpoints during the interval of the setup cost where the machine number changes and the subsidy is $0$. Then we'll focus on the specific property of subsidy.
+With Theorem 2, we obtain all the breakpoints during the interval of the price where the machine number changes and the subsidy is $0$. Then we'll focus on the specific property of subsidy.
 
-\section{Corollary2}
-The least absolute value of the slope during all the intervals is $\frac{1}{n-1}$.
-The values of the slope during the sub-intervals are proper fraction. Meanwhile the sum of numerator and denominator is no more than $n$.
-
-\section{Corollary3}
+\section*{Theorem 3}
 The subsidy is always zero when m is larger than $\frac{n}{2}$. In other words, when the numbers of machine is larger than half of players, the grand coalition don't need any subsidy from the externality.
 
+\section*{Theorem 4}
+
+When the number of machines used is 1, the range of slopes of the line segments in the interval is $\left( -1 , -\frac{1}{n-1} \right]$, and the number of breakpoints is $ O(v^2) $.
+
 Until here, we described the main property of the whole figure.
-And a diagram of the number of machines and subsidy on setup cost, with its essential features is showed below.
+And a diagram of the number of machines and subsidy on setup cost, with its essential features being showed below.
 
 \begin{figure}[h]%%图
 	\centering  %插入的图片居中表示
@@ -97,11 +123,88 @@ And a diagram of the number of machines and subsidy on setup cost, with its esse
 \end{figure}
 
 The processing times of all players with the arrangement from small to large are listed on the top of this figure.
-The red and blue lines stand for the machine number and subsidy,respectively.
-The horizontal ordinate represents setup cost.
+The red and blue lines stand for the machine number and subsidy, respectively.
+The horizontal ordinate represents the price or setup cost.
 The left ordinate represents the value of machine number，while the right represents the value of subsidy.
 
-\section{Proof1}
+As the coalitional stability constrains showed above, the exponential inequality constraints are so tricky that we must figure out a method to simplify these constraints to obtain the optimal results. Fortunately for us, we find the Theorem 5.
+
+\section*{Theorem 5}
+When changing the price $P$, the effective inequalities correspond to the coalitions using only one machine.
+
+By establishing the Theorem 5, we can design the specific algorithm to eliminate the redundant inequalitie, which will save us the trouble of solving $c(s)$ and speed up the solution.
+
+\section*{Theorem 6}
+The IPU game can be solved in polynomial time.(Remaining to be proved)
+
+Now that we've already solved the IPU game, we will try to extend the core concept to a more general case. So we need to define a new game as follow.
+
+\section*{Definition 2}
+
+A cooperative TU game $(V,c)$ is a PIM(Price Integer Minimization) game if there exist:
+
+\begin{itemize}
+	\item positive integers e, v, t, P and m;
+	\item integer vectors $ x \in \mathbb{Z}^{t \times 1} $and $ \tilde{\alpha} \in \mathbb{Z}^{1 \times t} $;
+	\item left hand side matrix  $A \in \mathbb{R} ^{e \times t};$
+	\item right hand side matrix $B \in \mathbb{R} ^ {e \times v};$
+	\item a right hand side vector $D \in \mathbb{Z} ^ {e};$
+	\item an objective function vector
+	$c \in \mathbb{Z}^{1 \times t};$
+	\item an incidence vector $y^s \in \{0,1\}^v$ with $y^s_k = 1$ if $k \in s$ and $y^s_k = 0 $ otherwise, $\forall k \in V$,
+
+\end{itemize}
+
+such that the characteristic function $c(s)$ equals the optimal objective value of the following integer linear program:
+
+\[
+c(s,m(s,P))= \mathop{\min}_{x} \{ cx+Pm: Ax \geq By^s+D, \tilde{\alpha}x \leq m, x \in \mathbb{Z}^{t \times 1} \}
+\]
+
+Note that the object function is not easy to analyze due to the joint effct of $cx$ and $Pm$, we need to divide the function into two parts for a further discussion.
+
+With this idea, we divide $c(s,m(s,P))$ as $c_0(s,m(s))+Pm $. Via analysis and study, we find some properties about $c_0(s,m(s)) $ which we call primary function later.
+
+The primary function must be supermodular, then we can get the positive price or setup cost when the number of facilities changes. This corresponds to the following two lemmas.
+
+\section*{Lemma 2.}
+\[
+c_0 (s,m) - c_0 (s,m+1) > 0 \Leftrightarrow P_i > 0
+\]
+
+\section*{Lemma 3.}
+\[
+\begin{aligned}
+&c_0 (s,m) - c_0 (s,m+1) < c_0 (s,m-1) - c_0 (s,m) \\
+& \Leftrightarrow \quad P_i < P_{i-1} , i=3,4,\cdots,n
+\end{aligned}
+\]
+
+Once the primary function must be supermodular, we can specify this property in the following two aspects.
+One is the concavity about the number of facilities,
+the other is the nature about the number of players($s_1 \subset s_2$).
+They correspond to the following two formulas:
+
+\begin{equation}\label{concavity_f}
+c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1)) \geq
+  c_0(s_1,m(s_1))-c_0(s_1,m(s_1)+1)
+\end{equation}
+
+and
+
+\begin{equation}\label{property_p}
+	c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1)) \leq
+	  c_0(s_2,m(s_1)-1)-c_0(s_2,m(s_1))
+\end{equation}
+, respectively.
+
+Then we can develop the Theorem 7.
+
+\section*{Theorem 7.}
+When coalitions $s_1,s_2$ satisfy $s_1 \subset s_2$, the corresponding number of using facilities $ m_{s_1}, m_{s_2}$ have $m_{s_1} \leq m_{s_2}$, if the primary function satisfies  (\ref{concavity_f}) and (\ref{property_p}).
+
+
+\section*{Proof 1}
 
 For convenience of expression, we set the setup cost as $S_{1},S_{2}, \dots ,S_{n}$ at interval points while the number of machine changes.
 And $S_{i}$ denotes the setup cost when the machine number changes from $i$ to $i-1$, especially, $S_{1}$ denotes the least setup cost when machine number is $1$ and the corresponding subsidy is $0$.
@@ -152,25 +255,6 @@ By replacing $x_1,x_2,\dots,x_n$ together with the expression of $c(V)$, we can 
 Finally, we can obtain $S_0 = \sum_{k=1}^n (n-k)t_k$.
 \qed
 
-\section{Proof2}
-
-
-
-\section{Suppose1}
-This one is about how to predict the slope of machine scheduling.
-
-
-
-
-As we konw,
-
-
-
-
-\section{Suppose2}
-
-
-
-
+\section*{Proof * Remaining}
 
 \end{document}
