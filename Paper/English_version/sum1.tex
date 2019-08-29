@@ -9,9 +9,14 @@
 \usepackage{amsmath}
 \usepackage{amsthm} % 使用定理环境
 \usepackage{amssymb}
+
+% \usepackage{geometry}
+% \geometry{a4paper,scale=0.8}
+
 \usepackage{geometry}
-\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=1cm}
-\setstretch{1.5}
+\geometry{a4paper,left=2.0cm,right=2.0cm,top=3.0cm,bottom=3.0cm}
+\setstretch{1.5}   %  改变行间距
+% \newgeometry{left = 2 cm, top= 3 cm}
 
 \title{Summary}
 \author{Dis\cdot count}
@@ -88,10 +93,11 @@ Then we need to define a function, that is, subsidy-price function denoted by $\
 \]
 
 By obtaining its dual:
-\[
+\begin{equation}\label{dual}
  {\omega^*(P)}=\mathop{\max}_{\rho} \{c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]:
  \sum_{s\in S\setminus\{V\}:k\in s}\rho_s=1,\forall k \in V,\rho_s\geq 0,\forall s \in S \setminus{V}\}
-\]
+\end{equation}
+
 we can establish Theorem 1 below, showing the property of the function.
 
 \begin{thm}\label{thm1}
@@ -232,7 +238,13 @@ When coalitions $s_1,s_2$ satisfy $s_1 \subset s_2$, the corresponding number of
 \end{thm}
 
 
-\begin{pf}[Theorem 2.]
+\begin{pf}[Lemma 1]
+  In fact, according to the SPT rule, a fixed number of using machines for the given grand coalition corresponds to the only deterministic sort order working on the machines, i.e. the deterministic cost. Therefore, by comparing the cost of the number of adjacent machines $(k, k + 1)$ used by the grand coalition, the corresponding setup cost or the price $P_i$ can be obtained.
+  \qed
+\end{pf}
+
+
+\begin{pf}[Theorem 2]
 
 For convenience of expression, we set the setup cost as $S_{1},S_{2}, \dots ,S_{n}$ at interval points while the number of machine changes.
 And $S_{i}$ denotes the setup cost when the machine number changes from $i$ to $i-1$, especially, $S_{1}$ denotes the least setup cost when machine number is $1$ and the corresponding subsidy is $0$.
@@ -284,12 +296,54 @@ Finally, we can obtain $S_0 = \sum_{k=1}^n (n-k)t_k$.
 \qed
 \end{pf}
 
-\begin{pf}[Lemma 1.]
-  In fact, according to the SPT rule, a fixed number of using machines for the given grand coalition corresponds to the only deterministic sort order working on the machines, i.e. the deterministic cost. Therefore, by comparing the cost of the number of adjacent machines $(k, k + 1)$ used by the grand coalition, the corresponding setup cost or the price $P_i$ can be obtained.
-  \qed
+
+\begin{pf}[Theorem 1]
+
+By deriving from $\omega^* (P)$ (\ref{dual}),it can be seen that the SPF $\omega(P)$ is in fact the point-wise maximum of a set of straight lines, $c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]$, each with a slope of $m(V)+\sum_{s\in S\setminus\{V\}} −\rho_s m(s)$, for $\rho$ in $\{\rho :\sum_{s\in S\setminus \{V\}:k\in s} \rho_s=1  \text{for all }  k\in V, \text{and } \rho_s \geq 0 \text{for all } s\in S\setminus \{V\} \}$.
+Meanwhile, it's easy to see that $m(s)$ does not increase as P increases. Thus, we can claim that the SPF $\omega(P)$ is a convex function in P when $m(V)$ is a fixed integer.
+
+Notice that the existence of $m(V)$ does not affect the property of the numbers of the breakpoints.
+% 注意这里还需要说明 [0,P*]
+To show that the SPF $\omega^* (P)$ is a piecewise linear function with a ﬁnite number of breakpoints, consider the feasible region of LP (\ref{dual}) for $\omega^* (P)$ without the part of $m(V)$ that is written as $\acute{\omega} (P)$, which is a convex polyhedron, denoted by $\hat{R}$. It can be seen that $\hat{R}$ has a ﬁnite number of extreme points, and is independent of P. For any given $P \in [0,P^*]$, by LP (\ref{dual}) we know that there must exist an extreme point $\rho$ of $\hat{R}$ such that $\acute{\omega} (P)$ equals
+$c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]$
+and that the derivative of $\acute{\omega} (P)$ at P equals $\sum_{s\in S\setminus\{V\}} −\rho_s m(s)$. Thus, the derivative of $\acute{\omega} (P)$ for $P \in [0,P^*]$ can have only a ﬁnite number of possible values. Moreover, due to the convexity of $\acute{\omega} (P)$, the derivative of $\acute{\omega} (P)$ is non-decreasing in P. Hence, the derivative of $\acute{\omega} (P)$ can change for only a ﬁnite number of times when P increases from 0 to $P^*$. Therefore, $\omega^* (P)$ is a piecewise linear function with a ﬁnite number of breakpoints.
+\qed
+\end{pf}
+
+
+
+
+\begin{pf}[Theorem 3.]
+
+	注意这一条定理只针对于 机器调度 根本原因在于 排序性（一个接一个  而不会存在 一台一个一台三个）
+
+\end{pf}
+
+
+\begin{pf}[Theorem 4.]
+
+需要仿照 原来证明 注意断点的证明较复杂
+
+
+\end{pf}
+
+
+
+\begin{pf}[Theorem 5.]
+
+只	需要证明 不等式分解 次序即可
+
+\end{pf}
+
+\begin{pf}[Theorem 6.]
+
+Remaining
+
 \end{pf}
 
 \begin{pf}[Lemma 2.]
+
+注意这个证明  只与c_0(s) 有关
 
 \end{pf}
 
