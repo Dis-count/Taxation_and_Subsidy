@@ -86,22 +86,22 @@ Now we've already extended the number of players to a more complex case, that is
 Let $N=\{1,2,\ldots,n\}$ be a set of n players. The number of machines is $m$ and the setup cost is $t_0$.
 For convenience of expression, we set the processing times $t_i, i\in N$ satisfy $t_1<t_2<\cdots<t_n$.
 
-Then we need to define a function, that is, subsidy-price function denoted by $\omega(P)$:
+Then we need to define a function, that is, subsidy-price function (SPF) denoted by $\omega(P)$:
 \[
   {\omega(P)}=\mathop{\min}_{\alpha}\{c(V,m(V,P))-\alpha(V): \alpha(s)\leq c(s,m(s,P))
  \forall s \in S, \alpha\in\mathbb{R}^{v}\}.
 \]
 
-By obtaining its dual:
+By dividing the SPF function into two parts like $c(s)=c_0(s)+m_sP, s \in S$, as a common skill, we can obtain its dual:
+
 \begin{equation}\label{dual}
  {\omega^*(P)}=\mathop{\max}_{\rho} \{c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]:
  \sum_{s\in S\setminus\{V\}:k\in s}\rho_s=1,\forall k \in V,\rho_s\geq 0,\forall s \in S \setminus{V}\}
 \end{equation}
 
-we can establish Theorem 1 below, showing the property of the function.
+We can establish Theorem 1 below, showing the property of the function.
 
 \begin{thm}\label{thm1}
-
 $\omega(P)$ is piecewise linear, and convex in price P when $m(V)$ is a fixed integer.
 \end{thm}
 
@@ -128,7 +128,7 @@ With Theorem \ref{thm2}, we obtain all the breakpoints during the interval of th
 
 \begin{thm}\label{thm3}
 
-The subsidy is always zero when m is larger than $\frac{n}{2}$. In other words, when the numbers of machine is larger than half of players, the grand coalition don't need any subsidy from the externality.
+The subsidy is always zero when m is larger than $\frac{n}{2}$. In other words, when the numbers of machine is larger than half of players, the grand coalition does't need any subsidy from the externality.
 
 \end{thm}
 
@@ -299,7 +299,7 @@ Finally, we can obtain $S_0 = \sum_{k=1}^n (n-k)t_k$.
 
 \begin{pf}[Theorem 1]
 
-By deriving from $\omega^* (P)$ (\ref{dual}),it can be seen that the SPF $\omega(P)$ is in fact the point-wise maximum of a set of straight lines, $c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]$, each with a slope of $m(V)+\sum_{s\in S\setminus\{V\}} −\rho_s m(s)$, for $\rho$ in $\{\rho :\sum_{s\in S\setminus \{V\}:k\in s} \rho_s=1  \text{for all }  k\in V, \text{and } \rho_s \geq 0 \text{for all } s\in S\setminus \{V\} \}$.
+By deriving from $\omega^* (P)$ (\ref{dual}),it can be seen that the SPF $\omega(P)$ is in fact the point-wise maximum of a set of straight lines, $c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]$, each with a slope of $m(V)+\sum_{s\in S\setminus\{V\}} −\rho_s m(s)$, for $\rho$ in $\{\rho :\sum_{s\in S\setminus \{V\}:k\in s} \rho_s=1\  \text{for all }  k\in V,\ \text{and } \rho_s \geq 0\ \text{for all } s\in S\setminus \{V\} \}$.
 Meanwhile, it's easy to see that $m(s)$ does not increase as P increases. Thus, we can claim that the SPF $\omega(P)$ is a convex function in P when $m(V)$ is a fixed integer.
 
 Notice that the existence of $m(V)$ does not affect the property of the numbers of the breakpoints.
@@ -311,12 +311,20 @@ and that the derivative of $\acute{\omega} (P)$ at P equals $\sum_{s\in S\setmin
 \end{pf}
 
 
+\begin{pf}[Theorem 3]
+From (\ref{dual}), we know that the slope is $m(V)-\sum_{s\in S \setminus\{V\}} \rho_s \cdot m(s)$ when setup cost is $S_i$. At the left side of $S_i$, the number of using machines is $m(V)=i$ and the slope equals $i-\sum_{s\in S \setminus\{V\}} \rho_s \cdot m(s)$, which is positive, while at the right side of $S_i$, the number of using machines is $m(V)=i-1$ and the slope equals $\sum_{s\in S \setminus\{V\}} \rho_s \cdot m(s) - (i-1)$,
+which is negative. So the sum of absolute values of slope on the left and right sides at $S_i$ is 1.
+When $m(V)$ is 1, the expression of slope is $1-\sum_{s\in S \setminus\{V\}} \rho_s \cdot m(s)$. Meanwhile, $m(s) \leq m(V)$, so $m(s) = 1$, then the slope is $1-\sum_{s\in S \setminus\{V\}} \rho_s $.
+Because we know that the sum of absolute values of slope at both sides of $S_2$ is 1, so the absolute value of the right side of slope less than 1.
 
+From Theorem 1, we have:
+\begin{displaymath}
+    (n-1) \sum_{s \in S \setminus\{V\} } \rho_s \geq
+    \sum_{k\in V}\sum_{s \in S \setminus\{V\}:k \in s} \rho_s = n
+\end{displaymath}
 
-\begin{pf}[Theorem 3.]
-
-	注意这一条定理只针对于 机器调度 根本原因在于 排序性（一个接一个  而不会存在 一台一个一台三个）
-
+$\sum_{s \in S \setminus\{V\}} \rho_s $ minimum is $\frac{n}{n-1}$，the corresponding maximum slope is $ 1-\sum_{s\in S \setminus\{V\}} \rho_s =-\frac{1}{n-1}$.
+\qed
 \end{pf}
 
 
