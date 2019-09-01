@@ -128,12 +128,14 @@ With Theorem \ref{thm2}, we obtain all the breakpoints during the interval of th
 
 \begin{thm}\label{thm3}
 
-The subsidy is always zero when m is larger than $\frac{n}{2}$. In other words, when the numbers of machine is larger than half of players, the grand coalition does't need any subsidy from the externality.
+The subsidy is always zero when the number of using machines, m, is larger than $\frac{n}{2}$.
 
 \end{thm}
 
-\begin{thm}\label{thm4}
+In other words, when the numbers of machine is larger than half of players, the grand coalition does't need any subsidy from the externality.
 
+\begin{thm}\label{thm4}
+The sum of absolute values of slopes at both sides of $S_i$ is 1, if one of the slopes does not equal to 0.
 When the number of machines used is 1, the range of slopes of the line segments in the interval is $\left( -1 , -\frac{1}{n-1} \right]$, and the number of breakpoints is $ O(v^2) $.
 \end{thm}
 
@@ -310,8 +312,26 @@ and that the derivative of $\acute{\omega} (P)$ at P equals $\sum_{s\in S\setmin
 \qed
 \end{pf}
 
-
 \begin{pf}[Theorem 3]
+For the IPU game, when using $m$ machines is optimal, the setup cost $S_0$ must satisfies $t_m < S_0 < t_{m+1}$, which can be obtained from the process of calculating $S_k, \frac{n}{2} < k \leq n$, where $S_k = t_{n-k+1}$.
+
+When $m > \frac{n}{2}$, the optimal sequence which means the minimum cost is each of the $n-m$ machines has to process two jobs, while the rest $2m-n$ machines each with one job. At present, there exists the following allocation which satisfies $\alpha(s) \leq c(s), s \in S:$
+\[
+\begin{aligned}
+&\alpha(1)=2t_1,\alpha(2)=2t_2,\ldots,\alpha(n-m)=2t_{n-m},\ldots,\\
+&\alpha(n-m+1)=S_0+t_{n-m+1},\ldots,\alpha(m)=S_0+t_{m},\ldots,\\
+&\alpha(m+1)=S_0+t_{m+1},\ldots,\alpha(n)=S_0+t_n.\\
+&\text{where} \t_m < S_0 < t_{m+1}
+\end{aligned}
+\]
+
+Right now, $\alpha(1),\cdots,\alpha(n)$ can not be bigger any more. That is, $\mathop{max} \alpha(V) = c(V)$, then subsidy equals $c(V)-\alpha(V) = 0$.
+
+\qed
+\end{pf}
+
+
+\begin{pf}[Theorem 4]
 From (\ref{dual}), we know that the slope is $m(V)-\sum_{s\in S \setminus\{V\}} \rho_s \cdot m(s)$ when setup cost is $S_i$. At the left side of $S_i$, the number of using machines is $m(V)=i$ and the slope equals $i-\sum_{s\in S \setminus\{V\}} \rho_s \cdot m(s)$, which is positive, while at the right side of $S_i$, the number of using machines is $m(V)=i-1$ and the slope equals $\sum_{s\in S \setminus\{V\}} \rho_s \cdot m(s) - (i-1)$,
 which is negative. So the sum of absolute values of slope on the left and right sides at $S_i$ is 1.
 When $m(V)$ is 1, the expression of slope is $1-\sum_{s\in S \setminus\{V\}} \rho_s \cdot m(s)$. Meanwhile, $m(s) \leq m(V)$, so $m(s) = 1$, then the slope is $1-\sum_{s\in S \setminus\{V\}} \rho_s $.
@@ -324,36 +344,49 @@ From Theorem 1, we have:
 \end{displaymath}
 
 $\sum_{s \in S \setminus\{V\}} \rho_s $ minimum is $\frac{n}{n-1}$，the corresponding maximum slope is $ 1-\sum_{s\in S \setminus\{V\}} \rho_s =-\frac{1}{n-1}$.
+
+注意断点的证明较复杂
 \qed
 \end{pf}
 
 
-\begin{pf}[Theorem 4.]
 
-需要仿照 原来证明 注意断点的证明较复杂
+\begin{pf}[Theorem 5]
 
+When the value of $P$ is between $(P_2,P_1)$, where the grand coalition only uses one machine, all the other sub-coalitions also use one machine. Now assume that the theorem is not tenable. When decreasing the value of $P$, for example, from $P_2$ to $P_3$. At some time, there must be such a situation that a sub-coalition denoted as $s'$ ($|s'| \geq 2 $) uses two machines which is optimal. Then we have $ \alpha(s') = c(s') +2P $ , there exist two coalitions $s_1,s_2$ which satisfy $ s_1 \cup s_2 = s',s_1 \cap s_2 = \emptyset $.
+Meanwhile, $s_1,s_2$ also satisfy the two constraints $\alpha(s_1) \leq c(s_1) + P , \alpha(s_2) \leq c(s_2) + P $. Then we can obtain that $ c(s_1) + c(s_2) \geq c(s') $, which contradicts the supermodular of the characteristic function.
+Consequently, the coalitions $s$ only use one machine if the corresponding constraints is valid.
 
+\qed
 \end{pf}
 
-
-
-\begin{pf}[Theorem 5.]
-
-只	需要证明 不等式分解 次序即可
-
-\end{pf}
-
-\begin{pf}[Theorem 6.]
+\begin{pf}[Theorem 6]
 
 Remaining
-
+\qed
 \end{pf}
 
-\begin{pf}[Lemma 2.]
+\begin{pf}[Lemma 2]
+
+For the two coalitions $s_1, s_2$, when the coalition $s_1$ uses $m(s_1)$ machines which is optimal, the following relation is established
+
+$m_{s_1}P+c_0(s_1) \leq (m_{s_1}+1)P+c_0(s_1)$
+
+As we all know, when $ P=0 $, it's optimal that every player in the coalition $s$ use one machine each.
+
+As we described before, the characteristic function $c(s,m(s,P))$ can be expressed as $c_0(s,m(s))+Pm$. And we use $c_0(s_2,m(s_1))$ to represent the cost produced by coaliton $s_2$ using $m(s_1)$ machines, where $m(s_1)$ is the number of machines used by coalition $s_1$ when the cost is minimum.
+
+Obviously the following relation holds, $c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))>0$.
+Because
 
 注意这个证明  只与c_0(s) 有关
+\qed
+\end{pf}
+
+\begin{pf}[Theorem ]
 
 \end{pf}
+
 
 
 \end{document}
