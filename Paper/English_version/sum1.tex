@@ -36,7 +36,7 @@
 At first, we will introduce some preliminary knowledge about cooperative game theory as follows.
 A pair $(V,c)$ is usually used to represent a cooperative game with transferable utilities, among which $V=\{1,2,\dots,v\}$ denotes a set of $v$ players and $c:2^{V}\to \mathbb{R}$ indicates the characteristic function of the game. A coalition is defined as a non-empty subset of players; while $V$ is refered to as a coalition, $S=2^{V} \setminus\{\emptyset\}$ denotes the set of all feasible coalitions. The characteristic function of the game, $c(s)$, represents the minimum coalitional cost the players in $s$ have to pay in order to cooperate together.
 A cost allocation vector $\alpha=[\alpha_{1},\alpha_{2},\dots,\alpha_{v}] \in \mathbb{R}^{v}$ is required by the game to maintain cooperation in the grand coalition, and $\alpha_{k}$ is the cost assigned to players $k \in V$ to assure no individual or group of players has the incentive to deviate. For the convenience of abbreviation, we use $\alpha(s)=\sum_{k\in{s}}\alpha_{k}$ to denote the total cost assigned to the players in coalition $s$.
-One of the most important concepts in cooperative game theory is core, which is a cost allocation satisfying two kinds of contraints, one is the budget balance contraint {$\alpha(V)=c(V)$} and the other is the coalitional stability constrains {$\alpha(s) \leq c(s)$}. In other words, core can be expressed as
+One of the most important concepts in cooperative game theory is core, which is a cost allocation satisfying two kinds of contraints, one is the budget balance contraint {$\alpha(V)=c(V)$} and the other is the coalitional stability constraints {$\alpha(s) \leq c(s)$}. In other words, core can be expressed as
 
 \[
 Core(V,c)= \left\{\alpha:\alpha(V)=c(V), \alpha(s)\leq c(s)\ \text{for all}\ s \in S \setminus\{V\}, \alpha \in \mathbb{R}^{v} \right\}.
@@ -198,21 +198,22 @@ With this idea, we divide $c(s,m(s,P))$ as $c_0(s,m(s))+Pm $. Via analysis and s
 
 The primary function must be supermodular, then we can get the positive price or setup cost when the number of facilities changes. This corresponds to the following two lemmas.
 
+
 \begin{lem}\label{lem2}
-\[
-c_0 (s,m) - c_0 (s,m+1) > 0 \Leftrightarrow P_i > 0
-\]
+% \\ \hspace*{\fill} \\ % 用于空行
+% ~\\
+\[c_0(V,m)- c_0(V,m-1) > 0 \Leftrightarrow P_m > 0, m=2,\ldots,n.\]
+
 \end{lem}
 
 \begin{lem}\label{lem3}
 \[
 \begin{aligned}
-&c_0 (s,m) - c_0 (s,m+1) < c_0 (s,m-1) - c_0 (s,m) \\
-& \Leftrightarrow \quad P_i < P_{i-1} , i=3,4,\cdots,n
+&c_0 (V,m) - c_0 (V,m+1) < c_0 (V,m-1) - c_0 (V,m) \\
+&\Leftrightarrow \quad P_m < P_{m+1} , m=2,3,\ldots,n.
 \end{aligned}
 \]
 \end{lem}
-
 
 Once the primary function must be supermodular, we can specify this property in the following two aspects.
 One is the concavity about the number of facilities,
@@ -235,10 +236,14 @@ and
 Then we can develop the Theorem \ref{thm7}.
 
 \begin{thm}\label{thm7}
-
 When coalitions $s_1,s_2$ satisfy $s_1 \subset s_2$, the corresponding number of using facilities $ m_{s_1}, m_{s_2}$ have $m_{s_1} \leq m_{s_2}$, if the primary function satisfies  (\ref{concavity_f}) and (\ref{property_p}).
 \end{thm}
 
+
+
+\begin{lem}\label{lem4}
+When $c_0(s)$ satisfy the supermodular and $P=P_1$, where $m_V=1$, if $\alpha(s)=c(s)+P_1, \left| s \right|= n-1$ and $\alpha(V)=c_0(V)+P_1$ the budget balance constraint holds, the other coalitional stability constraints $\alpha(s) \leq c(s)+P_1, \left| s \right| < n-1$ will hold.
+\end{lem}
 
 \begin{pf}[Lemma 1]
   In fact, according to the SPT rule, a fixed number of using machines for the given grand coalition corresponds to the only deterministic sort order working on the machines, i.e. the deterministic cost. Therefore, by comparing the cost of the number of adjacent machines $(k, k + 1)$ used by the grand coalition, the corresponding setup cost or the price $P_i$ can be obtained.
@@ -350,37 +355,35 @@ $\sum_{s \in S \setminus\{V\}} \rho_s $ minimum is $\frac{n}{n-1}$，the corresp
 \qed
 \end{pf}
 
-
-
 \begin{pf}[Theorem 5]
-
 When the value of $P$ is between $(P_2,P_1)$, where the grand coalition only uses one machine, all the other sub-coalitions also use one machine. Now assume that the theorem is not tenable. When decreasing the value of $P$, for example, from $P_2$ to $P_3$. At some time, there must be such a situation that a sub-coalition denoted as $s'$ ($|s'| \geq 2 $) uses two machines which is optimal. Then we have $ \alpha(s') = c(s') +2P $ , there exist two coalitions $s_1,s_2$ which satisfy $ s_1 \cup s_2 = s',s_1 \cap s_2 = \emptyset $.
 Meanwhile, $s_1,s_2$ also satisfy the two constraints $\alpha(s_1) \leq c(s_1) + P , \alpha(s_2) \leq c(s_2) + P $. Then we can obtain that $ c(s_1) + c(s_2) \geq c(s') $, which contradicts the supermodular of the characteristic function.
-Consequently, the coalitions $s$ only use one machine if the corresponding constraints is valid.
-
+Consequently, the coalitions $s$ only use one machine if the corresponding constraints are valid.
 \qed
 \end{pf}
 
 \begin{pf}[Theorem 6]
 
 Remaining
+
 \qed
 \end{pf}
 
-\begin{pf}[Lemma 2]
-As we all know, when $ P=0 $, it's optimal that every player in the coalition $s$ use one machine each.
+\begin{pf}[Lemma 2\&3]
+As we all know, when $ P=0 $, it's optimal that every player in the coalition $s$ use one machine each.For the coalition $s$, when the price equals $P_m$, where the costs produced by the grand coalition are equal in value, the following formulas hold
+$c(V,m)=c_0(s,m)+Pm, c(V,m-1)=c_0(s,m-1)+P(m-1)$ and $c(V,m)=c(V,m-1)$. Then we can obtain $P_m = c_0(V,m)- c_0(V,m-1), m=2,\ldots,n$.
+Therefore, if $ c_0(V,m)- c_0(V,m-1) > 0 $, we can get $P_m > 0$.
 
-For the coalition $s$, when the price equals $P_i$,where the costs produced by the grand coalition are equal in value, the following formulas hold
-$c(V,m)=c_0(s,m)+Pm, c(V,m+1)=c_0(s,m+1)+P(m+1)$. Then we can obtain $P > c(s,m+1)- c(s,m)$
+Similarly, by substituting $m$ with $m+1$, we can obtain that $P_{m+1} = c_0(V,m+1)- c_0(V,m), m=2,\ldots,n$. If $c_0 (V,m) - c_0 (V,m+1) < c_0 (V,m-1) - c_0 (V,m)$, then $P_m < P_{m+1} , m=2,3,\ldots,n$.
+\qed
+\end{pf}
 
+\begin{pf}[Theorem 7]
 Notice that
-
 
 As we described before, the characteristic function $c(s,m(s,P))$ can be expressed as $c_0(s,m(s))+Pm$. And we use $c_0(s_2,m(s_1))$ to represent the cost produced by coaliton $s_2$ using $m(s_1)$ machines, where $m(s_1)$ is the number of machines used by coalition $s_1$ when the cost is minimum.
 
-
 $m(s_1)P+c_0(s_1) \leq (m(s_1)+1)P+c_0(s_1)$
-
 
 For the two coalitions $s_1, s_2$, when the coalition $s_1$ uses $m(s_1)$ machines which is optimal, the following relation is established
 
@@ -392,13 +395,35 @@ Because
 \end{pf}
 
 \begin{pf}[Lemma 3]
+With the $n$ equations for $\left| s \right|= n-1$ and $\alpha(V)=c_0(V)+P_1$, we can obtain the values of $\alpha(i)$. For each $\left| s' \right| < n-1$, suppose that $s'=\{i,\cdots,j\}$, we just need to prove:
+\begin{equation} \label{lem2_1}
+  \alpha(i,\cdots,j) \leq c_0(i,\cdots,j)+P_1
+\end{equation}
 
-\end{pf}
+Substitute $P_1=\alpha(V)-c(V)$ and $\alpha(i) = c(V)-c(-i)$ into the equation (\ref{lem2_1}), denote $c(-i)=c(\{1,\cdots,i-1,i+1,\cdots,n\})$, we just need to prove the following relation:
+% let me plug in the values of a and b that will work.
+\begin{equation}   \label{lem2_2}
+  \sum_i^{N\setminus s'} c(-i) \leq (n-1-\left| s' \right|)c(V)+c(s')
+\end{equation}
 
-\begin{pf}[Theorem 7]
+\Rightarrow \qquad
 
+\begin{equation*}
+  c(-k)-c(s') \leq (n-1-\left| s' \right|)c(V)-\sum_i^{N\setminus s'\setminus k} c(-i)
+\end{equation*}
 
-
+Because $c(s)$ satisfies the supermodular, we have the following set of inequalities.
+\[
+\begin{cases}
+  c(V)-c(-t) \geq & c(-k)-c(-k-t) \\
+  c(V)-c(-m) \geq & c(-k-t)-c(-k-t-m) \\
+ \quad   \vdots        &\vdots\\
+ c(V)-c(-s) \geq & c(s' \cup s)-c(s')
+\end{cases}
+\]
+Add $(n-1-\left| s' \right|)$ inequalities together, we can obtain $(n-1-\left| s' \right|)c(V)- \sum_i^{N\setminus s'} c(-i)+c(s') \geq 0 $. \\
+That is, $\alpha(s') \leq c(s')+P_1, \forall s', \left|s' \right|<n-1$.
+\qed
 \end{pf}
 
 \end{document}

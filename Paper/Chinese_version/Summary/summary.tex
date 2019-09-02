@@ -113,7 +113,6 @@ c(s,m(s,P)) = & {\min} \sum_{k\in V}\sum_{j\in O} c_{kj} x_{kj} + Pm \\
 \end{lem}
 
 \begin{pf}[引理 2]
-
 在启动成本为$S_m$时，有下式 $c(s,m)+mS_0 = c(s,m-1)+(m-1)S_0$。
 
 则 $P_0 >0 \Rightarrow c(s,m) - c(s,m+1) > 0$。
@@ -193,7 +192,6 @@ $c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))>0$
 
 由于机器调度存在排序的特殊性，因而当大联盟使用$m_v$台设施时，有下式成立$m_vP+c_vx \leq (m_v+1)P+c_v'x'$，若
 
-
 \end{pf}
 
 
@@ -228,7 +226,7 @@ $c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))>0$
 % 对于 机器数量为 2，3 时，证明相应的方案变化种类要少。
 \end{thm}
 
-\begin{pf}[引理2]
+\begin{pf}[引理3]
 
 对于$\left| s \right|= n-1 $时的n个等式并且结合 $\alpha(V)=c(V)+P_1$ 可以得到 $\alpha(i)$ 的取值。
 则对任意$\left| s' \right| < n-1$，假设$s'=\{i,\cdots,j\}$，则需证
@@ -259,7 +257,6 @@ $c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))>0$
 将这$(n-1-\left| s' \right|)$个不等式相加后，我们得到
 $(n-1-\left| s' \right|)c(V)- \sum_i^{N\setminus s'} c(-i)+c(s') \geq 0 $。
 故引理\ref{lem2}成立，即对$\forall s'$当$\left|s' \right|<n-1$时，$\alpha(s') \leq c(s')+P_1$均成立。\qed
-
 \end{pf}
 
 
@@ -379,7 +376,6 @@ $\sum_{\rho_s} \in (m_v-1/2,m_v+1/2)$,这样可以解释为什么当机器数量
 
 引理4的证明。
 
-
 \begin{thm}\label{thm5}
 
 有效的不等式一定是使用一台机器。
@@ -400,7 +396,6 @@ $ \alpha(s') = c(s') +2P $  可以找到 $ s_1 \cup s_2 = s',s_1 \cap s_2 = \emp
 \end{pf}
 
 此时我们可以 设计算法 简化计算限制条件。
-
 
 
 \end{document}
