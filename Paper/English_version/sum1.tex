@@ -325,14 +325,13 @@ When $m > \frac{n}{2}$, the optimal sequence which means the minimum cost is eac
 &\alpha(1)=2t_1,\alpha(2)=2t_2,\ldots,\alpha(n-m)=2t_{n-m},\ldots,\\
 &\alpha(n-m+1)=S_0+t_{n-m+1},\ldots,\alpha(m)=S_0+t_{m},\ldots,\\
 &\alpha(m+1)=S_0+t_{m+1},\ldots,\alpha(n)=S_0+t_n.\\
-&\text{where} \ t_m < S_0 < t_{m+1}
+&\text{where} \ t_m < S_0 < t_{m+1}.
 \end{aligned}
 \]
 
 Right now, $\alpha(1),\cdots,\alpha(n)$ can not be bigger any more. That is, $\mathop{max} \alpha(V) = c(V)$, then subsidy equals $c(V)-\alpha(V) = 0$.
 
-为了说明 满足所有的 不等式约束  必须从满足含有两个成员的不等式 推到 满足 任意多成员的不等式
-
+%为了说明 满足所有的 不等式约束  必须从满足含有两个成员的不等式 推到 满足 任意多成员的不等式
 \qed
 \end{pf}
 
@@ -351,7 +350,7 @@ From Theorem 1, we have:
 
 $\sum_{s \in S \setminus\{V\}} \rho_s $ minimum is $\frac{n}{n-1}$，the corresponding maximum slope is $ 1-\sum_{s\in S \setminus\{V\}} \rho_s =-\frac{1}{n-1}$.
 
-注意断点的证明较复杂
+%注意断点的证明较复杂
 \qed
 \end{pf}
 
@@ -374,27 +373,34 @@ As we all know, when $ P=0 $, it's optimal that every player in the coalition $s
 $c(V,m)=c_0(s,m)+Pm, c(V,m-1)=c_0(s,m-1)+P(m-1)$ and $c(V,m)=c(V,m-1)$. Then we can obtain $P_m = c_0(V,m)- c_0(V,m-1), m=2,\ldots,n$.
 Therefore, if $ c_0(V,m)- c_0(V,m-1) > 0 $, we can get $P_m > 0$.
 
-Similarly, by substituting $m$ with $m+1$, we can obtain that $P_{m+1} = c_0(V,m+1)- c_0(V,m), m=2,\ldots,n$. If $c_0 (V,m) - c_0 (V,m+1) < c_0 (V,m-1) - c_0 (V,m)$, then $P_m < P_{m+1} , m=2,3,\ldots,n$.
+Similarly, by substituting $m$ with $m+1$, we can obtain that $P_{m+1} = c_0(V,m+1)- c_0(V,m), m=2,3,\ldots,n$. If $c_0 (V,m) - c_0 (V,m+1) < c_0 (V,m-1) - c_0 (V,m)$, then $P_m < P_{m+1}, m=2,3,\ldots,n$.
 \qed
 \end{pf}
 
 \begin{pf}[Theorem 7]
-Notice that
 
-As we described before, the characteristic function $c(s,m(s,P))$ can be expressed as $c_0(s,m(s))+Pm$. And we use $c_0(s_2,m(s_1))$ to represent the cost produced by coaliton $s_2$ using $m(s_1)$ machines, where $m(s_1)$ is the number of machines used by coalition $s_1$ when the cost is minimum.
+As we described before, the characteristic function $c(s,m(s,P))$ can be expressed as $c_0(s,m(s))+Pm$. For the two coalitions $s_1, s_2$, we use $c_0(s_2,m(s_1))$ to represent the cost produced by coaliton $s_2$ using $m(s_1)$ machines, where $m(s_1)$ is the number of machines used by coalition $s_1$ when the cost is minimum.
 
-$m(s_1)P+c_0(s_1) \leq (m(s_1)+1)P+c_0(s_1)$
+According to this definition and Lemma 2, obviously the following relation holds,
+$c(s_1,m(s_1)) < c(s_1,m(s_1)-1) \Rightarrow c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))>0$, because $c_0(s_1,m(s_1))0$ is the minimum cost for $s_1$ using $m(s_1)$ machines.
 
-For the two coalitions $s_1, s_2$, when the coalition $s_1$ uses $m(s_1)$ machines which is optimal, the following relation is established
+For the two coalitions $s_1$, when the coalition $s_1$ uses $m(s_1)$ machines which is optimal, the following relation is established:
+$m(s_1)P+c_0(s_1,m) < (m(s_1)-1)P+c_0(s_1,m-1) \Rightarrow P < c_0(s_1,m-1) - c_0(s_1,m)$.
 
-Obviously the following relation holds, $c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))>0$.
-Because
-
-注意这个证明  只与c_0(s) 有关
+When coalition $s_1$ uses $m(s_1)$, we assume that coalition $s_2$ uses $m(s_2)=m(s_1)-1<m(s_1)$ machines, which means $c(s_2,m(s_1)-1) < c(s_2,m(s_1))$. Then expand the formula, we obtain $P > c_0(s_2,m(s_1)-1)- c_0(s_2,m(s_1))$. However, because using $m(s_1)$ by coalition $s_1$ assures that $c(s_1,m(s_1)) < c(s_1,m(s_1)-1) \Rightarrow P < c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))$.
+So we can obtain that $ c_0(s_2,m(s_1)-1)- c_0(s_2,m(s_1)) <P <c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))$, which contradicts the condition \ref{concavity_f}.
+With the result of that, we know $m(s_2) \neq m(s_1)-1$. \\
+Meanwhile, according to the condition \ref{property_p} which tells us about the concavity of the number of machines. The larger the number of machines, the smaller the difference between these two items $c_0(s_1,m(s_1)-1)$ and $c_0(s_1,m(s_1))$. Take $m(s_2) = m(s_1)-2$ as an example, similar to the above, we can get $c(s_2,m(s_1)-2) < c(s_2,m(s_1)-1) \Rightarrow P > c_0(s_2,m(s_1)-2) - c_0(s_2,m(s_1)-1)$. According to the conditions \ref{concavity_f} and \ref{concavity_f},
+$c(s_1,m(s_1)) < c(s_1,m(s_1)-1) \Rightarrow P < c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1)) < c_0(s_1,m(s_1)-2)-c_0(s_1,m(s_1)-1) < c_0(s_2,m(s_1)-2) - c_0(s_2,m(s_1)-1)$ contradicts
+$P > c_0(s_2,m(s_1)-2) - c_0(s_2,m(s_1)-1)$ we just obtained above.
+Consequently, we know that $m(s_2)$ can't be less than $m(s_1)-1$.
+In conclusion, $m(s_1) \leq m(s_2)$.
+% stated thus,to summarize,in summary, overall
+% 注意这个证明  只与c_0(s) 有关
 \qed
 \end{pf}
 
-\begin{pf}[Lemma 3]
+\begin{pf}[Lemma 4]
 With the $n$ equations for $\left| s \right|= n-1$ and $\alpha(V)=c_0(V)+P_1$, we can obtain the values of $\alpha(i)$. For each $\left| s' \right| < n-1$, suppose that $s'=\{i,\cdots,j\}$, we just need to prove:
 \begin{equation} \label{lem2_1}
   \alpha(i,\cdots,j) \leq c_0(i,\cdots,j)+P_1
@@ -421,7 +427,7 @@ Because $c(s)$ satisfies the supermodular, we have the following set of inequali
  c(V)-c(-s) \geq & c(s' \cup s)-c(s')
 \end{cases}
 \]
-Add $(n-1-\left| s' \right|)$ inequalities together, we can obtain $(n-1-\left| s' \right|)c(V)- \sum_i^{N\setminus s'} c(-i)+c(s') \geq 0 $. \\
+Add these $(n-1-\left| s' \right|)$ inequalities together, we can obtain $(n-1-\left| s' \right|)c(V)- \sum_i^{N\setminus s'} c(-i)+c(s') \geq 0 $. \\
 That is, $\alpha(s') \leq c(s')+P_1, \forall s', \left|s' \right|<n-1$.
 \qed
 \end{pf}
