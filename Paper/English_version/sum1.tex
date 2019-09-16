@@ -52,8 +52,13 @@ That being said, the players of the games can stabilize themselves without the t
 
 To make the project concrete, we will apply the cooperative theory on the machine schedule problem to show our ideas.
 
+\section*{Definition 0.}
+In an Identical Alternative Parallel machine scheduling of Unweighted jobs (IAPU) game, each player $k$ in $V=\{1,2,\ldots,v\}$ has a job $k$ that needs to be processed on one of identical machines in $M=\{1,2,\ldots,m_s\}$, where $m_s$ is a given positive integer no more than $v$. Meanwhile, each machine has a setup cost $S$. Each job $k\in V$ has a processing time denoted by $t_k$. Each coalition $s \in S$, where $S=2^V\setminus\{\emptyset\}$, aims to schedule the jobs in $s$ on all machines in $M$ so that the total completion  time of the jobs in $s$ is minimized, i.e., to minimize $\sum_{k\in s}{C_k}+m_sS$,
+where $C_k$ is the completion time of job $k\in s$.
 
-Then we will illustrate the taxation instrument with a simple example of an IPU (Identical Parallel machine scheduling of Unweighted jobs) game as follows.
+% 暂且用S-i表示机器调度里的定价，等后期确定后再统一改。
+
+Then we will illustrate the taxation instrument with a simple example of an IAPU game as follows.
 
 \section*{Example}
 
@@ -86,13 +91,18 @@ Now we've already extended the number of players to a more complex case, that is
 Let $N=\{1,2,\ldots,n\}$ be a set of n players. The number of machines is $m$ and the setup cost is $t_0$.
 For convenience of expression, we set the processing times $t_i, i\in N$ satisfy $t_1<t_2<\cdots<t_n$.
 
-Then we need to define a function, that is, subsidy-price function (SPF) denoted by $\omega(P)$:
+Then we need to define two functions, practical subsidy-price function (PSPF) and theoretical subsidy-price function (TSPF) denoted by $\omega(P)$ and $\hat{\omega}(P)$, respectively:
 \[
   {\omega(P)}=\mathop{\min}_{\alpha}\{c(V,m(V,P))-\alpha(V): \alpha(s)\leq c(s,m(s,P))
- \forall s \in S, \alpha\in\mathbb{R}^{v}\}.
+ ,\forall s \in S, \alpha\in\mathbb{R}^{v}\},
 \]
 
-By dividing the SPF function into two parts like $c(s)=c_0(s)+m_sP, s \in S$, as a common skill, we can obtain its dual:
+\[
+  {\hat{\omega}(P)}=\mathop{\min}_{\alpha}\{c(V,m(V,P))-\alpha(V): \alpha(s)\leq c(s,m(s,P))
+ ,\forall s \in S\setminus\{V\}, \alpha\in\mathbb{R}^{v}\}.
+\]
+
+By dividing the PSPF function into two parts like $c(s)=c_0(s)+m_sP, s \in S$, as a common skill, we can obtain its dual:
 
 \begin{equation}\label{dual}
  {\omega^*(P)}=\mathop{\max}_{\rho} \{c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]:
@@ -158,8 +168,8 @@ As the coalitional stability constrains showed above, the exponential inequality
 
 
 \begin{thm}\label{thm5}
+The original problem is equivalent to using only one machine for all coalitions.
 
-When changing the price $P$, the effective inequalities correspond to the coalitions using only one machine.
 \end{thm}
 
 By establishing the Theorem 5, we can design the specific algorithm to eliminate the redundant inequalitie, which will save us the trouble of solving $c(s)$ and speed up the solution.
