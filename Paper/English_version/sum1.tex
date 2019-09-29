@@ -217,7 +217,7 @@ A cooperative TU game $(V,c)$ is a PIM(Price Integer Minimization) game if there
 such that the characteristic function $c(s)$ equals the optimal objective value of the following integer linear program:
 
 \[
-c(s,m(s,P))= \mathop{\min}_{x} \{ cx+Pm: Ax \geq By^s+D, \tilde{\alpha}x \leq m, x \in \mathbb{Z}^{t \times 1} \}
+c(s,P)= \mathop{\min}_{x} \{ cx+Pm(x): Ax \geq By^s+D, \tilde{\alpha}x \leq m, x \in \mathbb{Z}^{t \times 1} \}
 \]
 
 Note that the object function is not easy to analyze due to the joint effct of $cx$ and $Pm$, we need to divide the function into two parts for a further discussion.
