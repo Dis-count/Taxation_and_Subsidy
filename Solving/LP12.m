@@ -1,6 +1,6 @@
-function [minr,maxr] = LP9(s,v)
+function [minr,maxr] = LP9(s,v,)
 
-% Notice that s is a matrix. (0-1)  v = 4
+% Notice that s is a restricted-coalition matrix.(0-1)  v = 4
 
 % s=[0 1 1 0;
 %    0 1 0 1;

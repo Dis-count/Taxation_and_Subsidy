@@ -1,6 +1,10 @@
 function [result, s] = DP(v,t,beta,z)
 
 % t and beta are vectors
+% z = 9.5
+% t =[5 4 3 2];
+% beta = [14.5 8 12.5 4]
+
 
 u = 1; % counting
 
