@@ -1,31 +1,28 @@
-function [minr,maxr] = LP9(s,v,)
+function [x,maxr] = LP12(s,v,t,z)
 
 % Notice that s is a restricted-coalition matrix.(0-1)  v = 4
-
-% s=[0 1 1 0;
-%    0 1 0 1;
-%    0 0 1 1;
-%    1 1 1 0;
-%    1 1 0 1;
-%    1 0 1 1;]
-
+% t from large to small 列向�?
 % 转置即可
-s1 = length(s(:,1));
+s1 = length(s(:,1));  % 约束数量
 
-f = ones(s1,1);
+c_s = zeros(s1,1);
 
-b = ones(v,1);
+for i =1:s1
 
-lb = zeros(s1,1);
+    tot = sum(s(i,:)==1);
 
-ub = ones(s1,1);
+    inde = find(s(i,:)==1);
 
-[x,fval1] = linprog(-f,[],[],s',b,lb,ub);
+    c_s(i) = (1:tot)*t(inde) + z;
 
-minr = fval1;
+end
 
-[x,fval2] = linprog(f,[],[],s',b,lb,ub);
+f = ones(v,1);
 
-maxr = -fval2;
+b = c_s;
+
+[x,fval1] = linprog(-f,s,b);
+
+maxr = -fval1;
 
 end
