@@ -1,4 +1,4 @@
-function [res, s] = DP(v,t,beta,z)
+function [res1, s] = DP(v,t,beta,z)
 
 % t and beta are vectors
 % z = 9.5
@@ -8,20 +8,19 @@ function [res, s] = DP(v,t,beta,z)
 
 % u = v-1; % counting
 
-s = zeros(1,v); % 记录集合��? player
-
 ss = zeros(v-1,v);
-
 
 res = zeros(v-1,1); % record the min value
 
-for uu = v-1: -1 : 1
+for uu = (v-1): -1 : 1
+
+s = zeros(1,v);  % 记录集合 player
 
 result = z;
 
-  for i = v: -1 : 1
+ii = uu;
 
-    ii = uu;
+  for i = v: -1 : 1
 
     if ii*t(i) < beta(i)
 
@@ -43,7 +42,7 @@ result = z;
 
       s(1:ii) = 1;
 
-      result =  dot((1:ii),t(1:ii)) - sum(beta(1:ii));
+      result =  result + dot((1:ii),t(1:ii)) - sum(beta(1:ii));
 
       break
 
@@ -57,6 +56,11 @@ result = z;
 
 end
 
+[res1 ind] = min(res);
+
+s = ss(ind,:);
+
+res
 ss
 
 end

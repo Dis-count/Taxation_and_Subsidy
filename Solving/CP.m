@@ -6,6 +6,12 @@ function [omega,K_l,K_r] = CP(v,t,z)
 % t is the time cost for every player.
 % v is number of players.
 % z is the penalty or the price.
+
+% ini_s = [0     1     1     1
+%          1     1     0     1
+%          1     0     1     1
+%          1     1     0     0];
+
 ini_s = eye(v);
 
 % c_V = m*z +sum_t;
@@ -33,6 +39,9 @@ while flag
   end
 
 end
+
 ini_s
-K_l
+
+K_r
+
 end
