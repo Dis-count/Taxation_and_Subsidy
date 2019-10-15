@@ -32,6 +32,8 @@ while flag
 
     omega = - beta;
 
+    ini_s = ini_s(v+1:end,:);
+
     [K_l, K_r] = LP9(ini_s,v);
 
     flag = false;

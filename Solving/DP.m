@@ -1,66 +1,58 @@
-function [res1, s] = DP(v,t,beta,z)
+function [result, s] = DP(v,t,beta,z)
 
-% t and beta are vectors
+% t and beta are vectors   from bottom to top
 % z = 9.5
 % t =[5 4 3 2];
-% beta = [14.5 8 12.5 4]
-% 注意这里不能存在 V (u \neq v)
+% beta = [14.5 8 11.5 4]
+% 注意这里不能��? V (u \neq v)
 
-% u = v-1; % counting
+u = 0; % counting
 
-ss = zeros(v-1,v);
-
-res = zeros(v-1,1); % record the min value
-
-for uu = (v-1): -1 : 1
-
-s = zeros(1,v);  % 记录集合 player
+s = zeros(1,v); % 记录集合中player
 
 result = z;
 
-ii = uu;
+for i =1 : v
 
-  for i = v: -1 : 1
+    if (u+1)*t(i) < beta(i)
 
-    if ii*t(i) < beta(i)
+      result = result + (u+1)*t(i)- beta(i);
 
-      result = result + ii*t(i) - beta(i);
+      u = u + 1;
 
       s(i) = 1;  % add the player
 
-      ii = ii-1;  % problem
+    else
+
+      s(i) = 0;
 
     end
 
-    if ii < 1
+end
 
-      break
+if u == v
+%   P = perms(vec); 全排列不可取
 
-    end
+  resu = zeros(v,1);
 
-    if (i-1) == ii
+  vec = zeros(v,v);
 
-      s(1:ii) = 1;
+  for i = 1 : v   % i为几 0就在几? 这样可以减去相应的t
 
-      result =  result + dot((1:ii),t(1:ii)) - sum(beta(1:ii));
+    vec(i,:) = [ones(1,i-1),zeros(1,1),ones(1,v-i)];
 
-      break
+    aa = cumsum(vec(i,:));
 
-    end
+    resu(i) = z + dot(t,aa)-(i-1)*t(i) - dot(beta,vec(i,:));  % C n n-1 组合求最小值?
 
   end
 
-  res(uu) = result;
+  [result,ind] = min(resu);
 
-  ss(uu,:) = s;
-
-end
-
-[res1 ind] = min(res);
-
-s = ss(ind,:);
-
-res
-ss
+  s = vec(ind,:);
 
 end
+
+end
+%  [a,b,c,d]=ndgrid(0:1);
+%  A=[a(:),b(:),c(:),d(:)];

@@ -1,7 +1,7 @@
 function [x,maxr] = LP12(s,v,t,z)
 
 % Notice that s is a restricted-coalition matrix.(0-1)  v = 4
-% t from large to small 列向�?
+% t from large to small 列向��?
 % 转置即可
 s1 = length(s(:,1));  % 约束数量
 
@@ -13,7 +13,7 @@ for i =1:s1
 
     inde = find(s(i,:)==1);
 
-    c_s(i) = (1:tot)*t(inde) + z;
+    c_s(i) = dot(1:tot,t(inde)) + z;
 
 end
 
