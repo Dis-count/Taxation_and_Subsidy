@@ -1,71 +1,61 @@
-function [res1, s] = DP1(v,t,beta,z)
+function [res, s] = DP1(v,t,beta,z)
 
-% t and beta are vectors   from top to bottom
+% t and beta are vectors   from bottom to top
 % z = 9.5
 % t =[5 4 3 2];
 % beta = [14.5 8 12.5 4]
+
 % 注意这里不能存在 V (u \neq v)
 
-% u = v-1; % counting
+% s is the optimal solution
 
-ss = zeros(v-1,v);
+P = ones(v, v+1);
 
-res = zeros(v-1,1); % record the min value
+P(1,1) = z;  %  P(1,0)
 
-for uu = (v-1): -1 : 1
+P(1,2) = z + t(1) - beta(1) ;  %  P(1,1)
 
-s = zeros(1,v);  % 记录集合 player
+ss = cell(v,v+1);  % Used to store the corresponding player vector.
 
-result = z;
+ss(1,1) = {zeros(1,1)};
 
-ii = uu;
+ss(1,2) = {ones(1,1)};
 
-  for i = v: -1 : 1
+for i = 2: v
 
-    if ii*t(i) < beta(i)
+  % s = ss(:,);  %  每一个循��? 只能记录 该列
 
-      result = result + ii*t(i) - beta(i);
+  P(i,1) = P(i-1,1);
+  ss(i,1) = {zeros(1,i)};
 
-      s(i) = 1;  % add the player
+  P(i,i+1) = P(i-1,i) + i*t(i) - beta(i);
+  ss(i,i+1) = {ones(1,i)};
 
-      ii = ii-1;  % problem
+  for j = 1: i-1
+
+    sor = P(i-1,j)+ (j+1)*t(i)-beta(i);
+
+    if P(i-1,j+1) > sor
+
+      P(i,j+1) = sor;
+
+      ss(i,j+1) = {[ss{i-1,j},1]};
 
     else
 
+      P(i,j+1) = P(i-1,j+1);
 
-
-
-    end
-
-    if ii < 1
-
-      break
-
-    end
-
-    if (i-1) == ii
-
-      s(1:ii) = 1;
-
-      result =  result + dot((1:ii),t(1:ii)) - sum(beta(1:ii));
-
-      break
+      ss(i,j+1) = {[ss{i-1,j+1},0]};
 
     end
 
   end
 
-  res(uu) = result;
-
-  ss(uu,:) = s;
 
 end
 
-[res1 ind] = min(res);
+[res,ind] = min(P(v,2:v)); % record the P(v,u) u \in (1:v-1)
 
-s = ss(ind,:);
-
-res
-ss
+s = ss{v,1+ind};
 
 end

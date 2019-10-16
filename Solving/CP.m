@@ -22,7 +22,7 @@ while flag
 
   [beta, maxr] = LP12(ini_s,v,t,z);
 
-  [delta, opt_s] = DP(v,t,beta,z);
+  [delta, opt_s] = DP1(v,t,beta,z);
 
   if delta < 0
 
@@ -41,9 +41,6 @@ while flag
   end
 
 end
-
-ini_s
-
 K_r
-
+ini_s
 end
