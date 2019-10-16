@@ -33,17 +33,15 @@ for i = 2: v
 
   for j = 1: i-1
 
-    sor = P(i-1,j)+ (j+1)*t(i)-beta(i);
+    if P(i-1,j+1) > (P(i-1,j)+ j*t(i)-beta(i))
 
-    if P(i-1,j+1) > sor
-
-      P(i,j+1) = sor;
+      P(i,j+1) = P(i-1,j)+ j*t(i)-beta(i); % notice that j is not the ordinal number
 
       ss(i,j+1) = {[ss{i-1,j},1]};
 
     else
 
-      P(i,j+1) = P(i-1,j+1);
+      P(i,j+1) = P(i-1,j+1);  %
 
       ss(i,j+1) = {[ss{i-1,j+1},0]};
 
@@ -55,7 +53,7 @@ for i = 2: v
 end
 
 [res,ind] = min(P(v,2:v)); % record the P(v,u) u \in (1:v-1)
-
+P
 s = ss{v,1+ind};
 
 end
