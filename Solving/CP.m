@@ -30,7 +30,7 @@ while flag
 
   else
 
-    omega = - beta;
+    omega = 38 - beta;
 
     ini_s = ini_s(v+1:end,:);
 
