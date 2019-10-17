@@ -11,7 +11,7 @@ for i =1:s1
 
     tot = sum(s(i,:)==1);
 
-    inde = find(s(i,:)==1);
+    inde = s(i,:)==1;  % may not use the function 'find'
 
     c_s(i) = dot(1:tot,t(inde)) + z;
 

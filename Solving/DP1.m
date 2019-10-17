@@ -53,7 +53,7 @@ for i = 2: v
 end
 
 [res,ind] = min(P(v,2:v)); % record the P(v,u) u \in (1:v-1)
-P
+
 s = ss{v,1+ind};
 
 end

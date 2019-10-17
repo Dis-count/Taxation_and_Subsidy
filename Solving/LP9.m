@@ -8,7 +8,7 @@ function [minr,maxr] = LP9(s,v)
 %    1 1 1 0;
 %    1 1 0 1;
 %    1 0 1 1;]
-
+m_v = 1;
 % 转置即可
 s1 = length(s(:,1));
 
@@ -22,10 +22,10 @@ ub = ones(s1,1);
 
 [x,fval1] = linprog(-f,[],[],s',b,lb,ub);
 
-minr = fval1;
+minr = m_v+fval1;
 
 [x,fval2] = linprog(f,[],[],s',b,lb,ub);
 
-maxr = -fval2;
+maxr = m_v-fval2;
 
 end

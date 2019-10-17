@@ -14,6 +14,8 @@ function [omega,K_l,K_r] = CP(v,t,z)
 
 ini_s = eye(v);
 
+% t= [9;8;7;5.5;4];
+
 % c_V = m*z +sum_t;
 
 flag = true;
@@ -30,10 +32,14 @@ while flag
 
   else
 
-    omega = 38 - beta;
+    omega = dot(1:v,t)+z - maxr;
 
-    ini_s = ini_s(v+1:end,:);
+    if length(ini_s(:,1)) > v
+    
+        ini_s = ini_s(v+1:end,:);
 
+    end
+    
     [K_l, K_r] = LP9(ini_s,v);
 
     flag = false;
@@ -41,6 +47,6 @@ while flag
   end
 
 end
-K_r
-ini_s
+
+
 end
