@@ -20,10 +20,10 @@ while ~isempty(Pbig)
   omega(1) = a1;
 
   omega(2) = a2;
-
+  
   slope =  (a2-a1)/(Pbig(1,2)-Pbig(1,1));
 
-  if (round(c1,5) == round(slope,5))||(abs(b2-slope)<1e-5)
+  if (round(c2,5) == round(slope,5))||(abs(b1-slope)<1e-5)
 
     Pbig(1,:) = [];
 
@@ -31,8 +31,16 @@ while ~isempty(Pbig)
 
 % how to calculate the intersection point
 
-    zinter = (c1*Pbig(1,1) - Pbig(1,2)*b2 + a2 - a1)/(c1-b2);
+    zinter = (b1*Pbig(1,1) - Pbig(1,2)*c2 + a2 - a1)/(b1-c2);
 
+    if zinter < 35||zinter > 50
+
+        disp('There is something wrong')
+        
+        break
+    
+    end
+    
     omega1 = (zinter - Pbig(1,2))*b2 + a2;
 
     omega = [omega,omega1];
@@ -47,6 +55,7 @@ while ~isempty(Pbig)
 
     sort(Pstar);
 
+    Pstar
     disp('what')
     
   end

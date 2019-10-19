@@ -28,7 +28,7 @@ while flag
 
   [delta, opt_s] = DP1(v,t,beta,z);
 
-  if delta < 0
+  if delta < -0.01
 
      ini_s = [ini_s;opt_s];
 
@@ -51,9 +51,8 @@ while flag
   count = count +1;
   
   if count >100
-  
-      ini_s
-      
+  % ini_s
+      disp('There is something wrong')
       break
   end
   
