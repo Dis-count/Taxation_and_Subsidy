@@ -20,6 +20,8 @@ ini_s = eye(v);
 
 flag = true;
 
+count = 0;
+
 while flag
 
   [beta, maxr] = LP12(ini_s,v,t,z);
@@ -46,6 +48,15 @@ while flag
 
   end
 
+  count = count +1;
+  
+  if count >100
+  
+      ini_s
+      
+      break
+  end
+  
 end
 
 
