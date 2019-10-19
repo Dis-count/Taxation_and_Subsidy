@@ -23,6 +23,7 @@ while ~isempty(Pbig)
   
   slope =  (a2-a1)/(Pbig(1,2)-Pbig(1,1));
 
+  
   if (round(c2,5) == round(slope,5))||(abs(b1-slope)<1e-5)
 
     Pbig(1,:) = [];
@@ -47,15 +48,14 @@ while ~isempty(Pbig)
 
     Pstar = [Pstar,zinter];
 
-    Pbig(end+1,:) = [Pbig(1,1),zinter];
+    Pbig(end+1,:) = [Pbig(1,1),zinter];   % Notice that there is already add a new row
 
-    Pbig(end+2,:) = [zinter,Pbig(1,2)];
+    Pbig(end+1,:) = [zinter,Pbig(1,2)];
 
     Pbig(1,:) = [];
 
-    sort(Pstar);
-
-    Pstar
+    Pstar = sort(Pstar);
+    
     disp('what')
     
   end
