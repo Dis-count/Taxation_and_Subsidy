@@ -1,3 +1,39 @@
+%!TEX program = xelatex
+\documentclass[UTF8]{article}
+\usepackage{graphicx}
+\usepackage{setspace}
+% \usepackage{ctex}
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}  % 用于首行缩进
+
+\usepackage{amsmath}
+\usepackage{amsthm} % 使用定理环境
+\usepackage{amssymb}
+
+% \usepackage{geometry}
+% \geometry{a4paper,scale=0.8}
+
+\usepackage{geometry}
+\geometry{a4paper,left=2.0cm,right=2.0cm,top=3.0cm,bottom=3.0cm}
+\setstretch{1.5}   %  改变行间距
+% \newgeometry{left = 2 cm, top= 3 cm}
+
+\title{Summary}
+\author{Dis\cdot count}
+% \date{Feb 2019}
+
+\newtheorem{thm}{\hspace{2em}Theorem}
+\newtheorem{lem}{\hspace{2em}Lemma}
+\newtheorem{pf}{\hspace{2em}Proof}
+\newtheorem{remark}{\hspace{2em}Remark}
+%  \newtheorem{def}{Definition}  doesnt work
+
+
+\begin{document}
+
+\maketitle{}
+
+
 \section{Outline}
 
 This outline shows how to solve the IPU game with alternative machines.
@@ -59,4 +95,8 @@ There is an effective domain $[0, P^*]$, where the grand coalition may need a su
 For the effective domain, we just need to divide this interval into several parts and the points are denoted as $P_L(V,i), i = 1,2,\ldots,n$.  At first, we don't need to calculate the initial part because this part the corresponding subsidy is 0 always.(The corresponding conclusion see Theorem \ref{thm3}) Then we just need to focus on the latter part which shows some interesting properties we presents above.
 
 
-As we've already known that $P_L(V,i), i = 1,2,\ldots,n$ can be obtained by Lemma \ref{lem1} and Theorem \ref{thm2}, we just need to follow the CP approach(Algorithm 3) to calculate the weak derivative at each sub-interval $[P_L(m,V),P_H(m,V)]$ where the corresponding derivative is $m_V-\sum_{s\in S\subset\{V\}} \rho_s$. Then use Algorithm 1(IPC Algorithm) which will return all the breakpoints and the subsidies$\omega(P)$ during the $[0, P^*]$ to obtain the subsidy \omega(P). Notice that we can calculate the characteristic function $c(s)$ easily according to Theorem \ref{thm5}, we can formulate Theorem \ref{thm6}. Until here, we've solved the IPU game with alternative machines.
+As we've already known that $P_L(V,i), i = 1,2,\ldots,n$ can be obtained by Lemma \ref{lem1} and Theorem \ref{thm2}, we just need to follow the CP approach(Algorithm 3) to calculate the weak derivative at each sub-interval $[P_L(m,V),P_H(m,V)]$ where the corresponding derivative is $m_V-\sum_{s\in S\subset\{V\}} \rho_s$.
+Then use Algorithm 1(IPC Algorithm) which will return all the breakpoints and the subsidies $\omega(P)$ during the $[0, P^*]$ to obtain the subsidy $\omega(P)$. Notice that we can calculate the characteristic function $c(s)$ easily according to Theorem \ref{thm5}, we can formulate Theorem \ref{thm6}. Until here, we've solved the IPU game with alternative machines.
+
+
+\end{document}
