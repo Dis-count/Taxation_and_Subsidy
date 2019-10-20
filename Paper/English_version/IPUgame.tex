@@ -18,7 +18,7 @@
 \setstretch{1.5}   %  改变行间距
 % \newgeometry{left = 2 cm, top= 3 cm}
 
-\title{Summary}
+\title{Outline}
 \author{Dis\cdot count}
 % \date{Feb 2019}
 
@@ -34,7 +34,7 @@
 \maketitle{}
 
 
-\section{Outline}
+\section{The Lemma and Theorem}
 
 This outline shows how to solve the IPU game with alternative machines.
 
@@ -73,7 +73,7 @@ When the number of machines used is 1, the range of slopes of the line segments 
 
 \begin{thm}\label{thm5}
 
-The original problem is equivalent to using only one machine for all coalitions.
+The original problem is equivalent to using only one machine for all coalitions except the grand coalition.
 
 \end{thm}
 
@@ -85,18 +85,24 @@ The IPU game with alternative machines can be solved in polynomial time.
 \end{thm}
 
 
-As we all know, the cost arised from the partial players in the grand coalition can be calculated handily by the SPT rule.(The corresponding conclusion see Lemma \ref{lem1}) Meanwhile, inspired by the paper (Please refer to Liu et.al.2018), we have the following approach to solve this game.
+\section{The approach}
+
+
+As we all know, the cost arised from the partial players in the grand coalition ($c(s)$) can be calculated handily by the SPT rule. (The corresponding conclusion see Lemma \ref{lem1}) Meanwhile, inspired by the paper (Please refer to Liu et.al.2018), we have the following approach to solve this game.
 
 
 There is an effective domain $[0, P^*]$, where the grand coalition may need a subsidy from the external to maintain the balance.
 (The corresponding conclusion see Theorem \ref{thm1} and \ref{thm2} where $P^* = P_L(V,1)$).
 
 
-For the effective domain, we just need to divide this interval into several parts and the points are denoted as $P_L(V,i), i = 1,2,\ldots,n$.  At first, we don't need to calculate the initial part because this part the corresponding subsidy is 0 always.(The corresponding conclusion see Theorem \ref{thm3}) Then we just need to focus on the latter part which shows some interesting properties we presents above.
+For the effective domain, we just need to divide this interval into several parts and the breakpoints are denoted as $P_L(V,i), i = 1,2,\ldots,n$.  At first, we don't need to calculate the initial part because at this part the corresponding subsidy is 0 always. (The corresponding conclusion see Theorem \ref{thm3}) Then we just need to focus on the latter part which shows some interesting properties we presents above.
 
 
-As we've already known that $P_L(V,i), i = 1,2,\ldots,n$ can be obtained by Lemma \ref{lem1} and Theorem \ref{thm2}, we just need to follow the CP approach(Algorithm 3) to calculate the weak derivative at each sub-interval $[P_L(m,V),P_H(m,V)]$ where the corresponding derivative is $m_V-\sum_{s\in S\subset\{V\}} \rho_s$.
-Then use Algorithm 1(IPC Algorithm) which will return all the breakpoints and the subsidies $\omega(P)$ during the $[0, P^*]$ to obtain the subsidy $\omega(P)$. Notice that we can calculate the characteristic function $c(s)$ easily according to Theorem \ref{thm5}, we can formulate Theorem \ref{thm6}. Until here, we've solved the IPU game with alternative machines.
+As we've already known that $P_L(V,i), i = 1,2,\ldots,n$ can be obtained by Lemma \ref{lem1} and Theorem \ref{thm2}, we just need to follow the CP approach (Algorithm 3 in Liu et.al.2018) to calculate the weak derivatives at each sub-interval $[P_L(m,V),P_H(m,V)]$ where the corresponding derivative is $m_V-\sum_{s\in S\setminus\{V\}} \rho_s$.
+
+Then use IPC Algorithm (Algorithm 1 in Liu et.al.2018) which will return all the breakpoints during the $[0, P^*]$ to obtain the subsidy $\omega(P)$.
+
+Notice that we can calculate the characteristic function $c(s)$ easily according to Theorem \ref{thm5}, we can formulate Theorem \ref{thm6}. Until here, we've solved the IPU game with alternative machines.
 
 
 \end{document}
