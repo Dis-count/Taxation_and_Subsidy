@@ -70,7 +70,7 @@ Finally, we can obtain $S_0 = \sum_{k=1}^n (n-k)t_k$.
 \end{pf}
 
 \begin{pf}[Theorem 3]
-For the IPU game, when using $m$ machines is optimal, the setup cost $S_0$ must satisfies $t_m < S_0 < t_{m+1}$, which can be obtained from the process of calculating $S_k, \frac{n}{2} < k \leq n$, where $S_k = t_{n-k+1}$.
+For the IPU game, when using $m$ machines is optimal, the setup cost $S_0$ must satisfies $t_m < S_0 < t_{m+1}$, which can be obtained from the process of calculating $S_k,~\frac{n}{2} < k \leq n$, where $S_k = t_{n-k+1}$.
 
 When $m > \frac{n}{2}$, the optimal sequence which means the minimum cost is each of the $n-m$ machines has to process two jobs, while the rest $2m-n$ machines each with one job. At present, there exists the following allocation which satisfies $\alpha(s) \leq c(s), s \in S:$
 \[
@@ -135,18 +135,18 @@ Similarly, by substituting $m$ with $m+1$, we can obtain that $P_{m+1} = c_0(V,m
 As we described before, the characteristic function $c(s,m(s,P))$ can be expressed as $c_0(s,m(s))+Pm$. For the two coalitions $s_1, s_2$, we use $c_0(s_2,m(s_1))$ to represent the cost produced by coaliton $s_2$ using $m(s_1)$ machines, where $m(s_1)$ is the number of machines used by coalition $s_1$ when the cost is minimum.
 
 According to this definition and Lemma 2, obviously the following relation holds,
-$c(s_1,m(s_1)) < c(s_1,m(s_1)-1) \Rightarrow c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))>0$, because $c_0(s_1,m(s_1))0$ is the minimum cost for $s_1$ using $m(s_1)$ machines.
+$c(s_1,m(s_1)) < c(s_1,m(s_1)-1) \Rightarrow c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))>0$, because $c_0(s_1,m(s_1))$ is the minimum cost for $s_1$ using $m(s_1)$ machines.
 
 For the two coalitions $s_1$, when the coalition $s_1$ uses $m(s_1)$ machines which is optimal, the following relation is established:
 $m(s_1)P+c_0(s_1,m) < (m(s_1)-1)P+c_0(s_1,m-1) \Rightarrow P < c_0(s_1,m-1) - c_0(s_1,m)$.
 
 When coalition $s_1$ uses $m(s_1)$, we assume that coalition $s_2$ uses $m(s_2)=m(s_1)-1<m(s_1)$ machines, which means $c(s_2,m(s_1)-1) < c(s_2,m(s_1))$. Then expand the formula, we obtain $P > c_0(s_2,m(s_1)-1)- c_0(s_2,m(s_1))$. However, because using $m(s_1)$ by coalition $s_1$ assures that $c(s_1,m(s_1)) < c(s_1,m(s_1)-1) \Rightarrow P < c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))$.
-So we can obtain that $ c_0(s_2,m(s_1)-1)- c_0(s_2,m(s_1)) <P <c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))$, which contradicts the condition \ref{concavity_f}.
+So we can obtain that $ c_0(s_2,m(s_1)-1)- c_0(s_2,m(s_1)) <P <c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1))$, which contradicts the condition (\ref{concavity_f}).
 With the result of that, we know $m(s_2) \neq m(s_1)-1$. \\
-Meanwhile, according to the condition \ref{property_p} which tells us about the concavity of the number of machines. The larger the number of machines, the smaller the difference between these two items $c_0(s_1,m(s_1)-1)$ and $c_0(s_1,m(s_1))$. Take $m(s_2) = m(s_1)-2$ as an example, similar to the above, we can get $c(s_2,m(s_1)-2) < c(s_2,m(s_1)-1) \Rightarrow P > c_0(s_2,m(s_1)-2) - c_0(s_2,m(s_1)-1)$. According to the conditions \ref{concavity_f} and \ref{concavity_f},
+Meanwhile, according to the condition (\ref{property_p}) which tells us about the concavity of the number of machines. The larger the number of machines, the smaller the difference between these two items $c_0(s_1,m(s_1)-1)$ and $c_0(s_1,m(s_1))$. Take $m(s_2) = m(s_1)-2$ as an example, similar to the above, we can get $c(s_2,m(s_1)-2) < c(s_2,m(s_1)-1) \Rightarrow P > c_0(s_2,m(s_1)-2) - c_0(s_2,m(s_1)-1)$. According to the conditions (\ref{concavity_f}),
 $c(s_1,m(s_1)) < c(s_1,m(s_1)-1) \Rightarrow P < c_0(s_1,m(s_1)-1)-c_0(s_1,m(s_1)) < c_0(s_1,m(s_1)-2)-c_0(s_1,m(s_1)-1) < c_0(s_2,m(s_1)-2) - c_0(s_2,m(s_1)-1)$ contradicts
 $P > c_0(s_2,m(s_1)-2) - c_0(s_2,m(s_1)-1)$ we just obtained above.
-Consequently, we know that $m(s_2)$ can't be less than $m(s_1)-1$.
+Consequently, we know that $m(s_2)$ cannot be less than $m(s_1)-1$.
 In conclusion, $m(s_1) \leq m(s_2)$.
 % stated thus,to summarize,in summary, overall
 % 注意这个证明  只与c_0(s) 有关

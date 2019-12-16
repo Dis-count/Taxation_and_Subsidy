@@ -10,6 +10,9 @@
 \usepackage{amsthm} % 使用定理环境
 \usepackage{amssymb}
 
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green,CJKbookmarks=True]{hyperref}  % 使用链接 但不用默认属性
+% CJKbookmarks让链接支持中文
+% \usepackage{hyperref}
 % \usepackage{geometry}
 % \geometry{a4paper,scale=0.8}
 
@@ -37,7 +40,7 @@
 
 \input{Chapters/Introduction}
 
-\input{Chapters/Outline}
+%\input{Chapters/Outline}
 
 
 % 这里还需要定义一个优化问题
@@ -52,7 +55,7 @@ Then we will illustrate the taxation instrument with a simple example of an IAPU
 
 \section*{Example}
 
-There is a IPU game which contains four players, whose processing times on the identical parallel machine are $t_1=2,t_2=3,t_3=4,t_4=5$ respectively. Each machine setup cost is $t_0=9.5$, and $c(s)$ is the minimum total completion time of jobs in coalition $s$ plus the machine setup cost.
+There is an IPU game which contains four players, whose processing times on the identical parallel machine are $t_1=2, t_2=3, t_3=4, t_4=5$ respectively. Each machine setup cost is $t_0=9.5$, and $c(s)$ is the minimum total completion time of jobs in coalition $s$ plus the machine setup cost.
 
 In this example, the grand coalition has a minimum cost of 38, and the optimum number of machine is 2.
 It's easy to check that this example is unbalanced and calculate the subsidy which equals $ c(V) - \alpha(V) = 0.75$.
@@ -85,14 +88,12 @@ Then we need to define two functions, practical subsidy-price function (PSPF) an
   {\omega(P)}=\mathop{\min}_{\alpha}\{c(V,m(V,P))-\alpha(V): \alpha(s)\leq c(s,m(s,P))
  ,\forall s \in S, \alpha\in\mathbb{R}^{v}\},
 \]
-
 \[
   {\hat{\omega}(P)}=\mathop{\min}_{\alpha}\{c(V,m(V,P))-\alpha(V): \alpha(s)\leq c(s,m(s,P))
  ,\forall s \in S\setminus\{V\}, \alpha\in\mathbb{R}^{v}\}.
 \]
 
 By dividing the PSPF function into two parts like $c(s)=c_0(s)+m_sP, s \in S$, as a common skill, we can obtain its dual:
-
 \begin{equation}\label{dual}
  {\omega^*(P)}=\mathop{\max}_{\rho} \{c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]:
  \sum_{s\in S\setminus\{V\}:k\in s}\rho_s=1,\forall k \in V,\rho_s\geq 0,\forall s \in S \setminus{V}\}
@@ -182,7 +183,20 @@ By establishing the Theorem 5, we can design the specific algorithm to eliminate
 The IPU game can be solved in polynomial time.(Remaining to be proved)
 \end{thm}
 
-Now that we've already solved the IPU game, we will try to extend the core concept to a more general case. So we need to define a new game as follow.
+As we all know, the cost arised from the partial players in the grand coalition, that is $c(s)$, can be calculated handily by the SPT rule (The corresponding conclusion see Lemma \ref{lem1}). Meanwhile, inspired by the paper (Please refer to Liu et.al.2018), we have the following approach to solve this game.
+
+There is an effective domain $[0, P^*]$, where the grand coalition may need a subsidy from the external to maintain the balance.
+(The corresponding conclusion see Theorem \ref{thm1} and \ref{thm2} where $P^* = P_L(V,1)$).
+
+For the effective domain, we just need to divide this interval into several parts and the breakpoints are denoted as $P_L(V,i), i = 1,2,\ldots,n$.  At first, we don't need to calculate the initial part because at this part the corresponding subsidy is 0 always. (The corresponding conclusion see Theorem \ref{thm3}) Then we just need to focus on the latter part which shows some interesting properties we presents above.
+
+As we've already known that $P_L(V,i), i = 1,2,\ldots,n$ can be obtained by Lemma \ref{lem1} and Theorem \ref{thm2}, we just need to follow the CP approach (Algorithm 3 in Liu et.al.2018) to calculate the weak derivatives at each sub-interval $[P_L(m,V),P_H(m,V)]$ where the corresponding derivative is $m_V-\sum_{s\in S\setminus\{V\}} \rho_s$.
+
+Then use IPC Algorithm (Algorithm 1 in Liu et.al.2018) which will return all the breakpoints during the $[0, P^*]$ to obtain the subsidy $\omega(P)$.
+
+Notice that we can calculate the characteristic function $c(s)$ easily according to Theorem \ref{thm5}, we can formulate Theorem \ref{thm6}. Until here, we've solved the IPU game with alternative machines.
+
+Then, we will try to extend the core concept to a more general case. So we need to define a new game as follow.
 
 \section*{Definition 2}
 
