@@ -15,7 +15,8 @@
 % \usepackage{hyperref}
 % \usepackage{geometry}
 % \geometry{a4paper,scale=0.8}
-
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage{geometry}
 \geometry{a4paper,left=2.0cm,right=2.0cm,top=3.0cm,bottom=3.0cm}
 \setstretch{1.5}   %  改变行间距
@@ -25,7 +26,7 @@
 \author{Dis\cdot count}
 % \date{Feb 2019}
 
-\newtheorem{algorithm}{Algorithm}
+% \newtheorem{algorithm}{Algorithm}
 \newtheorem{thm}{\hspace{2em}Theorem}
 \newtheorem{lem}{\hspace{2em}Lemma}
 \newtheorem{pf}{\hspace{2em}Proof}
@@ -79,7 +80,7 @@ c(s,P) = & {\min} \sum_{k\in V}\sum_{j\in O} {c_{kj} x_{kj}} + {P\sum_{k\in s} x
 & y_k^s=1, k \in s, y_k^s=0, k \notin s.
 \end{aligned}
 \]
-Among these formulations, $P$ and $m$ denotes the price and the number of using machines, respectively. 
+Among these formulations, $P$ and $m$ denotes the price and the number of using machines, respectively.
 Now we've already extended the number of players to a more complex case, that is, the number of players is set to $n$.
 Let $N=\{1,2,\ldots,n\}$ be a set of n players. The number of machines is $m$ and the setup cost is $t_0$.
 For convenience of expression, we set the processing times $t_i, i\in N$ satisfy $t_1<t_2<\cdots<t_n$.
@@ -278,45 +279,75 @@ When $c_0(s)$ satisfy the supermodular and $P=P_1$, where $m_V=1$, if $\alpha(s)
 \input{Chapters/Proof}
 
 
-
-\begin{algorithm}\label{algoCP}
-The Cutting Plane(CP) Algorithm to compute $\omega(z)$ for a given $z$.
-\end{algorithm}
-
-\begin{description}
-\justifying
-\item[Step 1.] $\mathbb{S}'\subseteq \mathbb{S}\setminus \{N\}$ indicates a restricted coalition set.
-\item[Step 2.] Find an optimal $\bar{\alpha}(\ \cdot \ ,z)$ to a relaxed LP of $\tau(z)$:
-\begin{equation*}
-\max_{\alpha\in \R^n} \big\{ \alpha(N,z): \alpha(S,z) \leq \pi(S)+z, \mbox{ for all } S \in \mathbb{S}'\big\}.
-\end{equation*}
-\vspace{-11pt}
-\item[Step 3.]
-Find an optimal $S^*$ to the separation problem:
-\begin{equation*}
-\delta = \min \big\{ \pi(S)+z-\bar{\alpha}(S,z): \forall S \in \mathbb{S} \setminus \{N\}\big\}.
-\end{equation*}
-\item[Step 4.]
-If $\delta<0$, then add $S^*$ to $\mathbb{S}'$, and go to step 2; otherwise, return $\omega(z)=\pi(N)-\bar{\alpha}(N,z)$. %; and (ii) a pair of weak derivatives $\big( K_{l'}^{\bar{\alpha}z},K_{r'}^{\bar{\alpha}z}\big)$ computed by solving (\ref{eqn:weakderivatives}) with $S^{\alpha z}$ replaced by $S'$ in the definition of $\Pi^{\alpha z}$.
-\end{description}
-
-
-\begin{algorithm}\label{algoIPC}
-The Intersection Points Computation(IPC) Algorithm to Construct the PSF Function.
-\end{algorithm}
+\begin{algorithm}[h]\label{algoCP}
+\caption{The Cutting Plane(CP) Algorithm to compute $\omega(z)$ for a given $z$.}
+\begin{algorithmic}[1]
 
 \begin{description}
-\justifying
-\item[Step 1.] Initially, set $P^*=\{0,z^*\}$ and $\mathbb{P}= \{[0,z^*]\}$.
-\item[Step 2.] If $\mathbb{P}$ is not empty, update $P^*$ and $\mathbb{P}$ by the following steps:
-\qquad \item[Step 2.1.]
-Find an optimal $S^*$ to the separation problem:
-\begin{equation*}
-\delta = \min \big\{ \pi(S)+z-\bar{\alpha}(S,z): \forall S \in \mathbb{S} \setminus \{N\}\big\}.
-\end{equation*}
-\item[Step 4.]
-If $\delta<0$, then add $S^*$ to $\mathbb{S}'$, and go to step 2; otherwise, return $\omega(z)=\pi(N)-\bar{\alpha}(N,z)$. %; and (ii) a pair of weak derivatives $\big( K_{l'}^{\bar{\alpha}z},K_{r'}^{\bar{\alpha}z}\big)$ computed by solving (\ref{eqn:weakderivatives}) with $S^{\alpha z}$ replaced by $S'$ in the definition of $\Pi^{\alpha z}$.
+  \justifying
+  \item[Step 1.] $\mathbb{S}'\subseteq \mathbb{S}\setminus \{N\}$ indicates a restricted coalition set.
+  \item[Step 2.] Find an optimal $\bar{\alpha}(\ \cdot \ ,z)$ to a relaxed LP of $\tau(z)$:
+  \begin{equation*}
+  \max_{\alpha\in \R^n} \big\{ \alpha(N,z): \alpha(S,z) \leq \pi(S)+z, \mbox{ for all } S \in \mathbb{S}'\big\}.
+  \end{equation*}
+  \vspace{-11pt}
+  \item[Step 3.]
+  Find an optimal $S^*$ to the separation problem:
+  \begin{equation*}
+  \delta = \min \big\{ \pi(S)+z-\bar{\alpha}(S,z): \forall S \in \mathbb{S} \setminus \{N\}\big\}.
+  \end{equation*}
+  \item[Step 4.]
+  If $\delta<0$, then add $S^*$ to $\mathbb{S}'$, and go to step 2; otherwise, return $\omega(z)=\pi(N)-\bar{\alpha}(N,z)$.
 \end{description}
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]\label{algoIPC}
+\caption{The Intersection Points Computation(IPC) Algorithm to Construct the PSF Function.}
+\begin{algorithmic}[1]
+
+\begin{description}
+  \justifying
+  \item[Step 1.] Initially, set $P^*=\{0,z^*\}$ and $\mathbb{P}= \{[0,z^*]\}$.
+  \item[Step 2.] If $\mathbb{P}$ is not empty, update $P^*$ and $\mathbb{P}$ by the following steps:
+  \qquad \item[Step 2.1.]
+  Find an optimal $S^*$ to the separation problem:
+  \begin{equation*}
+  \delta = \min \big\{ \pi(S)+z-\bar{\alpha}(S,z): \forall S \in \mathbb{S} \setminus \{N\}\big\}.
+  \end{equation*}
+  \item[Step 4.]
+  If $\delta<0$, then add $S^*$ to $\mathbb{S}'$, and go to step 2; otherwise, return $\omega(z)=\pi(N)-\bar{\alpha}(N,z)$.
+
+\end{description}
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[h]\label{algoDP}
+\caption{The Dynamic Programming(DP) Algorithm to Calculate c(s).}
+\begin{algorithmic}[1]
+
+\begin{description}
+  \item[Step 1.]
+  \item[Step 2.]
+
+  \qquad \item[Step 2.1.] Find an optimal $S^*$ to the separation problem:
+
+  \begin{equation*}
+  \delta = \min \big\{ \pi(S)+z-\bar{\alpha}(S,z): \forall S \in \mathbb{S} \setminus \{N\}\big\}.
+  \end{equation*}
+
+  \item[Step 4.]
+  If $\delta<0$, then add $S^*$ to $\mathbb{S}'$, and go to step 2; otherwise, return $\omega(z)=\pi(N)-\bar{\alpha}(N,z)$.
+
+\end{description}
+
+\end{algorithmic}
+\end{algorithm}
+
+
 
 
 \end{document}
