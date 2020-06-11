@@ -48,7 +48,7 @@
 % 这里还需要定义一个优化问题
 
 \section*{Definition 0.}
-In an Identical Alternative Parallel machine scheduling of Unweighted jobs (IAPU) game, each player $k$ in $V=\{1,2,\ldots,v\}$ has a job $k$ that needs to be processed on one of identical machines in $M=\{1,2,\ldots,m_s\}$, where $m_s$ is a given positive integer no more than $v$. Meanwhile, each machine has a setup cost $T$. Each job $k\in V$ has a processing time denoted by $t_k$. Each coalition $s \in S$, where $S=2^V\setminus\{\emptyset\}$, aims to schedule the jobs in $s$ on all machines in $M$ so that the total completion  time of the jobs in $s$ is minimized, i.e., to minimize $\sum_{k\in s}{C_k}+m_sT $,
+In an Identical Alternative Parallel machine scheduling of Unweighted jobs (IAPU) game, each player $k$ in $V=\{1,2,\ldots,v\}$ has a job $k$ that needs to be processed on one of identical machines in $M=\{1,2,\ldots,m_v\}$, where $m_v$ is a given positive integer no more than $v$. Meanwhile, each machine has a setup cost $T$. Each job $k\in V$ has a processing time denoted by $t_k$. Each coalition $s \in S$, where $S=2^V\setminus\{\emptyset\}$, aims to schedule the jobs in $s$ on all machines in $M$ so that the total completion  time of the jobs in $s$ is minimized, i.e., to minimize $\sum_{k\in s}{C_k}+m_sT $,
 where $C_k$ is the completion time of job $k\in s$.
 
 % 暂且用T-i表示机器调度里的定价，等后期确定后再统一改。
@@ -59,8 +59,8 @@ Then we will illustrate the taxation instrument with a simple example of an IAPU
 
 There is an IPU game which contains four players, whose processing times on the identical parallel machine are $t_1=2, t_2=3, t_3=4, t_4=5$ respectively. Each machine setup cost is $t_0=9.5$, and $c(s)$ is the minimum total completion time of jobs in coalition $s$ plus the machine setup cost.
 
-In this example, the grand coalition has a minimum cost of 38, and the optimum number of machine is 2.
-It's easy to check that this example is unbalanced and calculate the subsidy which equals $ c(V) - \alpha(V) = 0.75$.
+In this example, the grand coalition has a minimum cost, which is $c(V) = \sum_{k\in v}{C_k}+m_vT = 38$, and the optimum number of machine is $m_v = 2$.
+It's easy to check that this example is unbalanced and calculate the subsidy which equals $c(V) - \alpha(V) = 0.75$.
 
 When the setup cost increases from 9.5 to 13, that is, the taxation increases from 0 to 3.5,
 the number of machine will decrease from 2 to 1, accordingly.
@@ -82,8 +82,8 @@ c(s,P) = & {\min} \sum_{k\in V}\sum_{j\in O} {c_{kj} x_{kj}} + {P\sum_{k\in s} x
 \]
 Among these formulations, $P$ and $m$ denotes the price and the number of using machines, respectively.
 Now we've already extended the number of players to a more complex case, that is, the number of players is set to $n$.
-Let $N=\{1,2,\ldots,n\}$ be a set of n players. The number of machines is $m$ and the setup cost is $t_0$.
-For convenience of expression, we set the processing times $t_i, i\in N$ satisfy $t_1<t_2<\cdots<t_n$.
+Let $N=\{1,2,\ldots,n\}$ be a set of n players. The number of machines is $m$ and the setup cost is $P$.
+For convenience of expression, we set the processing times $t_i(i\in N)$ satisfy $t_1<t_2<\cdots<t_n$.
 
 Then we need to define two functions, practical subsidy-price function (PSPF) and theoretical subsidy-price function (TSPF) denoted by $\omega(P)$ and $\hat{\omega}(P)$, respectively:
 \[
@@ -95,7 +95,7 @@ Then we need to define two functions, practical subsidy-price function (PSPF) an
  ,\forall s \in S\setminus\{V\}, \alpha\in\mathbb{R}^{v}\}.
 \]
 
-By dividing the PSPF function into two parts like $c(s)=c_0(s)+m_sP, s \in S$, as a common skill, we can obtain its dual:
+By dividing the PSPF function into two parts like $c(s)=c_0(s)+m(s)P, s \in S$, as a common skill, we can obtain its dual:
 \begin{equation}\label{dual}
  {\omega^*(P)}=\mathop{\max}_{\rho} \{c_0(V)+m(V)P+\sum_{s\in S\setminus\{V\}}-\rho_s[c_0(s)+m(s)P]:
  \sum_{s\in S\setminus\{V\}:k\in s}\rho_s=1,\forall k \in V,\rho_s\geq 0,\forall s \in S \setminus{V}\}
@@ -171,7 +171,7 @@ The red and blue lines stand for the machine number and subsidy, respectively.
 The horizontal ordinate represents the price or setup cost.
 The left ordinate represents the value of machine number，while the right represents the value of subsidy.
 
-As the coalitional stability constrains showed above, the exponential inequality constraints are so tricky that we must figure out a method to simplify these constraints to obtain the optimal results. Fortunately for us, we find the Theorem \ref{thm5}.
+As the coalitional stability constraints showed above, the exponential inequality constraints are so tricky that we must figure out a method to simplify these constraints to obtain the optimal results. Fortunately for us, we find the Theorem \ref{thm5}.
 
 
 \begin{thm}\label{thm5}
@@ -179,7 +179,9 @@ The original problem is equivalent to using only one machine for all coalitions.
 
 \end{thm}
 
-By establishing the Theorem 5, we can design the specific algorithm to eliminate the redundant inequalitie, which will save us the trouble of solving $c(s)$ and speed up the solution.
+By establishing the Theorem 5, we can design the specific algorithm to eliminate the redundant inequalitie, which will save us from the trouble of solving $c(s)$ and speed up the solution.
+
+here write the algo.
 
 \begin{thm}\label{thm6}
 The IPU game can be solved in polynomial time.(Remaining to be proved)
