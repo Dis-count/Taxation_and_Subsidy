@@ -181,7 +181,54 @@ The original problem is equivalent to using only one machine for all coalitions.
 
 By establishing the Theorem 5, we can design the specific algorithm to eliminate the redundant inequalitie, which will save us from the trouble of solving $c(s)$ and speed up the solution.
 
-here write the algo.
+At first, we need to construct the PSPF function, which is piecewise linear and convex at every subinterval. If we can obtain the specific subsidy value $\omega(P)$ given any $P$, then we can calculate the breakpoints during the interval by IPC algorithm.
+
+At first, we need to divide the interval into $n$ subintervals according to the  number of using machine of the grand coalition, at each subinterval we use the IPC algorithm to get the breakpoints. After applying the algorithm to all subintervals, we can obtain the PSPF function.
+
+
+\begin{algorithm}[h]\label{algoIPC}
+\caption{The Intersection Points Computation(IPC) Algorithm to Construct the PSF Function.}
+\begin{algorithmic}[1]
+
+\begin{description}
+  \justifying
+  \item[Step 1.] Initially, set $I^*=\{P_L,P_H\}$ and $\mathbb{I}= \{[P_L,P_H]\}$.
+  \item[Step 2.] If $\mathbb{I}$ is not empty, update $I^*$ and $\mathbb{I}$ by the following steps:
+  \item[Step 3.] Sort values in $I^*$ by $P_0<P_1<\cdots<P_q$, where $P_0 = P_L,P_q = P_H$ and $q = |P^*|-1$.
+  \item[Step 4.]
+  Select any interval from $\mathbb{I}$, denoted by $[P_{k-1},P_{k}]$ with $1\leq k \leq q$
+  \item[Step 5.]
+  Construct two linear function $ $
+\end{description}
+
+\end{algorithmic}
+\end{algorithm}
+
+Then we
+
+\begin{algorithm}[h]\label{algoCP}
+\caption{The Cutting Plane(CP) Algorithm to compute $\omega(z)$ for a given $z$.}
+\begin{algorithmic}[1]
+
+\begin{description}
+  \justifying
+  \item[Step 1.] $\mathbb{S}'\subseteq \mathbb{S}\setminus \{N\}$ indicates a restricted coalition set.
+  \item[Step 2.] Find an optimal $\bar{\alpha}(\ \cdot \ ,z)$ to a relaxed LP of $\tau(z)$:
+  \begin{equation*}
+  \max_{\alpha\in \R^n} \big\{ \alpha(N,z): \alpha(S,z) \leq \pi(S)+z, \mbox{ for all } S \in \mathbb{S}'\big\}.
+  \end{equation*}
+  \vspace{-11pt}
+  \item[Step 3.]
+  Find an optimal $S^*$ to the separation problem:
+  \begin{equation*}
+  \delta = \min \big\{ \pi(S)+z-\bar{\alpha}(S,z): \forall S \in \mathbb{S} \setminus \{N\}\big\}.
+  \end{equation*}
+  \item[Step 4.]
+  If $\delta<0$, then add $S^*$ to $\mathbb{S}'$, and go to step 2; otherwise, return $\omega(z)=\pi(N)-\bar{\alpha}(N,z)$.
+\end{description}
+
+\end{algorithmic}
+\end{algorithm}
 
 \begin{thm}\label{thm6}
 The IPU game can be solved in polynomial time.(Remaining to be proved)
@@ -280,51 +327,6 @@ When $c_0(s)$ satisfy the supermodular and $P=P_1$, where $m_V=1$, if $\alpha(s)
 
 \input{Chapters/Proof}
 
-
-\begin{algorithm}[h]\label{algoCP}
-\caption{The Cutting Plane(CP) Algorithm to compute $\omega(z)$ for a given $z$.}
-\begin{algorithmic}[1]
-
-\begin{description}
-  \justifying
-  \item[Step 1.] $\mathbb{S}'\subseteq \mathbb{S}\setminus \{N\}$ indicates a restricted coalition set.
-  \item[Step 2.] Find an optimal $\bar{\alpha}(\ \cdot \ ,z)$ to a relaxed LP of $\tau(z)$:
-  \begin{equation*}
-  \max_{\alpha\in \R^n} \big\{ \alpha(N,z): \alpha(S,z) \leq \pi(S)+z, \mbox{ for all } S \in \mathbb{S}'\big\}.
-  \end{equation*}
-  \vspace{-11pt}
-  \item[Step 3.]
-  Find an optimal $S^*$ to the separation problem:
-  \begin{equation*}
-  \delta = \min \big\{ \pi(S)+z-\bar{\alpha}(S,z): \forall S \in \mathbb{S} \setminus \{N\}\big\}.
-  \end{equation*}
-  \item[Step 4.]
-  If $\delta<0$, then add $S^*$ to $\mathbb{S}'$, and go to step 2; otherwise, return $\omega(z)=\pi(N)-\bar{\alpha}(N,z)$.
-\end{description}
-
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[h]\label{algoIPC}
-\caption{The Intersection Points Computation(IPC) Algorithm to Construct the PSF Function.}
-\begin{algorithmic}[1]
-
-\begin{description}
-  \justifying
-  \item[Step 1.] Initially, set $P^*=\{0,z^*\}$ and $\mathbb{P}= \{[0,z^*]\}$.
-  \item[Step 2.] If $\mathbb{P}$ is not empty, update $P^*$ and $\mathbb{P}$ by the following steps:
-  \qquad \item[Step 2.1.]
-  Find an optimal $S^*$ to the separation problem:
-  \begin{equation*}
-  \delta = \min \big\{ \pi(S)+z-\bar{\alpha}(S,z): \forall S \in \mathbb{S} \setminus \{N\}\big\}.
-  \end{equation*}
-  \item[Step 4.]
-  If $\delta<0$, then add $S^*$ to $\mathbb{S}'$, and go to step 2; otherwise, return $\omega(z)=\pi(N)-\bar{\alpha}(N,z)$.
-
-\end{description}
-
-\end{algorithmic}
-\end{algorithm}
 
 
 \begin{algorithm}[h]\label{algoDP}
