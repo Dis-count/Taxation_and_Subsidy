@@ -343,25 +343,27 @@ When $c_0(s)$ satisfy the supermodular and $P=P_1$, where $m_V=1$, if $\alpha(s)
 
 \input{Chapters/Proof}
 
-
+The IPU game is very special so that we can use SPT rule to compute the $c_{IPU}(s)$ , which means jobs in coalition $s$ with the shortest processing time should be processed first and the longest ones last. Then we can use dynamic programming to solve the separation problem $\delta_{IPU} = \min \big\{c_{IPU}(s)+P-\bar{\alpha}(s,P): \forall s \in \mathbb{S} \setminus \{N\}\big\} $
 
 \begin{algorithm}[h]\label{algoDP}
 \caption{The Dynamic Programming(DP) Algorithm to Calculate c(s).}
 \begin{algorithmic}[1]
 
+% the coalition $s$ is a subset of $\{1,2,\ldots,k\}$.
+
 \begin{description}
-  \item[Step 1.]
-  \item[Step 2.]
-
-  \item[Step 3.] Find an optimal $S^*$ to the separation problem:
-
+  \item[Step 1.] Initially, let $D(k,u)$ indicate the minimum objective value of the restricted problem of separation problem, where $k\in \{1,2,\ldots,v\}$ and $u\in \{0,1,\ldots,v\}$.
+  \item[Step 2.] Given the initial conditions $D(1,0) = P$ and $D(1,1) = t_1 - \beta_1 +P$. The boundary conditions are $D(k,u) = \infinity$ if $u > k$, for all $k \in V$.
+  \item[Step 3.] Given the recursion:
   \begin{equation*}
-  \delta = \min \big\{ \pi(S)+z-\bar{\alpha}(S,z): \forall S \in \mathbb{S} \setminus \{N\}\big\}.
+    D(k,u) = \min D(k-1,u), \text{for the case when} s^* \text{does not contain} k,
+    D(k-1,u-1) + u t_k - alpha_k, \text{for the case when} s^* \text{contains} k.
+
   \end{equation*}
 
-  \item[Step 4.]
-  If $\delta<0$, then add $S^*$ to $\mathbb{S}'$, and go to step 2; otherwise, return $\omega(z)=\pi(N)-\bar{\alpha}(N,z)$.
-
+  \item[Step 4.] Obtain the optimal objective value of separation problem by
+  $\delta_{IPU} = \min\{D(v,u): u\in \{1,2,\ldots,v-1\}\}$.
+   return $\delta_{IPU}$
 \end{description}
 
 \end{algorithmic}
