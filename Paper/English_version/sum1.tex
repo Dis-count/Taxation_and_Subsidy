@@ -356,14 +356,17 @@ The IPU game is very special so that we can use SPT rule to compute the $c_{IPU}
   \item[Step 2.] Given the initial conditions $D(1,0) = P$ and $D(1,1) = t_1 - \beta_1 +P$. The boundary conditions are $D(k,u) = \infinity$ if $u > k$, for all $k \in V$.
   \item[Step 3.] Given the recursion:
   \begin{equation*}
-    D(k,u) = \min D(k-1,u), \text{for the case when} s^* \text{does not contain} k,
-    D(k-1,u-1) + u t_k - alpha_k, \text{for the case when} s^* \text{contains} k.
-
+  D(k,u)= \min \left\{
+  \begin{aligned}
+  & D(k-1,u), \text{for the case when} \ s^* \ \text{does not contain} \ k, \\
+  & D(k-1,u-1) + u t_k - \alpha_k ,\text{for the case when} \ s^* \ \text{contains} \ k.
+  \end{aligned}
+  \right.
   \end{equation*}
 
   \item[Step 4.] Obtain the optimal objective value of separation problem by
   $\delta_{IPU} = \min\{D(v,u): u\in \{1,2,\ldots,v-1\}\}$.
-   return $\delta_{IPU}$
+   return $\delta_{IPU}$.
 \end{description}
 
 \end{algorithmic}
