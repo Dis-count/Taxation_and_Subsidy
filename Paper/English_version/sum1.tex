@@ -55,7 +55,7 @@ where $C_k$ is the completion time of job $k\in s$.
 
 Then we will illustrate the taxation instrument with a simple example of an IAPU game as follows.
 
-\section*{Example}
+\section*{Problem Discription}
 
 There is an IPU game which contains four players, whose processing times on the identical parallel machine are $t_1=2, t_2=3, t_3=4, t_4=5$ respectively. Each machine setup cost is $t_0=9.5$, and $c(s)$ is the minimum total completion time of jobs in coalition $s$ plus the machine setup cost.
 
@@ -187,7 +187,7 @@ At first, we need to divide the interval into $n$ subintervals according to the 
 
 
 \begin{algorithm}[h]\label{algoIPC}
-\caption{The Intersection Points Computation(IPC) Algorithm to Construct the PSF Function.}
+\caption{The Intersection Points Computation(IPC) Algorithm to Construct the PSPF Function.}
 \begin{algorithmic}[1]
 
 \begin{description}
@@ -205,7 +205,7 @@ At first, we need to divide the interval into $n$ subintervals according to the 
   slope equal to a left derivative $K_{l}^{P_{k}}$
   of $\omega(P)$ at $P_k$.
   \item[Step 6.] If $R_{k-1}(P)$ passes $(P_{k},\omega(P_{k}))$ or $L_{k}(P)$ passes $(P_{k-1},\omega(P_{k-1}))$, then update $\mathbb{I}$ by removing \\
-  \vspace{10pt}
+
   $[P_{k-1},P_{k}]$. Otherwise, $R_{k-1}(P)$ and $L_{k}(P)$ must have a unique intersection point at $P=P'$ for  \\
   \vspace{10pt}
   some $P' \in (P_{k-1},P_{k})$.
@@ -220,7 +220,7 @@ At first, we need to divide the interval into $n$ subintervals according to the 
 \end{algorithmic}
 \end{algorithm}
 
-Then we need to calculate the $\omega(P)$ when given a arbitrary $P$. We can follow the basic Cutting Plane(CP) algorithm, the specific process are represented in algorithm 2.
+Then we need to calculate the $\omega(P)$ when given an arbitrary $P$. We can follow the basic Cutting Plane(CP) algorithm, the specific process are represented in algorithm 2.
 
 \begin{algorithm}[h]\label{algoCP}
 \caption{The Cutting Plane(CP) Algorithm to compute $\omega(z)$ for a given $z$.}
@@ -228,7 +228,9 @@ Then we need to calculate the $\omega(P)$ when given a arbitrary $P$. We can fol
 
 \begin{description}
   \justifying
-  \item[Step 1.] Let $\mathbb{S}'\subseteq \mathbb{S}\setminus \{N\}$ indicates a restricted coalition set, which includes some initial coalitions, e.g.,$ \{1\},\{2\},\ldots,\{v\}$.
+  \item[Step 1.] Let $\mathbb{S}'\subseteq \mathbb{S}\setminus \{N\}$ indicates a restricted coalition set, which includes some initial coalitions,
+  \vspace{10pt}
+  e.g.,$ \{1\},\{2\},\ldots,\{v\}$.
   \item[Step 2.] Find an optimal solution $\bar{\alpha}(\ \cdot \ ,P)$ to LP $\tau(P)$:
   \begin{equation*}
   \max_{\alpha\in \mathbb{R}^n} \big\{ \alpha(N,P): \alpha(s,P) \leq c(s)+P, \mbox{ for all } s \in \mathbb{S}'\big\}.
@@ -246,10 +248,6 @@ Then we need to calculate the $\omega(P)$ when given a arbitrary $P$. We can fol
 \end{algorithmic}
 \end{algorithm}
 
-\begin{thm}\label{thm6}
-The IPU game can be solved in polynomial time.(Remaining to be proved)
-\end{thm}
-
 As we all know, the cost arised from the partial players in the grand coalition, that is $c(s)$, can be calculated handily by the SPT rule (The corresponding conclusion see Lemma \ref{lem1}). Meanwhile, inspired by the paper (Please refer to Liu et.al.2018), we have the following approach to solve this game.
 
 There is an effective domain $[0, P^*]$, where the grand coalition may need a subsidy from the external to maintain the balance.
@@ -259,9 +257,51 @@ For the effective domain, we just need to divide this interval into several part
 
 As we've already known that $P_L(V,i), i = 1,2,\ldots,n$ can be obtained by Lemma \ref{lem1} and Theorem \ref{thm2}, we just need to follow the CP approach (Algorithm 3 in Liu et.al.2018) to calculate the weak derivatives at each sub-interval $[P_L(m,V),P_H(m,V)]$ where the corresponding derivative is $m_V-\sum_{s\in S\setminus\{V\}} \rho_s$.
 
-Then use IPC Algorithm (Algorithm 1 in Liu et.al.2018) which will return all the breakpoints during the $[0, P^*]$ to obtain the subsidy $\omega(P)$.
+Then use IPC Algorithm which will return all the breakpoints during the $[0, P^*]$ to obtain the subsidy $\omega(P)$.
 
-Notice that we can calculate the characteristic function $c(s)$ easily according to Theorem \ref{thm5}, we can formulate Theorem \ref{thm6}. Until here, we've solved the IPU game with alternative machines.
+Notice that we can calculate the characteristic function $c(s)$ easily according to Theorem \ref{thm5}, we can formulate Theorem \ref{thm6}. Until here, we've solved the AIPU game with alternative machines.
+
+\begin{lem}\label{lem5}
+  For the AIPU game, the corresponding separation problem can be sovled in $O(v^2)$ time, which could be shown in the following DP algorithm.
+\end{lem}
+
+\begin{algorithm}[h]\label{algoDP}
+\caption{The Dynamic Programming(DP) Algorithm to Calculate c(s).}
+\begin{algorithmic}[1]
+
+% the coalition $s$ is a subset of $\{1,2,\ldots,k\}$.
+
+\begin{description}
+  \item[Step 1.] Initially, let $D(k,u)$ indicate the minimum objective value of the restricted problem of separation \\
+  \vspace{10pt}
+  problem, where $k\in \{1,2,\ldots,v\}$ and $u\in \{0,1,\ldots,v\}$.
+  \item[Step 2.] Given the initial conditions $D(1,0) = P$ and $D(1,1) = t_1 - \beta_1 +P$. The boundary conditions are \\
+  \vspace{10pt}
+  $D(k,u) = \infinity$ if $u > k$, for all $k \in V$.
+  \item[Step 3.] Given the recursion:
+  \begin{equation*}
+  D(k,u)= \min \left\{
+  \begin{aligned}
+  & D(k-1,u), \text{for the case when} \ s^* \ \text{does not contain} \ k, \\
+  & D(k-1,u-1) + u t_k - \alpha_k ,\text{for the case when} \ s^* \ \text{contains} \ k.
+  \end{aligned}
+  \right.
+  \end{equation*}
+
+  \item[Step 4.] Obtain the optimal objective value of separation problem by
+  $\delta_{AIPU} = \min\{D(v,u): u\in \{1,2,\ldots,v-1\}\}$.
+   return $\delta_{AIPU}$.
+\end{description}
+
+\end{algorithmic}
+\end{algorithm}
+
+Now we know the separation problem can be solved in $O(v^2)$ time and the breakpoints during the whole interval are polynomial, so for the AIPU game the PSPF function can be constructed in polynomial time.
+
+\begin{thm}\label{thm6}
+The AIPU game can be solved in polynomial time.
+\end{thm}
+
 
 Then, we will try to extend the core concept to a more general case. So we need to define a new game as follow.
 
@@ -344,35 +384,6 @@ When $c_0(s)$ satisfy the supermodular and $P=P_1$, where $m_V=1$, if $\alpha(s)
 \input{Chapters/Proof}
 
 The IPU game is very special so that we can use SPT rule to compute the $c_{IPU}(s)$ , which means jobs in coalition $s$ with the shortest processing time should be processed first and the longest ones last. Then we can use dynamic programming to solve the separation problem $\delta_{IPU} = \min \big\{c_{IPU}(s)+P-\bar{\alpha}(s,P): \forall s \in \mathbb{S} \setminus \{N\}\big\} $
-
-\begin{algorithm}[h]\label{algoDP}
-\caption{The Dynamic Programming(DP) Algorithm to Calculate c(s).}
-\begin{algorithmic}[1]
-
-% the coalition $s$ is a subset of $\{1,2,\ldots,k\}$.
-
-\begin{description}
-  \item[Step 1.] Initially, let $D(k,u)$ indicate the minimum objective value of the restricted problem of separation problem, where $k\in \{1,2,\ldots,v\}$ and $u\in \{0,1,\ldots,v\}$.
-  \item[Step 2.] Given the initial conditions $D(1,0) = P$ and $D(1,1) = t_1 - \beta_1 +P$. The boundary conditions are $D(k,u) = \infinity$ if $u > k$, for all $k \in V$.
-  \item[Step 3.] Given the recursion:
-  \begin{equation*}
-  D(k,u)= \min \left\{
-  \begin{aligned}
-  & D(k-1,u), \text{for the case when} \ s^* \ \text{does not contain} \ k, \\
-  & D(k-1,u-1) + u t_k - \alpha_k ,\text{for the case when} \ s^* \ \text{contains} \ k.
-  \end{aligned}
-  \right.
-  \end{equation*}
-
-  \item[Step 4.] Obtain the optimal objective value of separation problem by
-  $\delta_{IPU} = \min\{D(v,u): u\in \{1,2,\ldots,v-1\}\}$.
-   return $\delta_{IPU}$.
-\end{description}
-
-\end{algorithmic}
-\end{algorithm}
-
-
 
 
 \end{document}
