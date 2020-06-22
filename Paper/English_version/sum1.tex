@@ -48,7 +48,7 @@
 % 这里还需要定义一个优化问题
 
 \section*{Definition 0.}
-In an Identical Alternative Parallel machine scheduling of Unweighted jobs (IAPU) game, each player $k$ in $V=\{1,2,\ldots,v\}$ has a job $k$ that needs to be processed on one of identical machines in $M=\{1,2,\ldots,m_v\}$, where $m_v$ is a given positive integer no more than $v$. Meanwhile, each machine has a setup cost $T$. Each job $k\in V$ has a processing time denoted by $t_k$. Each coalition $s \in S$, where $S=2^V\setminus\{\emptyset\}$, aims to schedule the jobs in $s$ on all machines in $M$ so that the total completion  time of the jobs in $s$ is minimized, i.e., to minimize $\sum_{k\in s}{C_k}+m_sT $,
+In an Identical Variable Parallel machine scheduling of Unweighted jobs (IVPU) game, each player $k$ in $V=\{1,2,\ldots,v\}$ has a job $k$ that needs to be processed on one of identical machines in $M=\{1,2,\ldots,m_v\}$, where $m_v$ is a given positive integer no more than $v$. Meanwhile, each machine has a setup cost $T$. Each job $k\in V$ has a processing time denoted by $t_k$. Each coalition $s \in S$, where $S=2^V\setminus\{\emptyset\}$, aims to schedule the jobs in $s$ on all machines in $M$ so that the total completion  time of the jobs in $s$ is minimized, i.e., to minimize $\sum_{k\in s}{C_k}+m_sT $,
 where $C_k$ is the completion time of job $k\in s$.
 
 % 暂且用T-i表示机器调度里的定价，等后期确定后再统一改。
@@ -69,7 +69,7 @@ Although this case is easily understood, it demonstrate the concept of taxation 
 
 \section*{Definition 1.}
 
-A cooperative TU game $(V,c)$ is called an AIPU game if it satisfies the following formulations.
+A cooperative TU game $(V,c)$ is called an IVPU game if it satisfies the following formulations.
 
 \[
 \begin{aligned}
