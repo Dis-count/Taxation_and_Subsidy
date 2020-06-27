@@ -223,7 +223,7 @@ At first, we need to divide the interval into $n$ subintervals according to the 
 Then we need to calculate the $\omega(P)$ when given an arbitrary $P$. We can follow the basic Cutting Plane(CP) algorithm, the specific process are represented in algorithm 2.
 
 \begin{algorithm}[h]\label{algoCP}
-\caption{The Cutting Plane(CP) Algorithm to compute $\omega(z)$ for a given $z$.}
+\caption{The Cutting Plane(CP) Algorithm to compute $\omega(P)$ for a given $P$.}
 \begin{algorithmic}[1]
 
 \begin{description}
@@ -262,7 +262,7 @@ Then use IPC Algorithm which will return all the breakpoints during the $[0, P^*
 Notice that we can calculate the characteristic function $c(s)$ easily according to Theorem \ref{thm5}, we can formulate Theorem \ref{thm6}.
 
 \begin{lem}\label{lem5}
-  For the AIPU game, the corresponding separation problem can be sovled in $O(v^2)$ time, which could be shown in the following DP algorithm.
+  For the IVPU game, the corresponding separation problem can be sovled in $O(v^2)$ time, which could be shown in the following DP algorithm.
 \end{lem}
 
 \begin{algorithm}[h]\label{algoDP}
@@ -289,20 +289,20 @@ Notice that we can calculate the characteristic function $c(s)$ easily according
   \end{equation*}
 
   \item[Step 4.] Obtain the optimal objective value of separation problem by
-  $\delta_{AIPU} = \min\{D(v,u): u\in \{1,2,\ldots,v-1\}\}$.
-   return $\delta_{AIPU}$.
+  $\delta_{IVPU} = \min\{D(v,u): u\in \{1,2,\ldots,v-1\}\}$.
+   return $\delta_{IVPU}$.
 \end{description}
 
 \end{algorithmic}
 \end{algorithm}
 
-Now we know the separation problem can be solved in $O(v^2)$ time and the breakpoints during the whole interval are polynomial, so for the AIPU game the PSPF function can be constructed in polynomial time.
+Now we know the separation problem can be solved in $O(v^2)$ time and the breakpoints during the whole interval are polynomial, so for the IVPU game the PSPF function can be constructed in polynomial time.
 
 \begin{thm}\label{thm6}
-The AIPU game can be solved in polynomial time.
+The IVPU game can be solved in polynomial time.
 \end{thm}
 
-Until here, we've solved the AIPU game with alternative machines.
+Until here, we've solved the IVPU game with alternative machines.
 
 Then, we will try to extend the core concept to a more general case. So we need to define a new game as follow.
 
@@ -369,6 +369,11 @@ and
 \end{equation}
 , respectively.
 % 只要这里是关于players的变化即可
+
+If the characteristic function satisfies the above property. Then $ P_1$ can be calculated by the following procedure:
+When $\alpha(V) = c_0(V) + P_1$, which means the $\omega(P_1) = 0$. And the active inequalities must be the coalition contains $(n-1)$ players.
+Then plus all the $(n+1)$ equality together, we can obtain $P_1 = (n-1)c(V)- \sum_{|s|=n-1,s\in S}c(s)$.
+Because other inequalities will be satisfied according to the supermodular.
 
 Then we can develop the Theorem \ref{thm7}.
 
