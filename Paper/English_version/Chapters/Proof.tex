@@ -109,14 +109,13 @@ $\sum_{s \in S \setminus\{V\}} \rho_s $ minimum is $\frac{n}{n-1}$，the corresp
 
 \begin{pf}[Theorem 5]
 When the value of $P$ is between $(P_2,P_1)$, where the grand coalition only uses one machine, all the other sub-coalitions also use one machine. Now assume that the theorem is not tenable. When decreasing the value of $P$, for example, from $P_2$ to $P_3$. At some time, there must be such a situation that a sub-coalition denoted as $s'$ ($|s'| \geq 2 $) uses two machines which is optimal. Then we have $ \alpha(s') = c(s') +2P $ , there exist two coalitions $s_1,s_2$ which satisfy $ s_1 \cup s_2 = s',s_1 \cap s_2 = \emptyset $.
-Meanwhile, $s_1,s_2$ also satisfy the two constraints $\alpha(s_1) \leq c(s_1) + P , \alpha(s_2) \leq c(s_2) + P $. Then we can obtain that $ c(s_1) + c(s_2) \geq c(s') $, which contradicts the supermodular of the characteristic function.
-Consequently, the coalitions $s$ only use one machine if the corresponding constraints are valid.
+Meanwhile, $s_1,s_2$ also satisfy the two constraints $\alpha(s_1) \leq c(s_1) + P , \alpha(s_2) \leq c(s_2) + P $. Then we can obtain that $ c(s_1) + c(s_2) \geq c(s') $. At the same time, we know that the optimal sequence result shows $ c(s_1) + c(s_2) = c(s') $, which means the bigger coalition can be substituted by two smaller ones. Consequently, the coalitions $s$ only use one machine if the corresponding constraints are valid.
 \qed
 \end{pf}
 
 \begin{pf}[Theorem 6]
-
-Remaining
+The complexity of the whole problem can be divided into several stages, the first one is how to obtain the value  of $P_i$. For the IVPU game, the SPT rule can be used to calculate the $c(s)$. By sovling the last $n$ equalities, we can obtain $P_1$. Then we need to know the number of breakpoints, by IPC algorithm, we can construct the whole graph. Then the left problem is how to solve the slope in IPC algorithm, and how is the essential coalition set generated. The CP algorithm is used to obtain the subsidy and conclude a separation problem, if the separation problem can be solved easily, then the subsidy can be obtained easily.
+Then we use DP algorithm to solve the separation problem and with the separation problem we can obtain the essential set. If the set is polynomial, we can calculate the slope by solving the LP.
 
 \qed
 \end{pf}
