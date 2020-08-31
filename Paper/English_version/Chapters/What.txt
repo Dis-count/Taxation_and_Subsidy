@@ -1,0 +1,17 @@
+这里写一个提纲：
+
+分为两个部分：English / Chinese
+
+Chinese:
+
+研究内容部分：
+1. IPC 算法 描述一下在我们的例子中是怎么使用的就行
+
+2. DP 算法可以详细描述 应用范围和使用方法
+
+3. CP 算法也可以详细描述一下
+
+4. 最后的扩展，先讲在 weighted scheduling 中结果是类似的，并且方法也类似。
+
+再讲 Pricing instruments 适用于supermodularity 性质的问题  不会出现 Overlapping 的问题.
+而提到的
