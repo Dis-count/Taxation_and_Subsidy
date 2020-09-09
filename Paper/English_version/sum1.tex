@@ -62,10 +62,14 @@ There is an IPU game which contains four players, whose processing times on the 
 In this example, the grand coalition has a minimum cost, which is $c(V) = \sum_{k\in v}{C_k}+m_vT = 38$, and the optimum number of machine is $m_v = 2$.
 It's easy to check that this example is unbalanced and calculate the subsidy which equals $c(V) - \alpha(V) = 0.75$.
 
-When the setup cost increases from 9.5 to 13, that is, the taxation increases from 0 to 3.5,
-the number of machine will decrease from 2 to 1, accordingly.
+When the setup cost increases from 9.5 to 10, that is, the taxation increases from 0 to 0.5, the number of machine will decrease from 2 to 1, accordingly.
 
-Although this case is easily understood, it demonstrate the concept of taxation we have strong interests in. Then we will define the corresponding model to further elaborate on this concept.
+When the setup cost increases from 9.5 to 11.14, that is, the price increment is from 0 to 1.64, for the grand coalition, it only needs one machine.
+
+In this case, the total pricing can exactly cover the gap, which means the grand coalition can be stabilized by the players themselves.
+
+
+Although this case is easily understood, it demonstrates the concept of pricing we have strong interests in. Then we will define the corresponding model to further elaborate on this concept.
 
 \section*{Definition 1.}
 
@@ -101,27 +105,30 @@ By dividing the PSPF function into two parts like $c(s)=c_0(s)+m(s)P, s \in S$, 
  \sum_{s\in S\setminus\{V\}:k\in s}\rho_s=1,\forall k \in V,\rho_s\geq 0,\forall s \in S \setminus{V}\}
 \end{equation}
 
-Then we need to define an interval $[P_L(m,s),P_H(m,s)]$ to denote the value range of price when the number of using machines $m$ and the coalition $s$ are given.
+Then we need to define an interval $[P_L(i,s),P_H(i,s)]$ to denote the price range of using $i$ machines for scheduling jobs among players $s$. And the effective domain of pricing MSG for stabilization is $[0,P^*]$.
 
 \begin{remark}
-  It's easy to know that $P_L(m,s) = P_H(m+1,s)$, for each $s \in S$ and $ m <|s|$.
+  It's easy to know that $P_L(i,s) = P_H(i+1,s)$, for each $s \in S$ and $ i <|s|$.
 \end{remark}
 
 \begin{remark}
-  For the grand coalition $V$, we define $P_L(v,V) = 0, P_H(1,V) = P^*$. So the practical domain of the price is $[0,P^*]$ which is divided into $v$ parts by the number of using machines.
+  Note that $P_L(i,s) = P_H(i+1,s)$, for the sake of brevity and readability, we use $P_{i+1}$ to substitute for $P_L(i,s)$ or $P_H(i+1,s)$ later on.
 \end{remark}
 
 \begin{remark}
-  Note that $P_L(m,s) = P_H(m+1,s)$, for the sake of brevity and readability, we use $P_{m+1}$ to substitute for $P_L(m,s)$ or $P_H(m+1,s)$ later on.
+  For ease of exposition, let $P_1 = P^*, P_L(v,V) = 0$ and $P_i = P_H(i,V) = P_L(i-1,V).$ Thus, the effective domain, $[0,P^*]$, is divided into $v$ non-overlapping sub-intervals by $P_i, \forall i \in \{2,3,\ldots,v\}$.
+\end{remark}
 
+\begin{remark}
+  $P^*$ is the lowest price under which the grand cooperation of MSG is stable and it uses only one machine in the optimal scheduling decision, i.e.,
+  $P^* \in [P_L(1,V), P_H(1,V)]$ and MSG$(V, c(\cdot, P^*))$ has non-empty core.
 \end{remark}
 
 We can establish Theorem 1 below, showing the property of the function.
 
 \begin{thm}\label{thm1}
-$\omega(P)$ is piecewise linear, and convex in price P at each subinterval $[P_L(m,V),P_H(m,V)]$ in $[0,P^*] $.
+$\omega(P)$ is piecewise linear, and convex in price P at each sub-interval $[P_{i+1},P_{i}]$.
 \end{thm}
-
 
 In this situation, the interval size of setup cost can be calculated when $t_i$ is known. And we can obtain that under what circumstances the machine number will change. We set the different intervals where the number of machines remain unchanged as $I_i$ respectively. The extreme points of these intervals are recorded as $P_i$ respectively, which represents the price when the number of using machine changes from $i$ to $i-1$. Specially, $P_1$ denotes the extreme point of the whole interval, which is the value of price or setup cost when using one machine and subsidy equals zero.
 
@@ -129,29 +136,28 @@ Note that the costs of all the exponential coalitions can be easily calculated b
 
 \begin{lem}\label{lem1}
 
-The value at the extreme points of the sub-intervals $I_i$ can be calculated with processing times $t_i$ by comparing the costs of the grand coalitions where all the players use two adjacent numbers of machines.
+The breaking price,$P_i(2 \leq i \leq v)$, which is at the extreme points of the sub-intervals $I_i$ can be obtained by SPT rules in polynomial time.
 \end{lem}
 
-According to the above lemma \ref{lem1}, we can obtain all the extreme points of the sub-intervals, i.e. , the number of using machines decreases by one when the price or setup cost equals $P_i$.
-
+According to the above lemma \ref{lem1}, we can obtain all the extreme points of the sub-intervals, i.e., the number of using machines decreases by one when the price or setup cost equals $P_i$.
 
 \begin{thm}\label{thm2}
-
-According to the foregoing description, we have the equation $P_{1}=P_{2}+\cdots+P_{n}=\sum_{i=2}^n P_i$.
-
+Boundary price $P^*$ equals $\sum_{i=2}^v P_i$, and can be obtained in polynomial time.
 \end{thm}
 
 With Theorem \ref{thm2}, we obtain all the breakpoints during the interval of the price where the machine number changes and the subsidy is $0$. Then we'll focus on the specific property of subsidy.
 
 \begin{thm}\label{thm3}
-$\omega(P)$ is hard to calculate, however, $\omega(P)$ can be bounded by zero when the number of using machines, m, is larger than $\frac{n}{2}$.
+$\omega(P)$ can be bounded by zero when the number of machines used by $c(V,P)$ is larger than $\frac{v}{2}$.
 \end{thm}
 
 In other words, when the numbers of machine is larger than half of players, the grand coalition does't need any subsidy from the externality.
 
-\begin{thm}\label{thm4}
 The sum of absolute values of slopes at both sides of $S_i$ is 1.
-When the number of machines used is 1, the range of slopes of the line segments in the interval is $\left( -1 , -\frac{1}{n-1} \right]$, and the number of breakpoints is $ O(v^2) $.
+
+\begin{thm}\label{thm4}
+For SMSG(or, MSG with only one machine), given $P \in [0, P^*]$ (or, $[P_2,P_1]$),
+the range of each segments in the interval for function $\omega(P)$ is within $\left( -1 , -\frac{1}{n-1} \right]$, and the number of breakpoints for function $\omega(P)$ is within $ O(v^2) $.
 \end{thm}
 
 Until here, we described the main property of the whole figure.
@@ -171,11 +177,24 @@ The left ordinate represents the value of machine number，while the right repre
 
 As the coalitional stability constraints showed above, the exponential inequality constraints are so tricky that we must figure out a method to simplify these constraints to obtain the optimal results. Fortunately for us, we find the Theorem \ref{thm5}.
 
-\begin{thm}\label{thm5}
+Define a new game, that is Single Machine Scheduling Game(SMSG)
+\[
+\begin{aligned}
+c(s,P,'m='1) = & {\min} \sum_{k\in V}\sum_{j\in O} {c_{kj} x_{kj} + P} \\
+{s.t.}\quad & \sum_{j \in O} x_{kj}-y_k^s=0, \forall k \in V, \\
+& \sum_{k\in V} x_{kj} \leq 1, \forall j \in O,  \\
+& x_{kj} \in \{0,1\} , \forall k \in V, \forall j \in O,\\
+& y_k^s=1, k \in s, y_k^s=0, k \notin s.
+\end{aligned}
+\]
+
 Define that
 \[
-  {\omega_1(P)}=\mathop{\min}_{\alpha}\{c(V,m(V,P))-\alpha(V): \alpha(s)\leq c(s)+P,\forall s \in S, \alpha\in\mathbb{R}^{v}\},
-\]then the original problem $\omega(P)$ is equivalent to $\omega_1(P)$ which means that all sub-coalitions only use one machine.
+  {\omega_1(P)}=\mathop{\min}_{\alpha}\{c(V,P)-\alpha(V): \alpha(s)\leq c(s,P,1), \forall s \in S, \alpha\in\mathbb{R}^{v}\},
+\]
+
+\begin{thm}\label{thm5}
+then the original problem $\omega(P)$ is equivalent to $\omega_1(P)$, which is polynomially solvable by cutting plane (see CP Algorithm below).
 
 \end{thm}
 
