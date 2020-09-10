@@ -1,0 +1,10 @@
+\section*{Identical Variable Parallel machine scheduling of Unweighted jobs game}
+% 这里还需要定义一个优化问题
+
+The Identical Parallel machine scheduling of Unweighted jobs(IPU) problem can be defined as follows. There are several machines available here. For this scheduling problem, the setup cost for each machine is the same and jobs have the same weights. The problem requires that the jobs should be scheduled to several of these machines in order to have a minimum completion time, which contains the setup costs considered as a form of time and total processing time for all jobs. Thus, we call this problem as the
+identical parallel machine scheduling of unweighted jobs problem.
+Based on the above scheduling problem we mentioned, we can have the definition of the cooperative game form.
+In an Identical Variable Parallel machine scheduling of Unweighted jobs (IVPU) game, each player $k$ in the grand coalition $V=\{1,2,\ldots,v\}$ has a job $k$ that needs to be processed on one of identical machines in $M=\{1,2,\ldots,m\}$, where $m$ is a given positive integer. Meanwhile, each machine has a setup cost $P$. Each job $k\in V$ has a processing time denoted by $t_k$. Each coalition $s \in S$, where $S=2^V\setminus\{\emptyset\}$, aims to schedule the jobs in $s$ on all machines in $M$ so that the total completion time of the jobs in $s$ is minimized, i.e., to minimize
+$c(s,m^*) = \min_{m \in M} \{\sum_{k\in s}{C_k(m)}+ P\cdot m\}$, where $C_k(m)$ is the completion time of job $k\in s$ and it is related to the number of machines, $m^*$ indicates the optimal number of machines used by the coalition $s$.
+
+Then we will illustrate the pricing instrument with a simple example of an IAPU game as follows.

@@ -1,0 +1,22 @@
+\section*{Inspired Example}
+There is an IVPU game which contains four players, whose processing times on the identical parallel machine are $t_1=2, t_2=3, t_3=4, t_4=5$ respectively. Each machine setup cost is $t_0=9.5$, and $c(s)$ is the minimum total completion time of jobs in coalition $s$ plus the machine setup costs.
+For the convenience of the following statement, we set the price equal to the setup cost, that is, $P = t_0$.
+In this example, the grand coalition has a minimum cost, which is $c(V,m^*) = \min_{m \in M} \{\sum_{k\in V}{C_k(m)}+ P\cdot m\}.$ To show the specific calculation process of $C_k(m)$, we set $m=1$, then $\sum_{k\in V}{C_k(1)} = 1 \cdot t_4 + 2\cdot t_3 + 3 \cdot t_2 + 3 \cdot t_2 + 4 \cdot t_1 + P \cdot 1.$
+The processing sequence for the jobs is job1 $\to$ job2 $\to$ job3 $\to$ job4 on one machine. When job1 is processing, the rest three jobs have to wait. Therefore, the multiplier before processing time of job1 is $4$. The rest of the above formula can be explained in the same way.
+Calculate all cases of the number of machines used, we can obtain that
+$c(V,m^*) = \min\{39.5, 38, 44.5, 52\} = 38$ and the optimum number of machine used is $m^* = 2$.
+It's easy to check that the cooperative game in this example is unbalanced because there is no cost allocation satisfying the two kinds of constraints we mentioned above. That means there will be some coalitions deviate from the grand coalition, in order to cooperate at this time, the third party have to take some measures, such as subsidization or penalization in common use.
+According to the literature, the subsidy can be calculated by solving the following LP:
+\[
+  {\omega^*}=\mathop{\min}_{\alpha}\{c(V)-\alpha(V): \alpha(s)\leq c(s)
+ ,\forall s \in S, \alpha\in\mathbb{R}^{v}\},
+\]
+In this case, the subsidy equals $c(V) - \alpha(V) = 0.75$.
+
+When the setup cost increases from 9.5 to 10, that is, the price increment is from 0 to 0.5, the number of machine used by the grand coaliton will decrease from 2 to 1, accordingly. However, at this time, the grand coalition still needs extra subsidy in addition to the price increment.
+
+Continue to increase the setup cost from 10 to 11.14, , for the grand coalition, one machine is still used. At this point, the total pricing increment can exactly cover the gap of total cost $c(V)$ and the acccepted cost shared among players in the grand coalition $\alpha(V)$, which means that by using pricing instrument the grand coalition can be stabilized by the players themselves.
+
+Although this case is easily understood, it demonstrates the concept of pricing we have strong interests in. Then we will define the corresponding model to further elaborate on this concept.
+
+When the number of available machines $m$ is larger than $v$, the image is complete. And when the number of available machines $m$ is less than $v$, the image will be truncated.

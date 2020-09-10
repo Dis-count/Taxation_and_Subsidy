@@ -1,0 +1,75 @@
+\section*{Model for IVPU game}
+
+A cooperative TU game $(V,c)$ is called an IVPU game if the characteristic function satisfies the following formulations.
+
+\[
+\begin{aligned}
+c(s,P) = & {\min} \sum_{k\in V}\sum_{j\in O} {c_{kj} x_{kj}} + {P\sum_{k\in s} x_{k1}} \\
+{s.t.}\quad & \sum_{j \in O} x_{kj}-y_k^s=0, \forall k \in V, \\
+& \sum_{k\in V} x_{kj} \leq m_s,\forall j \in O,  \\
+& x_{kj} \in \{0,1\} , \forall k \in V, \forall j \in O,\\
+& y_k^s=1, k \in s, y_k^s=0, k \notin s.
+\end{aligned}
+\]
+
+Among these formulations, $P$ and $m_s$ denotes the price and the number of machines used by coaliton $s$, respectively. And we assume that $m_s$ is less than the number of machines available $m$.
+To be consistent with the above definition of the grand coalition, let $V=\{1,2,\ldots,v\}$ be a set of $v$ players. The number of available machines is $m$ and the setup cost or price(We will use the term in the remainder of this article.) for each machine is $P$.
+For the convenience of expression, we set the processing times $t_i(i\in V)$ satisfy $t_1<t_2<\cdots<t_v$.
+
+Then we need to define two functions, practical subsidy-price function (PSPF) and theoretical subsidy-price function (TSPF) denoted by $\omega(P)$ and $\hat{\omega}(P)$, respectively:
+\[
+  {\omega(P)}=\mathop{\min}_{\alpha}\{c(V,m(V,P))-\alpha(V): \alpha(s)\leq c(s,m(s,P))
+ ,\forall s \in S, \alpha\in\mathbb{R}^{v}\},
+\]
+\[
+  {\hat{\omega}(P)}=\mathop{\min}_{\alpha}\{c(V,m(V,P))-\alpha(V): \alpha(s)\leq c(s,m(s,P))
+ ,\forall s \in S\setminus\{V\}, \alpha\in\mathbb{R}^{v}\}.
+\]
+PSPF has one more inequality $\alpha(V)\leq c(V,m(V,P))$ than TSPF, which ensures the minimum value of PSPF is 0, while TSPF can have a negative value. PSPF is our top priority because we think the value of subsidy is positive commonly. However, TSPF can also provide us with a theoretical perspective.
+
+Then we need to define an interval $[P_L(i,s),P_H(i,s)]$ to denote the price range when coalition $s$ uses $i$ machines to obtain the minimum cost for scheduling jobs. And the effective domain of pricing IVPU game for stabilization is $[0,P^*]$.
+In other words, the price should have practical significance, that is, the negative price is beyond of our consideration in this situation. Thus, the minimum price for each machine is 0. Meanwhile, the maximum price for each machine will be infinity in theory, later we will show a more meaningful price instead of $P^*$ defined here.
+
+Based on the above analysis, we know that $c(V,m^*) = \min_{m \in M} \{\sum_{k\in V}{C_k(m)}+ P\cdot m\}$.
+Define a new characteristic function $c_0(s,i)$
+related to the number of machines used by coalition $s$. Thus, $c_0(V,i)$ denotes the cost of using $i$ machines by the grand coalition and it is determined by $i$ when the processing time of every player in the grand coalition is known.
+Meanwhile, the original characteristic function can be expressed in two parts like $c(V,m^*) = c_0(V,m^*) + P\cdot m^*$, where $m^*$ is the optimal number of machines.
+
+Assume that the optimal schedule is that the grand coalition uses $i$ machines, the price for each machine is $P^i$ which belongs to an interval $I_i$.
+Then according to the definition of the characteristic function, we can obtain the following two inequalities:
+$c_0 (V,i) + P^i i \leq c_0 (V,i-1) + P^i\cdot(i-1)$
+$c_0 (V,i) + P^i i \leq c_0 (V,i+1) + P^i\cdot(i+1)$.
+Consequently, we obtained the range of the price $P^i$ satisfies $c_0 (V,i) - c_0 (V,i+1) \leq P^i \leq c_0 (V,i-1) - c_0 (V,i)$.
+That is to say, $P^i$ belongs to interval $[c_0 (V,i) - c_0 (V,i+1), c_0 (V,i-1) - c_0 (V,i)].$
+
+If we assume that the processing times satisfy $t_1 < t_2 < \ldots < t_v$, then $c_0(V,m) =
+\sum_{j=1}^{\lceil v/m \rceil} \sum_{i=1}^m j t_{v-mj-i+m+1}$, where $\lceil \cdot \rceil$ is the minimum integer larger than $\cdot$.
+
+It is obvious that $c_0 (V,m) - c_0 (V,m+1) < c_0 (V,m-1) - c_0 (V,m)$ and $c_0(V,m)- c_0(V,m-1) > 0$, so the interval will not be empty.
+
+\begin{lem}\label{lem1}
+For the machine scheduling game, it satisfies supermodular property,
+When two coalitions $s_1,s_2$ satisfy $s_1 \subset s_2$, the corresponding number of using facilities $ m_{s_1}, m_{s_2}$ have $m_{s_1} \leq m_{s_2}$, if the primary function satisfies  (\ref{concavity_f}) and (\ref{property_p}).
+\end{lem}
+
+\begin{remark}
+  It's easy to know that $P_L(i,s) = P_H(i+1,s)$, for each $s \in S$ and $ i <|s|$.
+\end{remark}
+
+\begin{remark}
+  Note that $P_L(i,s) = P_H(i+1,s)$, for the sake of brevity and readability, we use $P_{i+1}$ to substitute for $P_L(i,s)$ or $P_H(i+1,s)$ later on.
+\end{remark}
+
+Lemma1 non-increase
+Lemma2 not overlapping
+Here add why it is not overlapping?
+And shows that the number of using machines will not increase when the players increase.
+
+\begin{remark}
+  For ease of exposition, let $P_1 = P^*, P_L(v,V) = 0$ and $P_i = P_H(i,V) = P_L(i-1,V).$ Thus, the effective domain, $[0,P^*]$, is divided into $v$ non-overlapping sub-intervals by $P_i, \forall i \in \{2,3,\ldots,v\}$.
+\end{remark}
+
+\begin{remark}
+  $P^*$ is the lowest price under which the grand cooperation of IVPU game is stable and it uses only one machine in the optimal scheduling decision, i.e.,
+  $P^* \in [P_L(1,V), P_H(1,V)]$ and MSG$(V, c(\cdot, P^*))$ has non-empty core.
+\end{remark}
