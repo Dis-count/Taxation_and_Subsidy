@@ -30,24 +30,43 @@ PSPF has one more inequality $\alpha(V)\leq c(V,m(V,P))$ than TSPF, which ensure
 Then we need to define an interval $[P_L(i,s),P_H(i,s)]$ to denote the price range when coalition $s$ uses $i$ machines to obtain the minimum cost for scheduling jobs. And the effective domain of pricing IVPU game for stabilization is $[0,P^*]$.
 In other words, the price should have practical significance, that is, the negative price is beyond of our consideration in this situation. Thus, the minimum price for each machine is 0. Meanwhile, the maximum price for each machine will be infinity in theory, later we will show a more meaningful price instead of $P^*$ defined here.
 
-Based on the above analysis, we know that $c(V,m^*) = \min_{m \in M} \{\sum_{k\in V}{C_k(m)}+ P\cdot m\}$.
-Define a new characteristic function $c_0(s,i)$
-related to the number of machines used by coalition $s$. Thus, $c_0(V,i)$ denotes the cost of using $i$ machines by the grand coalition and it is determined by $i$ when the processing time of every player in the grand coalition is known.
-Meanwhile, the original characteristic function can be expressed in two parts like $c(V,m^*) = c_0(V,m^*) + P\cdot m^*$, where $m^*$ is the optimal number of machines.
+Based on the above analysis, we know that $c(V,m^*) = \min_{i \in M} \{\sum_{k\in V}{C_k(i)}+ P\cdot i\}.$ Define a no-price characteristic function $c_0(s,i)$
+related to the number of machines $i \in \{1,2,\ldots,v\}$ used by coalition $s.$ Meanwhile, $c_0(V,i)$ denotes the cost of using $i$ machines by the grand coalition and it is determined by $i$ when the processing time of every player in the grand coalition is known.
+Therefore, the original characteristic function can be expressed in two parts like $c(V,m^*) = c_0(V,m^*) + P\cdot m^*$, where $m^*$ is the optimal number of machines.
 
 Assume that the optimal schedule is that the grand coalition uses $i$ machines, the price for each machine is $P^i$ which belongs to an interval $I_i$.
 Then according to the definition of the characteristic function, we can obtain the following two inequalities:
-$c_0 (V,i) + P^i i \leq c_0 (V,i-1) + P^i\cdot(i-1)$
-$c_0 (V,i) + P^i i \leq c_0 (V,i+1) + P^i\cdot(i+1)$.
+\[
+\begin{aligned}
+&c_0 (V,i) + P^i i \leq c_0 (V,i-1) + P^i\cdot(i-1) \\
+&c_0 (V,i) + P^i i \leq c_0 (V,i+1) + P^i\cdot(i+1).
+\end{aligned}
+\]
 Consequently, we obtained the range of the price $P^i$ satisfies $c_0 (V,i) - c_0 (V,i+1) \leq P^i \leq c_0 (V,i-1) - c_0 (V,i)$.
 That is to say, $P^i$ belongs to interval $[c_0 (V,i) - c_0 (V,i+1), c_0 (V,i-1) - c_0 (V,i)].$
+We will continue to investigate the relationship between this interval and the above mentioned $I_i$.
 
-If we assume that the processing times satisfy $t_1 < t_2 < \ldots < t_v$, then $c_0(V,m) =
-\sum_{j=1}^{\lceil v/m \rceil} \sum_{i=1}^m j t_{v-mj-i+m+1}$, where $\lceil \cdot \rceil$ is the minimum integer larger than $\cdot$.
-
-It is obvious that $c_0 (V,m) - c_0 (V,m+1) < c_0 (V,m-1) - c_0 (V,m)$ and $c_0(V,m)- c_0(V,m-1) > 0$, so the interval will not be empty.
+If we assume that the processing times satisfy $t_1 < t_2 < \ldots < t_v$, then $c_0(V,i) = \sum_{j=1}^{\lceil v/i \rceil} \sum_{h=1}^i j t_{v-ij-h+i+1}$, where $\lceil \cdot \rceil$ is the minimum integer larger than $\cdot$.
 
 \begin{lem}\label{lem1}
+For the IVPU game, the no-price characteristic function $c_0(V,i)$ is monotone decreasing and concave
+with $i$, in other words, $c_0(V,i)$ satisfies the following inequalities:
+\[
+\begin{aligned}
+& c_0(V,i)- c_0(V,i-1) < 0, i \in \{2,3,\ldots,v\}\\
+& c_0 (V,i) - c_0 (V,i+1) < c_0 (V,i-1) - c_0 (V,i), i \in \{2,3,\ldots,v-1\}.
+\end{aligned}
+\]
+\end{lem}
+
+According to $c_0(V,i) =\sum_{j=1}^{\lceil v/i \rceil} \sum_{h=1}^i j t_{v-ij-h+i+1}$, it is easy to know that the multipliers before all the processing times $t_l, l \in V$ decrease correspondingly with the increase of the number of machines used.
+
+In the light of the Lemma\label{lem1}, we know that
+the interval will not be empty and $I_i = [c_0 (V,i) - c_0 (V,i+1), c_0 (V,i-1) - c_0 (V,i)].$
+
+And $I_i, i\in V$ are non-overlapping.
+
+\begin{lem}\label{lem2}
 For the machine scheduling game, it satisfies supermodular property,
 When two coalitions $s_1,s_2$ satisfy $s_1 \subset s_2$, the corresponding number of using facilities $ m_{s_1}, m_{s_2}$ have $m_{s_1} \leq m_{s_2}$, if the primary function satisfies  (\ref{concavity_f}) and (\ref{property_p}).
 \end{lem}
@@ -57,7 +76,7 @@ When two coalitions $s_1,s_2$ satisfy $s_1 \subset s_2$, the corresponding numbe
 \end{remark}
 
 \begin{remark}
-  Note that $P_L(i,s) = P_H(i+1,s)$, for the sake of brevity and readability, we use $P_{i+1}$ to substitute for $P_L(i,s)$ or $P_H(i+1,s)$ later on.
+  Note that $P_L(i,V) = P_H(i+1,V)$, for the sake of brevity and readability, we use $P_{i+1}$ to substitute for $P_L(i,V)$ or $P_H(i+1,V)$ later on.
 \end{remark}
 
 Lemma1 non-increase
