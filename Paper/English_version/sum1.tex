@@ -40,112 +40,20 @@
 
 \input{Chapters/Introduction}
 
-\input{Chapters/Ch2}
+\input{Chapters/Literature-review}
+
+\input{Chapters/Motivating-problem}
 
 %\input{Chapters/Outline}
-\input{Chapters/Ch3}
 
-\input{Chapters/Ch4}
+\input{Chapters/Analyses}
 
-\input{Chapters/Ch5}
+\input{Chapters/Algorithms}
 
-\input{Chapters/Ch6}
-
-\input{Chapters/Ch7}
-
-Now we know the separation problem can be solved in $O(v^2)$ time and the breakpoints during the whole interval are polynomial, so for the IVPU game the PSPF function can be constructed in polynomial time.
-
-\begin{thm}\label{thm6}
-The IVPU game can be solved in polynomial time.
-\end{thm}
-
-Until here, we've solved the IVPU game with alternative machines.
-
-Then, we will try to extend the core concept to a more general case. So we need to define a new game as follow.
-
-\section*{Definition 2}
-
-A cooperative TU game $(V,c)$ is a PIM(Price Integer Minimization) game if there exist:
-
-\begin{itemize}
-	\item positive integers e, v, t, P and m;
-	\item integer vectors $ x \in \mathbb{Z}^{t \times 1} $and $ \tilde{\alpha} \in \mathbb{Z}^{1 \times t} $;
-	\item left hand side matrix  $A \in \mathbb{R} ^{e \times t};$
-	\item right hand side matrix $B \in \mathbb{R} ^ {e \times v};$
-	\item a right hand side vector $D \in \mathbb{Z} ^ {e};$
-	\item an objective function vector
-	$c \in \mathbb{Z}^{1 \times t};$
-	\item an incidence vector $y^s \in \{0,1\}^v$ with $y^s_k = 1$ if $k \in s$ and $y^s_k = 0 $ otherwise, $\forall k \in V$,
-
-\end{itemize}
-
-such that the characteristic function $c(s)$ equals the optimal objective value of the following integer linear program:
-
-\[
-c(s,P)= \mathop{\min}_{x} \{ cx+Pm(x): Ax \geq By^s+D, \tilde{\alpha}x \leq m, x \in \mathbb{Z}^{t \times 1} \}
-\]
-
-Note that the object function is not easy to analyze due to the joint effct of $cx$ and $Pm$, we need to divide the function into two parts for a further discussion.
-
-With this idea, we divide $c(s,m(s,P))$ as $c_0(s,m(s))+Pm $. Via analysis and study, we find some properties about $c_0(s,m(s)) $ which we call primary function later.
-
-The primary function must be supermodular, then we can get the positive price or setup cost when the number of facilities changes. This corresponds to the following two lemmas.
-
-
-\begin{lem}\label{lem2}
-% \\ \hspace*{\fill} \\ % 用于空行
-% ~\\
-\[c_0(V,m)- c_0(V,m-1) > 0 \Leftrightarrow P_m > 0, m=2,\ldots,n.\]
-\end{lem}
-
-\begin{lem}\label{lem3}
-\[
-\begin{aligned}
-&c_0 (V,m) - c_0 (V,m+1) < c_0 (V,m-1) - c_0 (V,m) \\
-&\Leftrightarrow \quad P_m < P_{m+1} , m=2,3,\ldots,n.
-\end{aligned}
-\]
-\end{lem}
-
-Once the primary function must be supermodular, we can specify this property in the following two aspects.
-One is the concavity about the number of facilities,
-the other is the nature about the number of players($s_1 \subset s_2$).
-They correspond to the following two formulas:
-
-\begin{equation}\label{concavity_f}
-c_0(s_1,m-1)-c_0(s_1,m) \geq
-  c_0(s_1,m)-c_0(s_1,m+1) \quad m=2,\ldots,n.
-\end{equation}
-% 只要这里是关于机器数量的变化即可
-and
-
-\begin{equation}\label{property_p}
-	c_0(s_1,m-1)-c_0(s_1,m) \leq
-	  c_0(s_2,m-1)-c_0(s_2,m) \quad m=2,\ldots,n.
-\end{equation}
-, respectively.
-% 只要这里是关于players的变化即可
-
-If the characteristic function satisfies the above property. Then $ P_1$ can be calculated by the following procedure:
-When $\alpha(V) = c_0(V) + P_1$, which means the $\omega(P_1) = 0$. And the active inequalities must be the coalition contains $(n-1)$ players.
-Then plus all the $(n+1)$ equality together, we can obtain $P_1 = (n-1)c(V)- \sum_{|s|=n-1,s\in S}c(s)$.
-Because other inequalities will be satisfied according to the supermodular.
-
-
-And shows that the number of using machines will not increase when the players increase.
-
-Then we can develop the Theorem \ref{thm7}.
-\begin{thm}\label{thm7}
-When two coalitions $s_1,s_2$ satisfy $s_1 \subset s_2$, the corresponding number of using facilities $ m_{s_1}, m_{s_2}$ have $m_{s_1} \leq m_{s_2}$, if the primary function satisfies  (\ref{concavity_f}) and (\ref{property_p}).
-\end{thm}
-
-\begin{lem}\label{lem4}
-When $c_0(s)$ satisfy the supermodular and $P=P_1$, where $m_V=1$, if $\alpha(s)=c(s)+P_1, \left| s \right|= n-1$ and $\alpha(V)=c_0(V)+P_1$ the budget balance constraint holds, the other coalitional stability constraints $\alpha(s) \leq c(s)+P_1, \left| s \right| < n-1$ will hold.
-\end{lem}
+\input{Chapters/Game-Extension}
 
 \input{Chapters/Proof}
 
 The IPU game is very special so that we can use SPT rule to compute the $c_{IPU}(s)$ , which means jobs in coalition $s$ with the shortest processing time should be processed first and the longest ones last. Then we can use dynamic programming to solve the separation problem $\delta_{IPU} = \min \big\{c_{IPU}(s)+P-\bar{\alpha}(s,P): \forall s \in \mathbb{S} \setminus \{N\}\big\} $
-
 
 \end{document}

@@ -1,0 +1,76 @@
+\section{Motivating problem}
+
+\subsection{Basic concept}
+
+At first, we will introduce some preliminary knowledge about cooperative game theory as follows.
+A pair $(V,c)$ is usually used to represent a cooperative game with transferable utilities, among which $V=\{1,2,\dots,v\}$ denotes a set of $v$ players and $c:2^{V}\to \mathbb{R}$ indicates the characteristic function of the game. A coalition $s$ is defined as a non-empty subset of players; and $V$ is refered to as the grand coalition containing all the players, $S=2^{V} \setminus\{\emptyset\}$ denotes the set of all feasible coalitions. The characteristic function of the game, $c(s)$, represents the minimum coalitional cost the players in $s$ have to pay in order to cooperate together.
+A cost allocation vector $\alpha=[\alpha_{1},\alpha_{2},\dots,\alpha_{v}] \in \mathbb{R}^{v}$ is required by the game to maintain cooperation in the grand coalition, and $\alpha_{k}$ is the cost assigned to players $k \in V$ to assure no individual or group of players has the incentive to deviate. For the convenience of abbreviation, we use $\alpha(s)=\sum_{k\in{s}}\alpha_{k}$ to denote the total cost assigned to the players in coalition $s$.
+One of the most important concepts in cooperative game theory is core, which is a cost allocation satisfying two kinds of contraints, one is the budget balance contraint {$\alpha(V)=c(V)$} and the other is the coalitional stability constraints {$\alpha(s) \leq c(s)$}. In other words, core can be expressed as
+
+\[
+Core(V,c)= \left\{\alpha:\alpha(V)=c(V), \alpha(s)\leq c(s)\ \text{for all}\ s \in S \setminus\{V\}, \alpha \in \mathbb{R}^{v} \right\}.
+\]
+
+When the cost allocation exists, core is called non-empty. And if and only if the core is non-empty, the grand coalition of the associating cooperative game $(V,c)$ will be stable or balanced.
+
+However, cooperative games can be unbalanced in many cases owing to the joint restrictions of the above-mentioned two kinds of constraints. To stabilize the grand coalition in unbalanced cooperative games, researchers have already developed several effective instruments, such as subsidization, penalization and simultaneously subsidization and penalization. The
+similarity of these instruments is that there exists an outside party who will take measures to stabilize the grand coalition. But the penalization will always arouse the discontent of players in coalitions, it is promising to find a new instrument to replace the penalization, we call it pricing.
+The significant idea of this instrument is that we can erase the role of the third party by collecting pricing as subsidy of the corresponding coalitions.
+That being said, the players of the games can stabilize themselves without the third party.
+
+To make the project concrete, we will apply this instrument on the machine scheduling games to show our ideas.
+
+
+\subsection{Identical Variable Parallel machine scheduling of Unweighted jobs game}
+% 这里还需要定义一个优化问题
+
+The Identical Parallel machine scheduling of Unweighted jobs(IPU) problem can be defined as follows. There are several machines available here. For this scheduling problem, the setup cost for each machine is the same and jobs have the same weights. The problem requires that the jobs should be scheduled to several of these machines in order to have a minimum completion time, which contains the setup costs considered as a form of time and total processing time for all jobs. Thus, we call this problem as the
+identical parallel machine scheduling of unweighted jobs problem.
+Based on the above scheduling problem we mentioned, we can have the definition of the cooperative game form.
+In an Identical Variable Parallel machine scheduling of Unweighted jobs (IVPU) game, each player $k$ in the grand coalition $V=\{1,2,\ldots,v\}$ has a job $k$ that needs to be processed on one of identical machines in $M=\{1,2,\ldots,m\}$, where $m$ is a given positive integer, commonly we set it larger than $v$. Meanwhile, each machine has a setup cost $P$. Each job $k\in V$ has a processing time denoted by $t_k$. Each coalition $s \in S$, where $S=2^V\setminus\{\emptyset\}$, aims to schedule the jobs in $s$ on all machines in $M$ so that the total completion time of the jobs in $s$ is minimized, i.e., to minimize
+$c(s,m^*) = \min_{j \in M} \{\sum_{k\in s}{C_k(j)}+ P\cdot j\}$, where $C_k(j)$ is the completion time of job $k\in s$ and it is related to the number of machines used, $m^*$ indicates the optimal number of machines used by the coalition $s$.
+
+Then we will illustrate the pricing instrument with a simple example of an IAPU game as follows.
+
+
+\subsection{Inspired Example}
+There is an IVPU game which contains four players, whose processing times on the identical parallel machine are $t_1=2, t_2=3, t_3=4, t_4=5$ respectively. Each machine setup cost is $t_0=9.5$, and $c(s)$ is the minimum total completion time of jobs in coalition $s$ plus the machine setup costs.
+Hence we have the following values of the characteristic functions:
+
+\[
+\begin{aligned}
+& c({1}) = 11.5, c({2}) = 12.5, c({3}) = 13.5, c({4}) = 14.5  \\
+& c({1,2}) = 16.5, c({1,3}) = 17.5, c({1,4}) = 18.5 \\
+& c({2,3}) = 19.5, c({2,4}) = 20.5, c({3,4}) = 22.5 \\
+& c({1,2,3}) = 25.5, c({1,2,4}) = 26.5, c({1,3,4}) = 28.5 \\
+& c({2,3,4}) = 31.5, c({1,2,3,4}) = 38.
+\end{aligned}
+\]
+% $c({1}) = 11.5, c({2}) = 12.5, c({3}) = 13.5, c({4}) = 14.5, c({1,2}) = 16.5, c({1,3}) = 17.5, c({1,4}) = 18.5, c({2,3}) = 19.5, c({2,4}) = 20.5, c({3,4}) = 22.5, c({1,2,3}) = 25.5, c({1,2,4}) = 26.5, c({1,3,4}) = 28.5, c({2,3,4}) = 31.5, c({1,2,3,4}) = 38.$
+
+For the convenience of the following statement, we set the price equal to the setup cost, that is, $P = t_0$.
+In this example, the grand coalition has a minimum cost, which is $c(V,m^*) = \min_{m \in M} \{\sum_{k\in V}{C_k(m)}+ P\cdot m\}.$ To show the specific calculation process of $C_k(m)$, we set $m=1$, then $\sum_{k\in V}{C_k(1)} = 1 \cdot t_4 + 2\cdot t_3 + 3 \cdot t_2 + 3 \cdot t_2 + 4 \cdot t_1 + P \cdot 1.$
+The processing sequence for the jobs is job1 $\to$ job2 $\to$ job3 $\to$ job4 on one machine. When job1 is processing, the rest three jobs have to wait. Therefore, the multiplier before processing time of job1 is $4$. The rest of the above formula can be explained in the same way.
+Calculate all cases of the number of machines used, we can obtain that
+$c(V,m^*) = \min\{39.5, 38, 44.5, 52\} = 38$ and the optimum number of machine used is $m^* = 2$.
+By solving the following LP:
+\[
+  \mathop{\max}_{\alpha}\{\alpha(V): \alpha(s)\leq c(s),\forall s \in S, \alpha\in\mathbb{R}^{v}\},
+\]
+we can obtain the optimal allocation is $[6, 8.75, 10.75, 11.75]$.
+It's easy to check that the cooperative game in this example is unbalanced because there is no cost allocation satisfying the two kinds of constraints we mentioned above. That means there will be some coalitions deviate from the grand coalition, in order to cooperate at this time, the third party have to take some measures, such as subsidization or penalization in common use.
+According to the literature, the subsidy can be calculated by solving the following LP:
+\[
+  {\omega^*}=\mathop{\min}_{\alpha}\{c(V)-\alpha(V): \alpha(s)\leq c(s)
+ ,\forall s \in S, \alpha\in\mathbb{R}^{v}\},
+\]
+In this case, the subsidy equals $c(V) - \alpha(V) = 0.75$.
+When the setup cost increases from 9.5 to 10, that is, the price increment is from 0 to 0.5, two machines are still needed. However, at this time, the grand coalition doesnot need extra subsidy because the price increment($0.5\times 2 =1$) can exactly cover the gap between total cost $c(V)$(39) and the acccepted cost shared among players in the grand coalition $\alpha(V)$(38).
+
+The above discussion raises the question whether it is possible to stabilize a grand coalition not changed from the original global schedule, without any externally-funded subsidy. To have an affirmative answer, we propose a new mechanism referred to as subsidization funded by taxation. Using the example, we can explain this idea as follows. When the external party charges the machine tax at 0.5, which makes the machine activation cost at 10, the global optimal schedule is still to use two machines with a total cost at 39. At the same time, if the third party subsidizes the grand coalition by 1, then the four agents only need to share a cost of 38, and a cost allocation (6, 9, 11, 12) would be acceptable to the agents.
+
+Continue to increase the setup cost from 10 to 11.14, , the number of machine used by the grand coaliton will decrease from 2 to 1, accordingly.
+
+Meanwhile, at this point, the total pricing increment can also just cover the gap between $c(V)$ and $\alpha(V)$ like the above, which means that by using pricing instrument the grand coalition can be stabilized by the players themselves.
+
+Although this case is easily understood, it demonstrates the concept of pricing we have strong interests in. Then we will define the corresponding model to further elaborate on this concept.

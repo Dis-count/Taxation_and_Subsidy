@@ -1,9 +1,10 @@
-\section*{Algorithms for solving IVPU game}
+\section{Algorithms for solving IVPU game}
 To construct the whole diagram of $\omega(P)$ in $[0,P^*]$, we need to obtain the specific subsidy value $\omega(P)$ given any $P$, which is piecewise linear and convex at every sub-interval. As long as we find all breakpoints during the interval, to get the whole diagram we just need to connect these breakpoints in order.
 
 At first, we need to divide the interval into $v$ sub-intervals according to the number of machines used by the grand coalition. However, we don't need to calculate the interval $[0,P_{\lceil v+1/2 \rceil}]$ because at this part the corresponding subsidy is 0 always.(The corresponding conclusion we mentioned in Theorem \ref{thm4})
 Then we just need to apply the IPC algorithm on the rest interval to get the breakpoints. After obtaining all the breakpoints, the PSPF function can be constructed.
 
+\subsection{IPC Algorithm}
 
 \begin{algorithm}[h]\label{algoIPC}
 \caption{The Intersection Points Computation(IPC) Algorithm to Construct the PSPF Function.}
@@ -49,6 +50,8 @@ Then we need to calculate the $\omega(P)$ when given an arbitrary $P$. As stated
 
 Then we can follow the basic Cutting Plane(CP) algorithm to solve the tricky exponential inequality constraints $\alpha(s) \leq c_0(s,1)+P$, the specific process are represented in algorithm 2.
 
+\subsection{CP Algorithm}
+
 \begin{algorithm}[h]\label{algoCP}
 \caption{The Cutting Plane(CP) Algorithm to compute $\omega(P)$ for a given $P$.}
 \begin{algorithmic}[1]
@@ -84,12 +87,13 @@ Now, the question is how to solve the separation problem mentioned above efficie
 
 Assume that the processing jobs satisfy $t_1 \geq t_2 \geq \ldots \geq t_v$. For the separation problem $\delta_{AIPU} = \min \big\{ C'(S,P) -\bar{\alpha}(S,P): \forall S \in \mathbb{S} \setminus \{V\}\big\}$, where $C'(S,P)$ can be obtained by the SPT rule. That means if add a new player $k\notin S$ into $S$, where $|S| =u$, the increment for the restricted separation problem is $(u+1)t_k-\alpha_k$, which will be shown in the recursion in \textbf{Step 3}.
 
+\subsection{DP Algorithm}
+
 \begin{algorithm}[h]\label{algoDP}
 \caption{The Dynamic Programming(DP) Algorithm to Solve the seperation problem.}
 \begin{algorithmic}[1]
 
 % the coalition $s$ is a subset of $\{1,2,\ldots,k\}$.
-
 \begin{description}
   \item[Step 1.] Initially, let $D(k,u)$ indicate the minimum objective value of the restricted problem of separation \\
   \vspace{10pt}
@@ -118,3 +122,11 @@ Assume that the processing jobs satisfy $t_1 \geq t_2 \geq \ldots \geq t_v$. For
 
 {The DP Algorithm can solve the separation problem $\delta_{AIPU}$ in $O(v^2)$ time.}
 Notice that $k \in \{1,2,\ldots,v\}$ and $u\in \{0,1,\ldots,v\}$ for the $D(k,u)$, so the total running time is in $O(v^2)$.
+
+Now we know the separation problem can be solved in $O(v^2)$ time and the breakpoints during the whole interval are polynomial, so for the IVPU game the PSPF function can be constructed in polynomial time.
+
+\begin{thm}\label{thm6}
+The IVPU game can be solved in polynomial time.
+\end{thm}
+
+Until here, we've solved the IVPU game with alternative machines.
