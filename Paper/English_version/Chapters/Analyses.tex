@@ -1,3 +1,4 @@
+% !TEX root = sum1.tex
 \section{Analyses of Model}
 
 \subsection{Model for IVPU game}
@@ -8,14 +9,21 @@ A cooperative TU game $(V,c)$ is called an IVPU game if the characteristic funct
 \begin{aligned}
 c(s,P) = & {\min} \sum_{k\in V}\sum_{j\in O} {c_{kj} x_{kj}} + {P\sum_{k\in s} x_{k1}} \\
 {s.t.}\quad & \sum_{j \in O} x_{kj}-y_k^s=0, \forall k \in V, \\
-& \sum_{k\in V} x_{kj} \leq m_s,\forall j \in O,  \\
+& \sum_{k\in V} x_{kj} \leq m,\forall j \in O,  \\
 & x_{kj} \in \{0,1\} , \forall k \in V, \forall j \in O,\\
 & y_k^s=1, k \in s, y_k^s=0, k \notin s.
 \end{aligned}
 \]
 
-Among these formulations, $P$ and $m_s$ denotes the price and the number of machines used by coaliton $s$, respectively. And we assume that $m_s$ is less than the number of machines available $m$.
-To be consistent with the above definition of the grand coalition, let $V=\{1,2,\ldots,v\}$ be a set of $v$ players. The number of available machines is $m$ and the setup cost or price(We will use the term in the remainder of this article.) for each machine is $P$.
+The first set of constraints indicate that only jobs in $s$ are included and are processed only once.
+Notice that $ y_k^s=1, k \in s$, the constraints are equivalent to $\sum_{j \in O} x_{kj}-1=0, k \in s$.
+The second set of constrains indicate that at most $m$
+machines can be used, and they assure that no jobs are processed on the same machines at the same time.
+
+Among these formulations, $P$ and $m$ denotes the price and maximum number of machines available, respectively. Note that $j$ represents the processing sequence on the machines, so when $j=1$, $\sum_{k\in s} x_{k1}$ indicates all machines used by coalition $s$, i.e., the optimal machine number.
+
+To be consistent with the above definition of the grand coalition, let $V=\{1,2,\ldots,v\}$ be a set of $v$ players. The setup cost or price(We will use the term in the remainder of this article.) for each machine is $P$.
+
 % For the convenience of expression, we set the processing times $t_i(i\in V)$ satisfy $t_1<t_2<\cdots<t_v$.
 
 Then we need to define two functions, practical subsidy-price function (PSPF) and theoretical subsidy-price function (TSPF) denoted by $\omega(P)$ and $\hat{\omega}(P)$, respectively:
@@ -34,7 +42,7 @@ In other words, the price should have practical significance, that is, the negat
 
 Based on the above analysis, we know that $c(V,P) = \min_{i \in M} \{\sum_{k\in V}{C_k(i)}+ P\cdot i\}.$ Define a no-price characteristic function $c_0(s,i)$
 related to the number of machines $i \in \{1,2,\ldots,v\}$ used by coalition $s.$ Meanwhile, $c_0(V,i)$ denotes the cost of using $i$ machines by the grand coalition and it is determined by $i$ when the processing time of every player in the grand coalition is known.
-Therefore, the original characteristic function can be expressed in two parts like $c(V,P) = c_0(V,m^*) + P\cdot m^*$, where $m^*$ is the optimal number of machines.
+Therefore, the original characteristic function can be expressed in two parts like $c(V,P) = c_0(V,m^*) + P\cdot m^*$, where $m^*$ is the optimal number of machines used.
 
 We set the different intervals where the number of machines remain unchanged as $I_i$ respectively.
 Assume that the optimal schedule is that the grand coalition uses $i$ machines, the price for each machine is $P^i$ which belongs to the interval $I_i$.
@@ -73,7 +81,7 @@ For the IVPU game, the no-price characteristic function $c_0(V,i)$ is monotone d
 \]
 \end{thm}
 
-In the light of the Theorem\label{thm1}, $c_0(V,i)- c_0(V,i-1) < 0$ ensures that the value of price is positive. Moreover, $c_0(V,i)$ is concave with $i$,  the interval will not be empty and $I_i = [c_0 (V,i) - c_0 (V,i+1), c_0 (V,i-1) - c_0 (V,i)], i \in \{2,3,\ldots,v-1\}.$ Define $I_1 = [c_0 (V,1) - c_0 (V,2), P^*]$ and $I_v = [0, c_0 (V,v-1) - c_0 (V,v)]$, until here, the effective domain $[0, P^*]$
+In the light of the Theorem \ref{thm1}, $c_0(V,i)- c_0(V,i-1) < 0$ ensures that the value of price is positive. Moreover, $c_0(V,i)$ is concave with $i$,  the interval will not be empty and $I_i = [c_0 (V,i) - c_0 (V,i+1), c_0 (V,i-1) - c_0 (V,i)], i \in \{2,3,\ldots,v-1\}.$ Define $I_1 = [c_0 (V,1) - c_0 (V,2), P^*]$ and $I_v = [0, c_0 (V,v-1) - c_0 (V,v)]$, until here, the effective domain $[0, P^*]$
 is divided into $v$ non-overlapping sub-intervals $I_i, i\in V$.
 
 \begin{remark}
@@ -98,7 +106,6 @@ is divided into $v$ non-overlapping sub-intervals $I_i, i\in V$.
 Like the above, divide the characteristic function into two parts like $c(s,P) = c_0(s,m^*(s)) + P\cdot m^*(s), s \in S$.
 
 As a common practice, we can obtain the dual of $\omega(P)$:
-
 \begin{equation}\label{dual}
  {\omega^*(P)}=\mathop{\max}_{\rho} \{c_0(V)+m(V)P+\sum_{s\in S}-\rho_s[c_0(s,m^*(s)) + P\cdot m^*(s)]:
  \sum_{s\in S:k\in s}\rho_s=1,\forall k \in V,\rho_s\geq 0,\forall s \in S \}
@@ -164,6 +171,8 @@ And a diagram of the number of machines used and subsidy on price with essential
 	\label{fig:Image11}   %标签，用作引用
 \end{figure}
 
+% 这里把图画一下,然后进行比较
+
 \begin{remark}
   When the number of available machines $m$ is larger than $v$, the image is complete, just like the above shown. However, when the number of available machines $m$ is less than $v$, the image will be truncated, which means the corresponding part of the price less than $P_{m+1}$ should be removed from the figure. While the properties of the rest part will still hold.
 \end{remark}
@@ -176,7 +185,7 @@ The left ordinate represents the number of machine used, while the right represe
 Compared with the traditional characteristic function $c(s)$, characteristic function defined in the IVPU game has another parameter, the number of machines used by coalition $m(s)$, whose exponential numbers of $m(s)$ bring more difficulties to the solution.
 In order to address this problem, we establish the Theorem \ref{thm5}.
 
-\begin{thm}\label{thm5}
+\begin{thm}\label{thm7}
   Define that
   \[
     {\omega_1(P)}=\mathop{\min}_{\alpha}\{c(V,P)-\alpha(V): \alpha(s)\leq c(s,P,1), \forall s \in S, \alpha\in\mathbb{R}^{v}\},

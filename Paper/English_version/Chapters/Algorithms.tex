@@ -1,3 +1,4 @@
+% !TEX root = sum1.tex
 \section{Algorithms for solving IVPU game}
 To construct the whole diagram of $\omega(P)$ in $[0,P^*]$, we need to obtain the specific subsidy value $\omega(P)$ given any $P$, which is piecewise linear and convex at every sub-interval. As long as we find all breakpoints during the interval, to get the whole diagram we just need to connect these breakpoints in order.
 
@@ -6,7 +7,7 @@ Then we just need to apply the IPC algorithm on the rest interval to get the bre
 
 \subsection{IPC Algorithm}
 
-\begin{algorithm}[h]\label{algoIPC}
+\begin{algorithm}[H]\label{algoIPC}
 \caption{The Intersection Points Computation(IPC) Algorithm to Construct the PSPF Function.}
 \begin{algorithmic}[1]
 
@@ -52,7 +53,7 @@ Then we can follow the basic Cutting Plane(CP) algorithm to solve the tricky exp
 
 \subsection{CP Algorithm}
 
-\begin{algorithm}[h]\label{algoCP}
+\begin{algorithm}[H]\label{algoCP}
 \caption{The Cutting Plane(CP) Algorithm to compute $\omega(P)$ for a given $P$.}
 \begin{algorithmic}[1]
 
@@ -89,7 +90,7 @@ Assume that the processing jobs satisfy $t_1 \geq t_2 \geq \ldots \geq t_v$. For
 
 \subsection{DP Algorithm}
 
-\begin{algorithm}[h]\label{algoDP}
+\begin{algorithm}[H]\label{algoDP}
 \caption{The Dynamic Programming(DP) Algorithm to Solve the seperation problem.}
 \begin{algorithmic}[1]
 
