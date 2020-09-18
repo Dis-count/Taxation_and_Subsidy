@@ -40,9 +40,9 @@ PSPF has one more inequality $\alpha(V)\leq c(V,P)$ than TSPF, which ensures the
 Then we need to define an interval $[P_L(i,V),P_H(i,V)]$ to denote the price range when the grand coalition $V$ uses $i$ machines to obtain the minimum cost for scheduling jobs. And the effective domain of pricing IVPU game for stabilization is $[0,P^*]$.
 In other words, the price should have practical significance, that is, the negative price is beyond of our consideration in this situation. Thus, the minimum price for each machine is 0. Meanwhile, the maximum price for each machine will be infinity in theory, later we will show a more meaningful price instead of $P^*$ defined here.
 
-Based on the above analysis, we know that $c(V,P) = \min_{i \in M} \{\sum_{k\in V}{C_k(i)}+ P\cdot i\}.$ Define a no-price characteristic function $c_0(s,i)$
+Based on the above analysis, we know that $c(s,P) = \min_{i \in M} \{\sum_{k\in s}{C_k(i)}+ P\cdot i\}.$ Define a no-price characteristic function $c_0(s,i)$
 related to the number of machines $i \in \{1,2,\ldots,v\}$ used by coalition $s.$ Meanwhile, $c_0(V,i)$ denotes the cost of using $i$ machines by the grand coalition and it is determined by $i$ when the processing time of every player in the grand coalition is known.
-Therefore, the original characteristic function can be expressed in two parts like $c(V,P) = c_0(V,m^*) + P\cdot m^*$, where $m^*$ is the optimal number of machines used.
+Therefore, the original characteristic function can be expressed in two parts like $c(s,P) = c_0(s,m^*) + P\cdot m^*$, where $m^*$ is the optimal number of machines used by coalition $s$.
 
 We set the different intervals where the number of machines remain unchanged as $I_i$ respectively.
 Assume that the optimal schedule is that the grand coalition uses $i$ machines, the price for each machine is $P^i$ which belongs to the interval $I_i$.
@@ -65,9 +65,9 @@ According to $c_0(V,i) = \sum_{k=1}^{v} {\lceil k/i \rceil} t_{k}$, it is easy t
 
 Besides that, we can also prove that $\sum_{k=1}^{v} ({\lceil k/i \rceil} - {\lceil k/(i+1) \rceil}) t_k < \sum_{k=1}^{v} ({\lceil k/(i-1) \rceil} - {\lceil k/i \rceil}) t_k.$
 
-Proof tips: Let $p_i(k)$ denote ${\lceil k/i \rceil}$, the $k$th multipliers of $t_k$. At first, $p_{i-1}(i)- p_i(i)=0 \text{or} 1$. Then the multiplier difference of $t_i$ is $p_{i-1}(i)- p_i(i)=1$, while $p_i(i) - p_{i+1}(i)=0$
-Meanwhile, the multiplier difference of $t_{i+1}$ is $p_{i-1}(i+1)- p_i(i+1)=0$ and $p_i(i+1) - p_{i+1}(i+1)=1$. However, because of $t_{i} > t{i+1}$, put the two numbers together we can get $(p_{i-1}(i)- p_i(i))t_i + (p_{i-1}(i+1)- p_i(i+1))t_{i+1} > (p_{i}(i)- p_{i+1}(i))t_i + (p_{i}(i+1)- p_i(i+1))t_{i+1}$.
-The above relationship holds when the ordinal number $k$ satisfies $k = (l-1)i, l = \{2,3,\ldots,i$.
+Proof tips: Let $p_i(k)$ denote ${\lceil k/i \rceil}$, the $k$th multipliers of $t_k$. At first, $p_{i-1}(i)- p_i(i)=0 ~\text{or}~ 1$. Then the multiplier difference of $t_i$ is $p_{i-1}(i)- p_i(i)=1$, while $p_i(i) - p_{i+1}(i)=0$
+Meanwhile, the multiplier difference of $t_{i+1}$ is $p_{i-1}(i+1)- p_i(i+1)=0$ and $p_i(i+1) - p_{i+1}(i+1)=1$. However, because of $t_{i} > t_{i+1}$, put the two numbers together we can get $(p_{i-1}(i)- p_i(i))t_i + (p_{i-1}(i+1)- p_i(i+1))t_{i+1} > (p_{i}(i)- p_{i+1}(i))t_i + (p_{i}(i+1)- p_i(i+1))t_{i+1}$.
+The above relationship holds when the ordinal number $k$ satisfies $k = (l-1)i, l = \{2,3,\ldots,i\}$.
 When $k > (i-1)i$, $p_{i-1}(k)- p_i(k) \geq p_{i}(k)- p_{i+1}(k)$. And when for other cases, it is easy to prove $p_{i-1}(k)- p_i(k) \geq p_{i}(k)- p_{i+1}(k)$.
 
 So we have the following theorem:

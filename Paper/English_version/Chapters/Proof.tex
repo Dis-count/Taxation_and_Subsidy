@@ -2,8 +2,21 @@
 \clearpage
 \section*{Proof}
 
+\begin{pf}[Theorem 1]
+At first, show $c_0(V,i)- c_0(V,i-1) < 0, i \in \{2,3,\ldots,v\}$, it is proven easily by the definition of $c_0(V,i) = \sum_{k=1}^{v} {\lceil k/i \rceil} t_{k}$.
+Then we will prove $c_0 (V,i) - c_0 (V,i+1) < c_0 (V,i-1) - c_0 (V,i), i \in \{2,3,\ldots,v-1\}$, by discussing the ordinal number of $ $
+  \qed
+\end{pf}
+
 \begin{pf}[Lemma 1]
-  In fact, according to the SPT rule, a fixed number of using machines for the given grand coalition corresponds to the only deterministic sort order working on the machines, i.e. the deterministic cost. Therefore, by comparing the cost of the number of adjacent machines $(k, k + 1)$ used by the grand coalition, the corresponding setup cost or the price $P_i$ can be obtained.
+The derivative of $\omega^*(P)$ is $m(V) - \sum_{s \in S} \rho_s \dots m^* $
+  \qed
+\end{pf}
+
+\begin{pf}[Lemma 2]
+  In fact, according to the SPT rule, a fixed number of using machines for the players in the grand coalition corresponds to the only deterministic working order on the machines. So the total cost is
+  deterministic with the given processing times.
+  Therefore, by comparing the cost of the number of adjacent machines $(k, k + 1)$ used by the grand coalition, the corresponding setup cost or the price $P_i$ can be obtained.
 
 can be calculated with processing times $t_i$ by comparing the costs of the grand coalitions where all the players use two adjacent numbers of machines.
   \qed
