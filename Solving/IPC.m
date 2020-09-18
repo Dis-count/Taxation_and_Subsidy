@@ -1,13 +1,17 @@
 function [Pstar,omega] = IPC(v)
 
+% return intersection set and the corresponding subsidy
+% then we just need connect these points
+
 % t = [5;4;3;2];
+
  t= [9;8;7;5.5;4];
 
- Pstar = [35,50];
+ Pstar = [35,50]; % The set of breakpoints
 
 %  Pbig = [11,16];
- 
- Pbig = [35,50];
+
+ Pbig = [35,50];  % The interval of price and will gradually decrease
 
 omega = zeros(1,2);
 
@@ -20,10 +24,9 @@ while ~isempty(Pbig)
   omega(1) = a1;
 
   omega(2) = a2;
-  
+
   slope =  (a2-a1)/(Pbig(1,2)-Pbig(1,1));
 
-  
   if (round(c2,5) == round(slope,5))||(abs(b1-slope)<1e-5)
 
     Pbig(1,:) = [];
@@ -37,30 +40,30 @@ while ~isempty(Pbig)
     if zinter < 35||zinter > 50
 
         disp('There is something wrong')
-        
+
         break
-    
+
     end
-    
+
     omega1 = (zinter - Pbig(1,2))*b2 + a2;
 
     omega = [omega,omega1];
 
     Pstar = [Pstar,zinter];
 
-    Pbig(end+1,:) = [Pbig(1,1),zinter];   % Notice that there is already add a new row
+    Pbig(end+1,:) = [Pbig(1,1),zinter];
+    % Notice that there is already add a new row
 
     Pbig(end+1,:) = [zinter,Pbig(1,2)];
 
     Pbig(1,:) = [];
 
     Pstar = sort(Pstar);
-    
-    disp('what')
-    
+
+    disp('OK')
+
   end
 
 end
-
 
 end

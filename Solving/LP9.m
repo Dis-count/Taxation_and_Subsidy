@@ -1,7 +1,7 @@
 function [minr,maxr] = LP9(s,v)
 
 % Notice that s is a matrix. (0-1)  v = 4
-
+% used to give the min and max slope value.
 % s=[0 1 1 0;
 %    0 1 0 1;
 %    0 0 1 1;

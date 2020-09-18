@@ -7,6 +7,8 @@ function [omega,K_l,K_r] = CP(v,t,z)
 % v is number of players.
 % z is the penalty or the price.
 
+% return subwidy and min / max slope
+
 % ini_s = [0     1     1     1
 %          1     1     0     1
 %          1     0     1     1
@@ -37,11 +39,11 @@ while flag
     omega = dot(1:v,t)+z - maxr;
 
     if length(ini_s(:,1)) > v
-    
+
         ini_s = ini_s(v+1:end,:);
 
     end
-    
+
     [K_l, K_r] = LP9(ini_s,v);
 
     flag = false;
@@ -49,13 +51,13 @@ while flag
   end
 
   count = count +1;
-  
+
   if count >100
   % ini_s
       disp('There is something wrong')
       break
   end
-  
+
 end
 
 

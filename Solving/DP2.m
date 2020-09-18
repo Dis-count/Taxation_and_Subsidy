@@ -1,4 +1,4 @@
-function res = DP2(v,u)  % 递归耗内�?
+function res = DP2(v,u)  % The recursion method use too many memories. So this written way should be abandoned.
 
 t = [5 4 3 2];
 

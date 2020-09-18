@@ -4,7 +4,7 @@ function [result, s] = DP(v,t,beta,z)
 % z = 9.5
 % t =[5 4 3 2];
 % beta = [14.5 8 11.5 4]
-% 注意这里不能��? V (u \neq v)
+% Notice that V is not here. V (u \neq v)
 
 u = 0; % counting
 
@@ -43,7 +43,8 @@ if u == v
 
     aa = cumsum(vec(i,:));
 
-    resu(i) = z + dot(t,aa)-(i-1)*t(i) - dot(beta,vec(i,:));  % C n n-1 组合求最小值?
+    resu(i) = z + dot(t,aa)-(i-1)*t(i) - dot(beta,vec(i,:));
+    % C n n-1 组合求最小值?
 
   end
 

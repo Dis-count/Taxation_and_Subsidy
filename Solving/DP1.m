@@ -1,5 +1,5 @@
 function [res, s] = DP1(v,t,beta,z)
-
+% v is number of players
 % t and beta are vectors   from bottom to top
 % z = 9.5
 % t =[5 4 3 2];
@@ -23,7 +23,7 @@ ss(1,2) = {ones(1,1)};
 
 for i = 2: v
 
-  % s = ss(:,);  %  每一个循��? 只能记录 该列
+  % s = ss(:,);  %  every loop 只能记录 该列
 
   P(i,1) = P(i-1,1);
   ss(i,1) = {zeros(1,i)};
