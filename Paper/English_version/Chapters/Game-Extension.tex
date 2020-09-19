@@ -24,22 +24,34 @@ $c(s,P)$ and $P_i(2 \leq i \leq v)$ can be obtained by analysing the order of $t
 The notations, such as $c(s,P), \omega(P), P_i$ are the same as the above defined.
 
 \begin{lem}\label{lem4}
-When $c_0(s)$ satisfy the supermodular and $P=P_1$, where $m_V=1$, if $\alpha(s)=c(s, P_1), \left| s \right|= n-1$ and $\alpha(V)=c_0(V)+P_1$ the budget balance constraint holds, the other coalitional stability constraints $\alpha(s) \leq c(s, P_1) \left| s \right| < n-1$ will hold.
+When $c_0(s)$ satisfy the supermodular and $P=P_1$, where $m_V=1$, if $\alpha(s)=c(s, P_1), \left| s \right|= n-1$ and $\alpha(V)=c_0(V)+P_1$ the budget balance constraint holds, the other coalitional stability constraints $\alpha(s) \leq c(s, P_1), \left| s \right| < n-1$ will hold.
 \end{lem}
 
 As we've already known that $P_i, i = 2,\ldots,n$ can be obtained by Lemma \ref{lem1} and Theorem \ref{thm2}, however, $P_1$ can be calculated by solving the $n$ equalities by Lemma \ref{lem4}.
 
-Then we can follow the CP approach (Algorithm 3 in Liu et.al.2018) to calculate the weak derivatives at each sub-interval $[P_L(m,V),P_H(m,V)]$ where the corresponding derivative is $m_V-\sum_{s\in S\setminus\{V\}} \rho_s$.
+Then we can follow the CP approach (Algorithm CP) to calculate the weak derivatives at each sub-interval $[P_{i+1},P_{i}]$ where the corresponding derivative is $m_V-\sum_{s\in S\setminus\{V\}} \rho_s$.
 
 Then use IPC Algorithm which will return all the breakpoints during the $[0, P^*]$ to obtain the subsidy $\omega(P)$.
 
-Notice that we can calculate the characteristic function $c(s)$ easily according to Theorem \ref{thm5}, we can formulate Theorem \ref{thm6}.
+Remind that we want to realize a situation where the grand coalition doesn't need a subsidy from the externality.
 
+Define the difference between the subsidy and the price increment on all machines used $D(P) = \omega(P) - \Delta P\dots m^*(V)$. Initially, we have a setup cost for every machine, then we set it as $P_0$.
+According to \ref{dual}, the difference $D(P)$ can be expressed as $\omega^*(P) - (P-P_0)\dots m^*(V)$. Meanwhile, together with Theorem \ref{w1P}, we know that all $m^*(s) =1$. Thus $D(P) = c_0(V, m^*(V)) + P_0 \dots m^*(V) - \sum_{s\in S}\rho_s[c_0(s, 1) + P]$, the derivative of $D(P)$ is $-\sum_{s\in S}\rho_s$, which is still piecewise linear and convex in each sub-interval.
+The figure is showed below.
+\begin{figure}[h]%%图
+	\centering  %插入的图片居中表示
+	\includegraphics[width=0.8\linewidth]{Figures/Imagediff}  %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下
+	\caption{The difference between subsidy and pricing increment}  %图片的名称
+	\label{fig:Imagediff}   %标签，用作引用
+\end{figure}
 
-Remind that we want to realize that a situation that don't need a subsidy from the externality.
+$D(P)$ is decreasing in every sub-interval, so it doesnot exist the situation where we do not need change the original schedule to stabilize the grand coalition.
+
+Let $D(P) = 0$, then $c_0(V, m^*(V)) + P_0 \dots m^*(V) = \sum_{s \in S} \rho_s (P + c_0(s,1))$. However, $\{s\in S: \rho_s > 0\}$ which we need is very different to obtain.
+
+If we want to
+
 It gives the method to determine the price
-
-By minusing the increment part, we can get a monotone decreasing line in every sub-interval, so doesnot exist the situation where we do not need change the original schedule to stabilize the grand coalition.
 
 And whether exist one point or two or three, it depends on the the relationship of $P_1,P_2, P_3$.
 which depends on the value of the processing time. When the processing time is close to each other, we can conclude that the there exists two points to satisfy the requirement.

@@ -71,7 +71,7 @@ The above relationship holds when the ordinal number $k$ satisfies $k = (l-1)i, 
 When $k > (i-1)i$, $p_{i-1}(k)- p_i(k) \geq p_{i}(k)- p_{i+1}(k)$. And when for other cases, it is easy to prove $p_{i-1}(k)- p_i(k) \geq p_{i}(k)- p_{i+1}(k)$.
 
 So we have the following theorem:
-\begin{thm}\label{thm1}
+\begin{thm}\label{monotone}
 For the IVPU game, the no-price characteristic function $c_0(V,i)$ is monotone decreasing and concave with $i$, in other words, $c_0(V,i)$ satisfies the following inequalities:
 \[
 \begin{aligned}
@@ -81,7 +81,7 @@ For the IVPU game, the no-price characteristic function $c_0(V,i)$ is monotone d
 \]
 \end{thm}
 
-In the light of the Theorem \ref{thm1}, $c_0(V,i)- c_0(V,i-1) < 0$ ensures that the value of price is positive. Moreover, $c_0(V,i)$ is concave with $i$,  the interval will not be empty and $I_i = [c_0 (V,i) - c_0 (V,i+1), c_0 (V,i-1) - c_0 (V,i)], i \in \{2,3,\ldots,v-1\}.$ Define $I_1 = [c_0 (V,1) - c_0 (V,2), P^*]$ and $I_v = [0, c_0 (V,v-1) - c_0 (V,v)]$, until here, the effective domain $[0, P^*]$
+In the light of the Theorem \ref{monotone}, $c_0(V,i)- c_0(V,i-1) < 0$ ensures that the value of price is positive. Moreover, $c_0(V,i)$ is concave with $i$,  the interval will not be empty and $I_i = [c_0 (V,i) - c_0 (V,i+1), c_0 (V,i-1) - c_0 (V,i)], i \in \{2,3,\ldots,v-1\}.$ Define $I_1 = [c_0 (V,1) - c_0 (V,2), P^*]$ and $I_v = [0, c_0 (V,v-1) - c_0 (V,v)]$, until here, the effective domain $[0, P^*]$
 is divided into $v$ non-overlapping sub-intervals $I_i, i\in V$.
 
 \begin{remark}
@@ -107,39 +107,39 @@ Like the above, divide the characteristic function into two parts like $c(s,P) =
 
 As a common practice, we can obtain the dual of $\omega(P)$:
 \begin{equation}\label{dual}
- {\omega^*(P)}=\mathop{\max}_{\rho} \{c_0(V)+m(V)P+\sum_{s\in S}-\rho_s[c_0(s,m^*(s)) + P\cdot m^*(s)]:
+ {\omega^*(P)}=\mathop{\max}_{\rho} \{c_0(V, m^*(V))+ m^*(V)P + \sum_{s\in S}-\rho_s[c_0(s,m^*(s)) + P\cdot m^*(s)]:
  \sum_{s\in S:k\in s}\rho_s=1,\forall k \in V,\rho_s\geq 0,\forall s \in S \}
 \end{equation}
 
-By deriving $\omega^*(P)$ with respect to $P$, we can obtain lemma \ref{lem1}.
+By deriving $\omega^*(P)$ with respect to $P$, we can obtain lemma \ref{sum_slope}.
 
-\begin{lem}\label{lem1}
+\begin{lem}\label{sum_slope}
 The sum of absolute values of slopes at both sides of $P_i$ is 1.
 \end{lem}
 
-Based on the above defined PSPF, we can establish Theorem \ref{thm2} below, showing the property of this function.
+Based on the above defined PSPF, we can establish Theorem \ref{piecewise} below, showing the property of this function.
 
-\begin{thm}\label{thm2}
+\begin{thm}\label{piecewise}
 $\omega(P)$ is piecewise linear, and convex in price P at each sub-interval $[P_{i+1},P_{i}], i \in \{1,2,\ldots,v-1\}$.
 \end{thm}
 
 In this situation, the size of interval $I_i$ can be calculated when $t_i,i \in \{1,2,\ldots,v\}$ is known. As shown previously, the extreme points of these intervals are recorded as $P_i$ respectively, which represents the price when the number of using machine changes from $i$ to $i-1$. Specially, $P_1$ denotes the right extreme point of the whole interval, which is the value of price when using one machine and subsidy equals zero.
 
-Note that the costs of all the exponential coalitions can be easily calculated by the SPT rules, we have lemma \ref{lem2}.
+Note that the costs of all the exponential coalitions can be easily calculated by the SPT rules, we have lemma \ref{break_price}.
 
-\begin{lem}\label{lem2}
+\begin{lem}\label{break_price}
 The breaking price, $P_i(2 \leq i \leq v)$, which is at the extreme points of the sub-intervals $I_i$ can be obtained by SPT rules in polynomial time.
 \end{lem}
 
-According to the above lemma \ref{lem2}, we can obtain all the extreme points of the sub-intervals $P_i, 2 \leq i \leq v$. When the price increase from $P_i^-$(little smaller than $P_i$) to $P_i^+$(little larger than $P_i$), the number of machines used by the grand coalition will decrease one.
+According to the above lemma \ref{break_price}, we can obtain all the extreme points of the sub-intervals $P_i, 2 \leq i \leq v$. When the price increase from $P_i^-$(little smaller than $P_i$) to $P_i^+$(little larger than $P_i$), the number of machines used by the grand coalition will decrease one.
 
-\begin{thm}\label{thm3}
+\begin{thm}\label{boundary_price}
 Boundary price $P^*$ or $P_1$ equals $\sum_{i=2}^v P_i$, and can be obtained in polynomial time.
 \end{thm}
 
-With theorem \ref{thm3}, we obtain all the breakpoints during the whole price interval $[0,P^*]$. Then we'll focus on the specific property of subsidy.
+With theorem \ref{boundary_price}, we obtain all the breakpoints during the whole price interval $[0,P^*]$. Then we'll focus on the specific property of subsidy.
 
-\begin{thm}\label{thm4}
+\begin{thm}\label{zero_subsidy}
 $\omega(P)$ can be bounded by zero when the number of machines used by the grand coalition $V$ is larger than $\frac{v}{2}$.
 \end{thm}
 
@@ -156,7 +156,7 @@ c(s,P,'m='1) = & {\min} \sum_{k\in V}\sum_{j\in O} {c_{kj} x_{kj} + P} \\
 \end{aligned}
 \]
 
-\begin{thm}\label{thm5}
+\begin{thm}\label{SMSG}
 For SMSG(or, MSG with only one machine), given $P \in [P_2, P^*]$ (or, $[P_2,P_1]$),
 the slope range of each segments in the interval for function $\omega(P)$ is within $\left(-1, -\frac{1}{n-1} \right]$, and the number of breakpoints in the same interval for function $\omega(P)$ is within $O(v^2)$.
 \end{thm}
@@ -166,12 +166,20 @@ And a diagram of the number of machines used and subsidy on price with essential
 
 \begin{figure}[h]%%图
 	\centering  %插入的图片居中表示
-	\includegraphics[width=0.8\linewidth]{Figures/Image30}  %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下
+	\includegraphics[width=0.8\linewidth]{Figures/Image1}  %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下
 	\caption{The number of machines and subsidy on setup cost.}  %图片的名称
 	\label{fig:Image11}   %标签，用作引用
 \end{figure}
 
-% 这里把图画一下,然后进行比较
+As a constrast, we plot the figure of TSPF as below. The difference between practical subsidy-price function (PSPF) and theoretical subsidy-price function (TSPF) is only showed in the inverval when price is larger than $P_1$. This phenomenon matches the Theorem \ref{zero_subsidy}. 
+
+\begin{figure}[h]%%图
+	\centering  %插入的图片居中表示
+	\includegraphics[width=0.8\linewidth]{Figures/Image2}  %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下
+	\caption{The number of machines and subsidy on setup cost.}  %图片的名称
+	\label{fig:Image11}   %标签，用作引用
+\end{figure}
+
 
 \begin{remark}
   When the number of available machines $m$ is larger than $v$, the image is complete, just like the above shown. However, when the number of available machines $m$ is less than $v$, the image will be truncated, which means the corresponding part of the price less than $P_{m+1}$ should be removed from the figure. While the properties of the rest part will still hold.
@@ -185,7 +193,7 @@ The left ordinate represents the number of machine used, while the right represe
 Compared with the traditional characteristic function $c(s)$, characteristic function defined in the IVPU game has another parameter, the number of machines used by coalition $m(s)$, whose exponential numbers of $m(s)$ bring more difficulties to the solution.
 In order to address this problem, we establish the Theorem \ref{thm5}.
 
-\begin{thm}\label{thm7}
+\begin{thm}\label{w1P}
   Define that
   \[
     {\omega_1(P)}=\mathop{\min}_{\alpha}\{c(V,P)-\alpha(V): \alpha(s)\leq c(s,P,1), \forall s \in S, \alpha\in\mathbb{R}^{v}\},
@@ -195,4 +203,4 @@ then the original problem $\omega(P)$ is equivalent to $\omega_1(P)$.
 
 As the coalitional stability constraints showed above, the exponential inequality constraints are so tricky that we must figure out a method to eliminate redundant constraints to obtain the optimal results.
 
-With the Theorem 5, which will save us from the trouble of solving $c(s, P)$ and speed up the solution, we can use the cutting plane method to eliminate the redundant inequalitie, then  any value of $\omega_1(P)$ can be polynomially solvable when given $P$.
+With the Theorem \ref{w1P}, which will save us from the trouble of solving $c(s, P)$ and speed up the solution, we can use the cutting plane method to eliminate the redundant inequalitie, then  any value of $\omega_1(P)$ can be polynomially solvable when given $P$.
