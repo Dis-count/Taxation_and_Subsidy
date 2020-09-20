@@ -164,20 +164,36 @@ the slope range of each segments in the interval for function $\omega(P)$ is wit
 Until here, we described the main property of the whole figure.
 And a diagram of the number of machines used and subsidy on price with essential features is showed below.
 
-\begin{figure}[h]%%图
-	\centering  %插入的图片居中表示
-	\includegraphics[width=0.8\linewidth]{Figures/Image1}  %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下
-	\caption{The number of machines and subsidy on setup cost.}  %图片的名称
-	\label{fig:Image11}   %标签，用作引用
-\end{figure}
+% \begin{figure}[h] %图
+% 	\centering  %插入的图片居中表示
+% 	\includegraphics[width=0.8\linewidth]{Figures/Image1}  %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下
+% 	\caption{The number of machines and subsidy on setup cost.}  %图片的名称
+% 	\label{fig:Image11}   %标签，用作引用
+% \end{figure}
 
-As a constrast, we plot the figure of TSPF as below. The difference between practical subsidy-price function (PSPF) and theoretical subsidy-price function (TSPF) is only showed in the inverval when price is larger than $P_1$. This phenomenon matches the Theorem \ref{zero_subsidy}. 
+As a constrast, we plot the figure of TSPF as below. The difference between practical subsidy-price function (PSPF) and theoretical subsidy-price function (TSPF) is only showed in the inverval when price is larger than $P_1$. This phenomenon matches the Theorem \ref{zero_subsidy}.
 
-\begin{figure}[h]%%图
-	\centering  %插入的图片居中表示
-	\includegraphics[width=0.8\linewidth]{Figures/Image2}  %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下
-	\caption{The number of machines and subsidy on setup cost.}  %图片的名称
-	\label{fig:Image11}   %标签，用作引用
+% \begin{figure}[h]%图
+% 	\centering  %插入的图片居中表示
+% 	\includegraphics[width=0.8\linewidth]{Figures/Image2}  %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下
+% 	\caption{The number of machines and subsidy on setup cost.}  %图片的名称
+% 	\label{fig:Image11}   %标签，用作引用
+% \end{figure}
+
+
+\begin{figure}
+\begin{minipage}[t]{0.5\linewidth}
+\centering
+\includegraphics[width=3in]{Figures/Image1}
+\caption{PSPF function on pricing}
+\label{fig-PSPF}
+\end{minipage}%
+\begin{minipage}[t]{0.5\linewidth}
+\centering
+\includegraphics[width=3in]{Figures/Image2}
+\caption{TSPF function on pricing}
+\label{fig-TSPF}
+\end{minipage}
 \end{figure}
 
 
@@ -191,7 +207,7 @@ The horizontal ordinate represents the price.
 The left ordinate represents the number of machine used, while the right represents the value of subsidy.
 
 Compared with the traditional characteristic function $c(s)$, characteristic function defined in the IVPU game has another parameter, the number of machines used by coalition $m(s)$, whose exponential numbers of $m(s)$ bring more difficulties to the solution.
-In order to address this problem, we establish the Theorem \ref{thm5}.
+In order to address this problem, we establish the Theorem \ref{w1P}.
 
 \begin{thm}\label{w1P}
   Define that
