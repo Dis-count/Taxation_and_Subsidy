@@ -5,6 +5,9 @@ To construct the whole diagram of $\omega(P)$ in $[0,P^*]$, we need to obtain th
 At first, we need to divide the interval into $v$ sub-intervals according to the number of machines used by the grand coalition. However, we don't need to calculate the interval $[0,P_{\lceil v+1/2 \rceil}]$ because at this part the corresponding subsidy is 0 always.(The corresponding conclusion we mentioned in Theorem \ref{zero_subsidy})
 Then we just need to apply the IPC algorithm on the rest interval to get the breakpoints. After obtaining all the breakpoints, the PSPF function can be constructed.
 
+Similar definition to \cite{liu2018simultaneous}, let $S^{\alpha P} = \{s_1^{\alpha P}, s_2^{\alpha P}, \ldots, s_{h(\alpha,P)}^{\alpha P}\}$ denote the collection of all maximally unsatisfied coalition, where $h(\alpha,P)= |S^{\alpha P}|$. Meanwhile, denote $\pi^{\alpha P} = \{ \rho:\sum_{s\in S:k\in s}\rho_s=1,\forall k \in V, \rho_s = 0,\forall s \notin S^{\alpha P}, \rho_s\geq 0,\forall s \in S^{\alpha P}\}$
+, then define the left and right derivatives at $P$ as $K_{l}^{P} = \min\{\sum_{s\in S} -\rho_s: \rho \in \pi^{\alpha P}\}$ and $K_{r}^{P} = \max\{\sum_{s\in S} -\rho_s: \rho \in \pi^{\alpha P}\}$ respectively.
+
 \subsection{IPC Algorithm}
 
 \begin{algorithm}[H]\label{algoIPC}
@@ -79,10 +82,10 @@ Then we can follow the basic Cutting Plane(CP) algorithm to solve the tricky exp
 \end{algorithmic}
 \end{algorithm}
 
-As we all know, the cost arised from the partial players in the grand coalition, that is $c(s,P)$, can be calculated handily by the SPT rule (The corresponding conclusion see Lemma \ref{lem1}).
+As we all know, the cost arised from the partial players in the grand coalition, that is $c(s,P)$, can be calculated handily by the SPT rule (The corresponding conclusion see Lemma \ref{break_price}).
 Now, the question is how to solve the separation problem mentioned above efficiently.
 
-\begin{lem}\label{lem3}
+\begin{lem}\label{DP_complexity}
   For the AIPU game, the corresponding separation problem can be sovled in $O(v^2)$ time, which could be shown in the following DP algorithm.
 \end{lem}
 
