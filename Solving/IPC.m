@@ -1,6 +1,8 @@
 function [Pstar,omega] = IPC(v)
 
-% return intersection set and the corresponding subsidy
+% Pre-treatment: Give all the sub-intervals [P_m+1,P_m]
+
+% Return intersection set and the corresponding subsidy
 % then we just need connect these points
 
 % t = [5;4;3;2];
