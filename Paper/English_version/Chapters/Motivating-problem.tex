@@ -1,6 +1,7 @@
-\section{Motivating problem}
+% !TEX root = sum1.tex
+\section{Motivating Problem}
 
-\subsection{Basic concept}
+\subsection{Basic Concept}
 
 At first, we will introduce some preliminary knowledge about cooperative game theory as follows.
 A pair $(V,c)$ is usually used to represent a cooperative game with transferable utilities, among which $V=\{1,2,\dots,v\}$ denotes a set of $v$ players and $c:2^{V}\to \mathbb{R}$ indicates the characteristic function of the game. A coalition $s$ is defined as a non-empty subset of players; and $V$ is refered to as the grand coalition containing all the players, $S=2^{V} \setminus\{\emptyset\}$ denotes the set of all feasible coalitions. The characteristic function of the game, $c(s)$, represents the minimum coalitional cost the players in $s$ have to pay in order to cooperate together.
@@ -21,7 +22,7 @@ That being said, the players of the games can stabilize themselves without the t
 To make the project concrete, we will apply this instrument on the machine scheduling games to show our ideas.
 
 
-\subsection{Identical Variable Parallel machine scheduling of Unweighted jobs game}
+\subsection{Identical Variable Parallel Machine Scheduling of Unweighted Jobs Game}
 % 这里还需要定义一个优化问题
 
 The Identical Parallel machine scheduling of Unweighted jobs(IPU) problem can be defined as follows. There are several machines available here. For this scheduling problem, the setup cost for each machine is the same and jobs have the same weights. The problem requires that the jobs should be scheduled to several of these machines in order to have a minimum completion time, which contains the setup costs considered as a form of time and total processing time for all jobs. Thus, we call this problem as the
