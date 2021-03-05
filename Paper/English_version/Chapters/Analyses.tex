@@ -18,7 +18,7 @@ c(s,P) = & {\min} \sum_{k\in V}\sum_{j\in O} {c_{kj} x_{kj}} + {P\sum_{k\in s} x
 The first set of constraints indicate that only jobs in $s$ are included and are processed only once.
 Notice that $ y_k^s=1, k \in s$, the constraints are equivalent to $\sum_{j \in O} x_{kj}-1=0, k \in s$.
 The second set of constrains indicate that at most $m$
-machines can be used, and they assure that no jobs are processed on the same machines at the same time.
+machines can be used, and they assure that no jobs are processed on the same machine at the same time.
 
 Among these formulations, $P$ and $m$ denotes the price and maximum number of machines available, respectively. Note that $j$ represents the processing sequence on the machines, so when $j=1$, $\sum_{k\in s} x_{k1}$ indicates all machines used by coalition $s$, i.e., the optimal machine number.
 
@@ -85,7 +85,7 @@ In the light of the Theorem \ref{monotone}, $c_0(V,i)- c_0(V,i-1) < 0$ ensures t
 is divided into $v$ non-overlapping sub-intervals $I_i, i\in V$.
 
 \begin{remark}
-  Denote the left and right extreme points of the interval $I_i$ as $P_L(i,V), P_H(i,V)$ respectively. It's easy to know that $P_L(i,V) = P_H(i+1,V)$.
+  Denote the left and right extreme points of the interval $I_i$ as $P_L(i,V), P_H(i,V)$ respectively. It's easy to know that $P_L(i,V) = P_H(i+1,V), i \in \{1,2,\ldots,v-1\}$.
 \end{remark}
 
 \begin{remark}
