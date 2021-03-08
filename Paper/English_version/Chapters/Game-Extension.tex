@@ -89,7 +89,6 @@ Note that the properties of this game is similar to the unweighted one, we will 
 
 \begin{corollary} \label{cor-1}
 $c(s,P)$ and $P_i(2 \leq i \leq v)$ can be obtained by analysing the order of $t_k/\omega_k$ instead of $t_k$.
-
 \end{corollary}
 
 \begin{corollary} \label{cor-2}
@@ -108,9 +107,11 @@ When $c_0(s,m^*), s \in S$ satisfy the supermodular and $P=P_1$, where we have $
 
 As we've already known that $P_i, i = 2,\ldots,n$ can be obtained by Lemma \ref{break_price}, then, $P_1$ can be calculated by solving the $n$ equalities by Lemma \ref{n-equality}.
 
-Then we can follow the CP approach (Algorithm CP) to obtain all maximally unsatisfied coalitions the corresponding weak derivatives at each sub-interval $[P_{i+1},P_{i}]$ where the corresponding derivative is $m_V-\sum_{s\in S\setminus\{V\}} \rho_s$.
+Then we can follow the CP approach (Algorithm CP) to obtain all maximally unsatisfied coalitions and the corresponding weak derivatives at each sub-interval $[P_{i+1},P_{i}]$
+% where the corresponding derivative is $m_V-\sum_{s\in S\setminus\{V\}} \rho_s$.
 
-Then use IPC Algorithm which will return all the breakpoints during the $[0, P^*]$ to obtain the subsidy $\omega(P)$.
+Then use IPC Algorithm which will return all the breakpoints during the $[0, P^*]$
+% to obtain the subsidy $\omega(P)$.
 
 Remind that we want to realize a situation where the grand coalition doesn't need a subsidy from the externality.
 
