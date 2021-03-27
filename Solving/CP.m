@@ -54,7 +54,7 @@ while flag
 
   if count >100
   % ini_s
-      disp('There is something wrong')
+      disp('There is something wrong in CP')
       break
   end
 

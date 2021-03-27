@@ -89,7 +89,8 @@ ann(end) = []; %  delete the last one element
 
 Subsidy = cv+y;
 
-Taxation = index * (S0 - 9.5);
+% Taxation = index * (S0 - 9.5);
+Taxation = index * S0;
 
 difference = Subsidy - Taxation;
 

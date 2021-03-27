@@ -1,4 +1,4 @@
-function [Pstar,omega] = IPC(t, interval)
+function [Pstar,omega] = IPCtest()
 
 % Pre-treatment: Give all the sub-intervals [P_m+1,P_m]
 
@@ -6,22 +6,31 @@ function [Pstar,omega] = IPC(t, interval)
 % then we just need connect these points
 
 % t = [5;4;3;2];
-v = length(t);
-% t= [9;8;7;5.5;4];
 
-% Pstar = [35,50]; % The set of breakpoints
-Pstar = interval;
+% t= [9;8;7;5.5;4];
+t = [7.5,6,5.5,4,3,1,1.5,1.5];
+
+v = length(t);
+Pstar = [60,68]; % The set of breakpoints
+% Pstar = interval;
 
 % Pbig = [11,16];
 
-% Pbig = [35,50];  % The interval of price and will gradually decrease
+Pbig = [60,68];  % The interval of price and will gradually decrease
 
-Pbig  = interval;
+% Pbig  = interval;
 
 omega = zeros(1,2);
 
-% while ~isempty(Pbig)
-for tt = 1:100
+count = 0
+
+while ~isempty(Pbig)
+  count = count + 1
+
+  if count > 50
+    disp('There is something wrong in the loop.')
+    break
+  end
 
   [a1,b1,c1] =  CP(v,t,Pbig(1,1));   % omega  K_l  K_r  (z_k-1   select K_r)
 
@@ -43,7 +52,7 @@ for tt = 1:100
 
     zinter = (b1*Pbig(1,1) - Pbig(1,2)*c2 + a2 - a1)/(b1-c2);
 
-    if zinter < interval(1)||zinter > interval(2)
+    if zinter < 41||zinter > 68
 
         disp('There is something wrong')
 
@@ -69,7 +78,6 @@ for tt = 1:100
     disp('OK')
 
   end
-  Pbig
 end
 
 end
