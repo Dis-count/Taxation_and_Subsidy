@@ -8,7 +8,7 @@ function [result, s] = DP(v,t,beta,z)
 
 u = 0; % counting
 
-s = zeros(1,v); % 记录集合中player
+s = zeros(1,v); % 记录集合中 player
 
 result = z;
 
