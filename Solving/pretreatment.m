@@ -1,22 +1,23 @@
 % this function is used to obtain the interval of price given the initial processing time of each player.
 
-function I = pretreatment(t)
+function [I,price] = pretreatment(t)
 
 %  t is given in descending order.
 % return a list of interval
+% The first two element are the interval of price, the third one is the corresponding number of machines.
 
 t1 = fliplr(t); % reverse the list
 
 N = length(t);
 
-normal_order = N:-1:1;
+% normal_order = N:-1:1;
 
 % c_V1 = dot(normal_order, t);
 %  this loop is used to obtain the c-Vi
 
-cV = zeros(1,ceil(N/2));
+cV = zeros(1,ceil(N/2)+1);
 
-for k = 1: ceil(N/2)
+for k = 1: ceil(N/2)+1
     s = floor(N/k);
     r = rem(N,k);
     a = (s+1):-1:1;
@@ -35,10 +36,14 @@ price(end+1) = p_1;
 
 price = [0, price];
 
-I = zeros(ceil(N/2),2);
+I = zeros(ceil(N/2)+1,3);
 
-for i = 1: ceil(N/2)
+for i = 1: ceil(N/2)+1
 
-  I(i,:) = [price(i),price(i+1)];
+  I(i,:) = [price(ceil(N/2)-i+2), price(ceil(N/2)-i+3), i];
+
+  % I(i,:) = [price(i),price(i+1),ceil(N/2)-i+2];
+
+end
 
 end

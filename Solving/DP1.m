@@ -1,7 +1,7 @@
 function [res, s] = DP1(v,t,beta,z)
 % v is number of players
-% t and beta are vectors   from bottom to top
-% z = 9.5
+% t and beta are vectors   from bottom1 to topN
+% z = 9.5/ Price
 % t =[5 4 3 2];
 % beta = [14.5 8 12.5 4]
 
@@ -13,7 +13,7 @@ P = ones(v, v+1);
 
 P(1,1) = z;  %  P(1,0)
 
-P(1,2) = z + t(1) - beta(1) ;  %  P(1,1)
+P(1,2) = z + t(1) - beta(1);  %  P(1,1)
 
 ss = cell(v,v+1);  % Used to store the corresponding player vector.
 
@@ -48,7 +48,6 @@ for i = 2: v
     end
 
   end
-
 
 end
 

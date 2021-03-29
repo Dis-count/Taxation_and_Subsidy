@@ -1,10 +1,12 @@
-function [x,maxr] = LP12(s,v,t,z)
+function unsatisfied = LP12Return(s,v,t,z)
+
+% This function is used to obtain all the unsatified coalitions.
 
 % Notice that s is a restricted-coalition matrix.(0-1)  v = 4
 % which is obtained from CP method.
 % t is arranged from large to small  column vector
 
-% return the solution vector x and value maxr.
+% return all the unsatified coalitions.
 
 % transpose is ok
 
@@ -28,8 +30,13 @@ b = c_s;
 
 % optimset('Display','off');
 
-[x,fval1] = linprog(-f,s,b);
+[x,fval,exitflag,output,lambda] = linprog(-f,s,b);
 
-maxr = -fval1;
+inde = lambda.ineqlin ~= 0;
+
+normal_order = (1:s1)';
+normal_order = normal_order(inde);
+
+unsatisfied = s(normal_order,:);
 
 end

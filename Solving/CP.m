@@ -6,45 +6,56 @@ function [omega,K_l,K_r] = CP(v,t,z)
 % t is the time cost for every player.
 % v is number of players.
 % z is the penalty or the price.
-
-% return subwidy and min / max slope
+% m is the number of optimal using machines
+% return subsidy and min / max slope
 
 % ini_s = [0     1     1     1
 %          1     1     0     1
 %          1     0     1     1
 %          1     1     0     0];
 
-ini_s = eye(v);
+ini_s = 1 - eye(v);
 
 % t= [9;8;7;5.5;4];
-
-% c_V = m*z +sum_t;
+% cV = dot(1:v,t) + z;  % this is only one machine situation
+cV = TCost(t,z);  % c_V = m*z +sum_t;
 
 flag = true;
 
 count = 0;
 
+% count_s = 0;
+
 while flag
 
   [beta, maxr] = LP12(ini_s,v,t,z);
 
-  [delta, opt_s] = DP1(v,t,beta,z);
+  [delta, opt_s] = DP1(v,t,beta,z)
 
-  if delta < -0.01
+  if delta < -0.001
 
-     ini_s = [ini_s;opt_s];
+    ini_s = [ini_s;opt_s];
+
+    % count_s = count_s +1;
+    % if count_s < v+1
+    %   ini_s(1,:) = [];
+    % end
 
   else
 
-    omega = dot(1:v,t)+z - maxr;
+    % here use LP12 obtain the maximum unsatisfied coalition
 
-    if length(ini_s(:,1)) > v
+    omega = cV - maxr;
 
-        ini_s = ini_s(v+1:end,:);
+    unsatisfied = LP12Return(ini_s,v,t,z);
 
-    end
+    % if length(ini_s(:,1)) > v
+    %
+    %     ini_s = ini_s(v+1:end,:);
+    %
+    % end
 
-    [K_l, K_r] = LP9(ini_s,v);
+    [K_l, K_r] = LP9(unsatisfied,t,z);
 
     flag = false;
 
@@ -59,6 +70,5 @@ while flag
   end
 
 end
-
 
 end

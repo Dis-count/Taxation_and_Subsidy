@@ -1,4 +1,4 @@
-function [minr,maxr] = LP9(s,v)
+function [minr,maxr] = LP9(s,t,P)
 
 % Notice that s is a matrix. (0-1)  v = 4
 % used to give the min and max slope value.
@@ -8,7 +8,9 @@ function [minr,maxr] = LP9(s,v)
 %    1 1 1 0;
 %    1 1 0 1;
 %    1 0 1 1;]
-m_v = 1;
+v = length(t);
+
+m_v = Pm(P,t);   %  notice that the slope has to add 1
 % 转置即可
 s1 = length(s(:,1));
 
