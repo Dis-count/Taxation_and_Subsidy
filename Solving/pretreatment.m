@@ -1,6 +1,6 @@
 % this function is used to obtain the interval of price given the initial processing time of each player.
 
-function [I,price] = pretreatment(t)
+function [I,price] = Pretreatment(t)
 
 %  t is given in descending order.
 % return a list of interval
