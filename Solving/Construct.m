@@ -5,7 +5,7 @@ function Construct()
 t = [7.5,6,5.5,4,3,1.5,1.5];
 
 % t = rand(1,n)
-interval = pretreatment(t)
+interval = pretreatment(t);
 
 x = []; % Restore the value of price at the breakpoints.
 
