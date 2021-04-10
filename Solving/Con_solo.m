@@ -4,7 +4,7 @@ function Con_solo(i)
 % t = [7.5,6,  5.5,4,3,1.5,1.5,1.5];
 t = [7,  6.5,6.5,4,4,3.5,2.5,2, 1.5,1];
 % t = rand(1,n)
-interval = pretreatment(t);
+interval = Pretreatment(t);
 
 x = []; % Restore the value of price at the breakpoints.
 
@@ -26,6 +26,6 @@ ylabel('²¹Ìù')
 
 legend('²¹Ìù','Location','NorthEast' );
 
-saveas(gcf,'soloIPC1.pdf');
+saveas(gcf,'001.pdf');
 
 end
